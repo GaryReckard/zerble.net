@@ -139,8 +139,8 @@ h2 {
     linear-gradient(180deg, var(--night) 0%, var(--night-2) 55%, #5a2a6e 100%);
 }
 .hero .wrap { display: grid; grid-template-columns: 1.05fr .95fr; gap: 40px; align-items: center; }
-.hero-art { --tilt: 3deg; width: min(520px, 100%); justify-self: center; animation: bob 4s ease-in-out infinite; }
-@keyframes bob { 50% { translate: 0 -10px; } }
+.hero-art { --tilt: 3deg; --nudge: 0px; width: min(520px, 100%); justify-self: center; translate: var(--nudge) 0; animation: bob 4s ease-in-out infinite; }
+@keyframes bob { 50% { translate: var(--nudge) -10px; } }
 
 /* The wordmark: one span per letter, each with its own resting tilt and color.
    site.js lifts the letter nearest the cursor (and runs a one-time intro sweep)
@@ -168,6 +168,13 @@ h2 {
   color: var(--hot);
   text-shadow: 8px 12px 0 var(--ink);
   transform: translateY(var(--lift)) rotate(var(--hot-rot)) scale(1.16);
+}
+/* The idle wave (site.js): a softer, slower cousin of .is-hot that ripples across
+   every few seconds. .is-waving slows both the rise and the settle back down. */
+.wordmark.is-waving .ltr { transition: transform .9s cubic-bezier(.45, 0, .2, 1), text-shadow .9s ease, color .22s ease; }
+.wordmark .ltr.is-wave {
+  text-shadow: 6px 9px 0 var(--ink);
+  transform: translateY(calc(var(--lift) * .5)) rotate(calc((var(--rot) + var(--hot-rot)) / 2)) scale(1.05);
 }
 .wordmark .pop {
   position: absolute;
@@ -398,7 +405,10 @@ h2 {
   .art { padding: 72px 0; }
   .hero { padding-top: 28px; text-align: center; }
   .hero .wrap { gap: 10px; }
-  .hero-art { order: -1; width: min(420px, 100%); }
+  /* The cart sits left of center in the sticker (the bubble trail fills the right side),
+     so nudge it right until the cart lines up under the centered ZERBLE. 78vw keeps the
+     nudged trail inside the screen. */
+  .hero-art { order: -1; width: min(420px, 78vw); --nudge: 14%; }
   .wordmark { justify-content: center; }
   .lead { margin-inline: auto; }
   .hero .btn-row { justify-content: center; }
@@ -578,37 +588,6 @@ h2 {
   pointer-events: none;
 }
 
-/* ---------- zerbubbles: a full-bleed photo band between sections ---------- */
-.bubble-strip {
-  position: relative;
-  display: grid;
-  place-items: center;
-  min-height: clamp(240px, 34vw, 420px);
-  overflow: hidden;
-  background: #2a3a1a;
-}
-.bubble-strip-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.bubble-strip::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(120% 90% at 50% 50%, rgba(18, 12, 36, .15) 0%, rgba(18, 12, 36, .55) 100%);
-}
-.bubble-strip-text {
-  position: relative;
-  z-index: 3;
-  width: fit-content;
-  max-width: calc(100% - 40px);
-  margin: 0;
-  text-align: center;
-  font: 400 clamp(2.4rem, 7vw, 5.2rem)/1 var(--display);
-  color: var(--cream);
-  -webkit-text-stroke: clamp(2px, .35vw, 4px) var(--ink);
-  paint-order: stroke fill;
-  text-shadow: 0 6px 0 var(--ink);
-  transform: rotate(-2deg);
-}
-
 .passes .snap { margin-top: 8px; }
 
 /* ---------- the bubble fund: a tip jar dressed as a gas pump ---------- */
@@ -629,9 +608,20 @@ h2 {
 .tank {
   position: relative;
   padding: 90px 0;
+  background: #23377f;
+}
+/* Zerbubbles on the grass behind it all. The overlay darkens the text side, washes
+   the top into the foam edge's blue, and fades the bottom into the story below. */
+.tank-bg { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; }
+.tank::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
   background:
-    radial-gradient(70% 60% at 85% 20%, rgba(63, 198, 255, .3), transparent 65%),
-    linear-gradient(180deg, #2b3f97 0%, #23377f 55%, var(--night) 100%);
+    linear-gradient(180deg, #2b3f97 0, rgba(43, 63, 151, 0) 140px),
+    linear-gradient(0deg, var(--night) 0, rgba(26, 20, 48, 0) 160px),
+    linear-gradient(90deg, rgba(18, 12, 36, .88) 0%, rgba(18, 12, 36, .62) 50%, rgba(18, 12, 36, .3) 100%);
 }
 /* A foamy top edge (two rows of overlapping bubbles) where the band meets the hero. */
 .tank::before {
@@ -751,6 +741,12 @@ h2 {
 
 @media (max-width: 860px) {
   .tank { padding: 64px 0 72px; }
+  .tank::after {
+    background:
+      linear-gradient(180deg, #2b3f97 0, rgba(43, 63, 151, 0) 120px),
+      linear-gradient(0deg, var(--night) 0, rgba(26, 20, 48, 0) 160px),
+      rgba(18, 12, 36, .74);
+  }
   .tank-grid { grid-template-columns: minmax(0, 1fr); gap: 40px; }
   .pump { width: min(420px, 100%); justify-self: center; transform: none; }
 }

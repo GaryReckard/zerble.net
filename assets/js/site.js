@@ -3,7 +3,8 @@
    (lift + counter-tilt + scale + deeper shadow, on a springy overshoot curve),
    and a one-time intro sweep plays the effect for visitors who never hover,
    which includes everyone on a phone. Zerble's twist: every pop puffs a bubble.
-   All of the motion lives in styles.css under .wordmark .ltr.is-hot. */
+   After the intro, a softer and slower wave keeps rippling across every few
+   seconds. All of the motion lives in styles.css under .is-hot and .is-wave. */
 (function () {
     'use strict';
 
@@ -56,9 +57,48 @@
         return best;
     }
 
+    // Idle wave: once the intro is over, a gentler ripple runs left to right, rests,
+    // and repeats, but only while the wordmark is on screen and nobody is hovering it.
+    var WAVE_STEP   = 170;    // gap between one letter and the next (ms)
+    var WAVE_HOLD   = 550;    // how long each letter rises before easing back down (ms)
+    var WAVE_SETTLE = 900;    // the slow ease back down; matches .is-waving in styles.css (ms)
+    var WAVE_PAUSE  = 2000;   // rest between waves (ms)
+
+    var waveTimers = [];
+    var looping = false;      // flips on when the intro ends or the visitor interrupts it
+    var hovering = false;
+    var onScreen = true;
+
+    function stopWave() {
+        if (!waveTimers.length && !h1.classList.contains('is-waving')) return;
+        waveTimers.forEach(clearTimeout);
+        waveTimers = [];
+        letters.forEach(function (el) { el.classList.remove('is-wave'); });
+        h1.classList.remove('is-waving');
+    }
+
+    function scheduleWave(delay) {
+        stopWave();
+        if (reduceMotion || !looping || hovering || !onScreen || document.hidden) return;
+        waveTimers.push(setTimeout(wave, delay));
+    }
+
+    function wave() {
+        h1.classList.add('is-waving');
+        letters.forEach(function (el, i) {
+            waveTimers.push(setTimeout(function () { el.classList.add('is-wave'); }, i * WAVE_STEP));
+            waveTimers.push(setTimeout(function () { el.classList.remove('is-wave'); }, i * WAVE_STEP + WAVE_HOLD));
+        });
+        waveTimers.push(setTimeout(function () {
+            h1.classList.remove('is-waving');
+            scheduleWave(WAVE_PAUSE);
+        }, (letters.length - 1) * WAVE_STEP + WAVE_HOLD + WAVE_SETTLE));
+    }
+
     // Cancel a running intro sweep the moment the visitor takes over.
     var introTimers = [];
     function stopIntro() {
+        looping = true;
         if (!introTimers.length) return;
         introTimers.forEach(clearTimeout);
         introTimers = [];
@@ -66,6 +106,11 @@
         active = null;
     }
 
+    h1.addEventListener('pointerenter', function (e) {
+        if (e.pointerType === 'touch') return;
+        hovering = true;
+        stopWave();
+    });
     h1.addEventListener('pointermove', function (e) {
         if (e.pointerType === 'touch') return;
         stopIntro();
@@ -73,8 +118,10 @@
     });
     h1.addEventListener('pointerleave', function (e) {
         if (e.pointerType === 'touch') return;
+        hovering = false;
         stopIntro();
         release();
+        scheduleWave(WAVE_PAUSE);
     });
 
     // Touch has no hover, so a tap pops the nearest letter and lets it settle back.
@@ -82,10 +129,14 @@
     h1.addEventListener('pointerdown', function (e) {
         if (e.pointerType !== 'touch') return;
         stopIntro();
+        stopWave();
         clearTimeout(tapTimer);
         active = null;
         activate(nearest(e.clientX));
-        tapTimer = setTimeout(release, 650);
+        tapTimer = setTimeout(function () {
+            release();
+            scheduleWave(WAVE_PAUSE);
+        }, 650);
     });
 
     // Intro sweep, in two beats: Z-E-R-B-L-E light up one at a time, then all six
@@ -125,6 +176,8 @@
         introTimers.push(setTimeout(function () {
             active = null;
             introTimers = [];
+            looping = true;
+            scheduleWave(WAVE_PAUSE);
         }, releaseAt + BLOOM_OUT + 80));
     }
 
@@ -142,6 +195,19 @@
     }
 
     if (!reduceMotion) introTimers.push(setTimeout(start, INTRO_DELAY));
+
+    // Rest the wave while the tab is in the background or the hero is scrolled away.
+    document.addEventListener('visibilitychange', function () {
+        if (document.hidden) stopWave();
+        else scheduleWave(WAVE_PAUSE);
+    });
+    if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries) {
+            onScreen = entries[0].isIntersecting;
+            if (onScreen) scheduleWave(800);
+            else stopWave();
+        }).observe(h1);
+    }
 })();
 
 /* The bubble pump (the tip jar). Picking an amount ticks the screen over like a

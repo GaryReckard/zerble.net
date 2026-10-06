@@ -27,7 +27,7 @@
     </script>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Nunito:wght@400;700;800&family=Press+Start+2P&family=Titan+One&display=swap">
-    <link rel="stylesheet" href="assets/css/styles.css?v=2026-10-06b">
+    <link rel="stylesheet" href="assets/css/styles.css?v=2026-10-06e">
     <link rel="preload" as="image" type="image/webp"
           imagesrcset="assets/img/zerble-hero-520.webp 520w, assets/img/zerble-hero-1040.webp 1040w"
           imagesizes="(max-width: 860px) min(420px, 100vw - 32px), 520px">
@@ -257,6 +257,10 @@
 
 <main id="main">
     <section class="tank" id="bubble-juice" data-screen-label="bubble-juice" aria-labelledby="tank-title">
+        <picture>
+            <source type="image/webp" srcset="assets/img/zerbubbles-800.webp 800w, assets/img/zerbubbles-1600.webp 1600w" sizes="100vw">
+            <img class="tank-bg" src="assets/img/zerbubbles-1600.jpg" width="1600" height="1066" loading="lazy" decoding="async" alt="">
+        </picture>
         <div class="wrap tank-grid">
             <div class="tank-text">
                 <p class="eyebrow">The bubble fund</p>
@@ -592,14 +596,6 @@
         </div>
     </section>
 
-    <section class="bubble-strip" aria-label="Zerbubbles everywhere">
-        <picture>
-            <source type="image/webp" srcset="assets/img/zerbubbles-800.webp 800w, assets/img/zerbubbles-1600.webp 1600w" sizes="100vw">
-            <img class="bubble-strip-img" src="assets/img/zerbubbles-1600.jpg" width="1600" height="1066" loading="lazy" decoding="async"
-                 alt="">
-        </picture>
-        <p class="bubble-strip-text">Zerbubbles everywhere.</p>
-    </section>
 
     <section class="archives" id="archives" data-screen-label="archives" aria-labelledby="archives-title">
         <div class="wrap">
@@ -913,7 +909,7 @@
     </div>
 </footer>
 
-<script defer src="assets/js/site.js?v=2026-10-06"></script>
+<script defer src="assets/js/site.js?v=2026-10-06b"></script>
 <script defer src="assets/js/analytics.js?v=2026-10-06"></script>
 </body>
 </html>

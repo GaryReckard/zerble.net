@@ -1,0 +1,469 @@
+/* zerble.net — shared stylesheet.
+   The palette comes straight off Gary's sticker art: sunshine yellow, hot pink,
+   sky cyan, mustache grape, and Zerble's cherry-red body, over the game's
+   festival-night purple. */
+
+:root {
+  --night: #1a1430;
+  --night-2: #2a1b4d;
+  --ink: #120c24;
+  --card: #241a42;
+  --cream: #fff6e6;
+  --muted: #cfc3ea;
+  --sun: #ffd23f;
+  --pink: #ff4fa3;
+  --sky: #3fc6ff;
+  --grape: #9b6bff;
+  --cherry: #ef3b36;
+  --leaf: #5fd35a;
+  --radius: 22px;
+  --display: 'Titan One', 'Arial Rounded MT Bold', system-ui, sans-serif;
+  --body: 'Nunito', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --pixel: 'Press Start 2P', ui-monospace, monospace;
+  --spring: cubic-bezier(.34, 1.7, .5, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--night);
+  color: var(--cream);
+  font: 400 1.125rem/1.6 var(--body);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; height: auto; display: block; }
+/* <picture> steps aside so its <img> is the grid item; <source> has no UA
+   display:none, so without the second rule it claims a grid cell of its own. */
+picture { display: contents; }
+picture > source { display: none; }
+a { color: inherit; }
+p { margin: 0 0 1em; }
+
+.wrap { width: min(1120px, 100% - 32px); margin-inline: auto; position: relative; z-index: 3; }
+
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -100px;
+  z-index: 100;
+  background: var(--sun);
+  color: var(--ink);
+  font-weight: 800;
+  padding: 10px 16px;
+  border: 3px solid var(--ink);
+  border-radius: 12px;
+  text-decoration: none;
+}
+.skip-link:focus { top: 16px; }
+
+/* ---------- floating bubbles ---------- */
+/* Above the section backgrounds (which would otherwise hide them) but below .wrap content. */
+.bubbles { position: fixed; inset: 0; pointer-events: none; z-index: 2; overflow: hidden; }
+.bubbles span {
+  position: absolute;
+  bottom: -120px;
+  left: var(--x);
+  width: var(--s);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, .45);
+  background:
+    radial-gradient(circle at 30% 28%, rgba(255, 255, 255, .9) 0 7%, transparent 8%),
+    radial-gradient(circle at 50% 50%, transparent 55%, rgba(255, 255, 255, .18) 70%, transparent 74%),
+    conic-gradient(from 40deg, rgba(255, 79, 163, .28), rgba(255, 210, 63, .22), rgba(95, 211, 90, .2), rgba(63, 198, 255, .28), rgba(155, 107, 255, .28), rgba(255, 79, 163, .28));
+  opacity: .5;
+  animation: rise var(--d) linear var(--delay) infinite;
+}
+@keyframes rise {
+  0% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(var(--sway), -60vh, 0); }
+  100% { transform: translate3d(0, -130vh, 0); }
+}
+
+/* ---------- buttons, labels, headings ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .6em;
+  padding: .85em 1.4em;
+  border-radius: 999px;
+  border: 3px solid var(--ink);
+  font: 400 1.15rem/1 var(--display);
+  letter-spacing: .02em;
+  text-decoration: none;
+  color: var(--ink);
+  box-shadow: 0 6px 0 var(--ink);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 8px 0 var(--ink); }
+.btn:active { transform: translateY(4px); box-shadow: 0 2px 0 var(--ink); }
+.btn:focus-visible { outline: 3px solid var(--sky); outline-offset: 4px; }
+.btn svg { width: 1.2em; height: 1.2em; flex: none; }
+.btn-play { background: var(--sun); }
+.btn-gram { background: var(--pink); }
+.btn-row { display: flex; flex-wrap: wrap; gap: 14px 18px; }
+
+.eyebrow {
+  font: 400 .7rem/1.6 var(--pixel);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--sun);
+  margin: 0 0 14px;
+}
+h2 {
+  font: 400 clamp(2rem, 5vw, 3.1rem)/1.05 var(--display);
+  margin: 0 0 18px;
+  color: var(--cream);
+  text-shadow: 0 4px 0 var(--ink);
+}
+
+.sticker {
+  filter: drop-shadow(0 14px 22px rgba(0, 0, 0, .45));
+  transform: rotate(var(--tilt, 0deg));
+  transition: transform .35s var(--spring);
+}
+.sticker:hover { transform: rotate(0deg) scale(1.03); }
+
+/* ---------- hero ---------- */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  align-items: center;
+  padding: 48px 0 72px;
+  background:
+    radial-gradient(120% 70% at 50% 108%, rgba(255, 120, 150, .55), transparent 60%),
+    radial-gradient(80% 50% at 85% 100%, rgba(255, 210, 63, .25), transparent 60%),
+    linear-gradient(180deg, var(--night) 0%, var(--night-2) 55%, #5a2a6e 100%);
+}
+.hero .wrap { display: grid; grid-template-columns: 1.05fr .95fr; gap: 40px; align-items: center; }
+.hero-art { --tilt: 3deg; width: min(520px, 100%); justify-self: center; animation: bob 4s ease-in-out infinite; }
+@keyframes bob { 50% { translate: 0 -10px; } }
+
+/* The wordmark: one span per letter, each with its own resting tilt and color.
+   site.js lifts the letter nearest the cursor (and runs a one-time intro sweep)
+   by toggling .is-hot, so all of the motion lives here in CSS. */
+.wordmark {
+  font: 400 clamp(4.25rem, 12.5vw, 9rem)/.9 var(--display);
+  margin: 0 0 26px;
+  display: flex;
+  cursor: default;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.wordmark .ltr {
+  position: relative;
+  display: inline-block;
+  color: var(--base);
+  -webkit-text-stroke: clamp(3px, .45vw, 5px) var(--ink);
+  paint-order: stroke fill;
+  text-shadow: 4px 6px 0 var(--ink);
+  transform: rotate(var(--rot));
+  transition: transform .4s var(--spring), color .22s ease, text-shadow .3s ease;
+}
+.wordmark .ltr.is-hot {
+  z-index: 5;
+  color: var(--hot);
+  text-shadow: 8px 12px 0 var(--ink);
+  transform: translateY(var(--lift)) rotate(var(--hot-rot)) scale(1.16);
+}
+.wordmark .pop {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: .22em;
+  aspect-ratio: 1;
+  margin-left: -.11em;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, .8);
+  background: radial-gradient(circle at 30% 30%, #fff 0 18%, rgba(63, 198, 255, .35) 19% 100%);
+  pointer-events: none;
+  animation: pop-float .9s ease-out forwards;
+}
+@keyframes pop-float {
+  0% { opacity: 0; transform: translate(0, 0) scale(.4); }
+  20% { opacity: 1; }
+  100% { opacity: 0; transform: translate(var(--drift, 10px), -1.1em) scale(1.15); }
+}
+
+.lead { font-size: clamp(1.15rem, 2.2vw, 1.4rem); line-height: 1.55; max-width: 34ch; margin-bottom: 28px; }
+.tagline { margin: 26px 0 0; font: 400 .68rem/1.8 var(--pixel); color: var(--muted); }
+.scroll-cue {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  translate: -50% 0;
+  font: 400 .6rem/1 var(--pixel);
+  color: var(--muted);
+  text-decoration: none;
+  opacity: .8;
+}
+
+/* ---------- story ---------- */
+.story { padding: 96px 0 80px; background: var(--night); position: relative; }
+.story-head { text-align: center; max-width: 720px; margin: 0 auto 64px; }
+.story-head p:not(.eyebrow) { color: var(--muted); font-size: 1.2rem; margin-inline: auto; max-width: 46ch; }
+/* The timeline: a dashed "road" down the middle, with each moment's text on one
+   side and its taped-up photos on the other. --flip swaps the sides; --solo is a
+   centered card for moments without a photo. */
+.timeline { list-style: none; margin: 0; padding: 0; position: relative; display: grid; gap: 88px; }
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 6px;
+  margin-left: -3px;
+  border-radius: 3px;
+  background: repeating-linear-gradient(to bottom, var(--sun) 0 18px, transparent 18px 34px);
+  opacity: .55;
+}
+.moment { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 72px; align-items: center; }
+.moment::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 24px;
+  height: 24px;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: var(--pink);
+  border: 4px solid var(--ink);
+  box-shadow: 0 0 0 5px var(--night);
+}
+.moment-text { justify-self: end; max-width: 460px; text-align: right; }
+.moment-media { justify-self: start; }
+.moment--flip .moment-text { order: 2; justify-self: start; text-align: left; }
+.moment--flip .moment-media { order: 1; justify-self: end; }
+.moment--solo { grid-template-columns: minmax(0, 1fr); }
+.moment--solo::before { display: none; }
+.moment--solo .moment-text {
+  justify-self: center;
+  text-align: center;
+  max-width: 560px;
+  background: var(--card);
+  border: 3px solid var(--ink);
+  border-radius: var(--radius);
+  padding: 28px 30px 26px;
+  box-shadow: 0 8px 0 var(--ink);
+}
+.when {
+  display: inline-block;
+  margin: 0 0 12px;
+  padding: 8px 10px;
+  font: 400 .72rem/1 var(--pixel);
+  color: var(--ink);
+  background: var(--sun);
+  border: 3px solid var(--ink);
+  border-radius: 10px;
+}
+.moment h3 { font: 400 clamp(1.6rem, 3vw, 2.1rem)/1.1 var(--display); margin: 0 0 12px; color: var(--sky); text-shadow: 0 3px 0 var(--ink); }
+.moment:nth-child(3n + 2) h3 { color: var(--pink); }
+.moment:nth-child(3n) h3 { color: var(--sun); }
+.moment-text p:not(.when) { color: var(--muted); margin: 0; }
+.moment-text p + p:not(.when) { margin-top: .8em; }
+.text-link { color: var(--sun); font-weight: 800; text-underline-offset: 4px; }
+
+/* Taped-up snapshots (the RADish Fest tape trick, on a polaroid). */
+.snap {
+  position: relative;
+  margin: 0;
+  width: min(var(--w, 380px), 100%);
+  padding: 12px 12px 10px;
+  background: #fffdf6;
+  box-shadow: 0 20px 34px -14px rgba(0, 0, 0, .7);
+  transform: rotate(var(--tilt, 0deg));
+  transition: transform .35s var(--spring);
+}
+.snap:hover { transform: rotate(0deg) scale(1.03); z-index: 2; }
+.snap::before {
+  content: "";
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  width: 104px;
+  height: 28px;
+  translate: -50% 0;
+  rotate: var(--tape-rot, -4deg);
+  background: var(--tape, rgba(255, 210, 63, .6));
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .25);
+}
+.snap img { width: 100%; }
+.snap figcaption { margin-top: 8px; font: 600 1.3rem/1.15 'Caveat', cursive; color: #3a2f55; text-align: center; }
+.snaps { display: flex; align-items: flex-start; }
+.snaps .snap + .snap { margin-left: -36px; margin-top: 64px; }
+
+/* Festival wristbands */
+.bands { list-style: none; margin: 18px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px 8px; justify-content: inherit; }
+.moment-text .bands { justify-content: flex-end; }
+.moment--flip .moment-text .bands { justify-content: flex-start; }
+.bands li {
+  padding: 7px 14px;
+  font: 800 .92rem/1 var(--body);
+  color: var(--ink);
+  background: var(--band, var(--sun));
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  box-shadow: 0 3px 0 var(--ink);
+  transform: rotate(var(--r, 0deg));
+}
+.bands li:nth-child(5n + 1) { --band: var(--sun); --r: -2deg; }
+.bands li:nth-child(5n + 2) { --band: var(--pink); --r: 1.5deg; }
+.bands li:nth-child(5n + 3) { --band: var(--sky); --r: -1deg; }
+.bands li:nth-child(5n + 4) { --band: var(--leaf); --r: 2deg; }
+.bands li:nth-child(5n + 5) { --band: var(--grape); --r: -1.5deg; }
+
+/* ---------- the art wall ---------- */
+.art {
+  position: relative;
+  padding: 96px 0;
+  background:
+    radial-gradient(70% 60% at 80% 10%, rgba(155, 107, 255, .25), transparent 60%),
+    radial-gradient(60% 50% at 10% 90%, rgba(255, 79, 163, .18), transparent 60%),
+    var(--night);
+}
+.art-head { text-align: center; max-width: 640px; margin: 0 auto 64px; }
+.art-head p:not(.eyebrow) { color: var(--muted); font-size: 1.2rem; margin-inline: auto; max-width: 44ch; }
+.art-grid { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 56px 48px; align-items: center; }
+.art-grid .snap:first-child { grid-row: span 2; justify-self: end; }
+.art-grid .snap { justify-self: start; }
+
+/* ---------- Zerble & Lurleen (the daytime band) ---------- */
+.sweetheart {
+  position: relative;
+  color: var(--ink);
+  padding: 90px 0;
+  background:
+    radial-gradient(60% 60% at 15% 20%, rgba(255, 255, 255, .7), transparent 60%),
+    linear-gradient(180deg, #8fdcff 0%, #c8f1ff 70%, #e9fbd9 100%);
+}
+.sweetheart .wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; }
+.sweetheart .sticker { --tilt: -2deg; width: min(560px, 100%); }
+.sweetheart h2 { color: var(--pink); -webkit-text-stroke: 2px var(--ink); paint-order: stroke fill; }
+.sweetheart .eyebrow { color: #6a1fc4; }
+.sweetheart p { font-size: 1.2rem; max-width: 40ch; }
+
+/* ---------- the game ---------- */
+.game { position: relative; padding: 100px 0 90px; background: linear-gradient(180deg, #0e0a1d 0%, var(--night) 100%); }
+.game h2 { font: 400 clamp(1.4rem, 4vw, 2.3rem)/1.3 var(--pixel); color: var(--sun); text-shadow: 3px 3px 0 var(--pink); margin-bottom: 26px; }
+.game-grid { display: grid; grid-template-columns: 1.25fr .75fr; gap: 44px; align-items: start; }
+.screen {
+  margin: 0;
+  border: 4px solid var(--ink);
+  border-radius: 16px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 0 0 4px var(--grape), 0 0 0 8px var(--ink), 0 18px 40px rgba(0, 0, 0, .5);
+}
+.screen figcaption { font: 400 .6rem/1.6 var(--pixel); color: var(--muted); background: var(--ink); padding: 10px 14px; }
+.game-copy p { color: var(--muted); }
+.modes { display: grid; gap: 12px; margin: 22px 0 28px; padding: 0; list-style: none; }
+.modes li { background: var(--card); border: 3px solid var(--ink); border-radius: 14px; padding: 12px 16px; font-size: 1rem; color: var(--muted); }
+.modes strong { display: block; font: 400 .72rem/1.6 var(--pixel); color: var(--cream); margin-bottom: 4px; }
+.pixel-sticker { --tilt: 6deg; width: min(300px, 100%); margin: 34px auto 0; }
+
+/* ---------- Instagram (the black band) ---------- */
+.gram { background: #000; padding: 96px 0; }
+.gram .wrap { display: grid; grid-template-columns: .9fr 1.1fr; gap: 48px; align-items: center; }
+.gram .sticker { --tilt: -3deg; width: min(460px, 100%); border-radius: 22px; justify-self: center; }
+.gram h2 { color: var(--sun); }
+.gram p { color: var(--muted); font-size: 1.2rem; max-width: 40ch; }
+.handle { display: inline-block; margin-bottom: 26px; font: 400 .8rem/1 var(--pixel); color: var(--pink); }
+
+/* ---------- footer ---------- */
+.site-footer { background: var(--ink); padding: 44px 0 52px; text-align: center; color: var(--muted); font-size: .95rem; }
+.site-footer .tagline { margin: 0 0 14px; color: var(--sun); font-size: .7rem; }
+.site-footer nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 22px; margin-bottom: 12px; }
+.site-footer nav a { color: var(--cream); text-decoration-color: var(--pink); text-underline-offset: 4px; }
+.site-footer small { font-size: .85rem; }
+
+/* ---------- small screens ---------- */
+@media (max-width: 860px) {
+  .hero .wrap, .sweetheart .wrap, .game-grid, .gram .wrap, .art-grid { grid-template-columns: minmax(0, 1fr); }
+  .timeline { gap: 64px; }
+  .timeline::before { left: 14px; }
+  .moment, .moment--solo { grid-template-columns: minmax(0, 1fr); gap: 34px; padding-left: 46px; }
+  .moment::before { left: 14px; top: 4px; translate: -50% 0; }
+  .moment .moment-text, .moment--flip .moment-text { order: 0; justify-self: start; text-align: left; }
+  .moment .moment-media, .moment--flip .moment-media { order: 1; justify-self: start; }
+  .moment--solo .moment-text { justify-self: stretch; padding: 22px 20px; }
+  .moment-text .bands, .moment--flip .moment-text .bands { justify-content: flex-start; }
+  .snaps .snap { width: min(var(--w), 48%); }
+  .snaps .snap + .snap { margin-left: 4%; margin-top: 26px; }
+  .art-grid .snap:first-child { grid-row: auto; }
+  .art-grid .snap, .art-grid .snap:first-child { justify-self: center; }
+  .art { padding: 72px 0; }
+  .hero { padding-top: 28px; text-align: center; }
+  .hero .wrap { gap: 10px; }
+  .hero-art { order: -1; width: min(330px, 100%); }
+  .wordmark { justify-content: center; }
+  .lead { margin-inline: auto; }
+  .hero .btn-row { justify-content: center; }
+  .sweetheart .sticker { width: min(440px, 100%); justify-self: center; }
+  .gram .sticker { width: min(340px, 100%); }
+  .story, .game, .gram, .sweetheart { padding: 72px 0; }
+}
+@media (max-width: 420px) {
+  .btn { font-size: 1.02rem; padding: .8em 1.15em; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .bubbles, .wordmark .pop { display: none; }
+  .hero-art { animation: none; }
+  .sticker, .snap, .btn, .wordmark .ltr { transition: none; }
+}
+
+/* ---------- announcement bar + the LEAF book band ---------- */
+.announce {
+  position: relative;
+  z-index: 4;
+  margin: 0;
+  background: var(--sun);
+  color: var(--ink);
+  text-align: center;
+  font: 800 .95rem/1.4 var(--body);
+  border-bottom: 3px solid var(--ink);
+}
+.announce a { display: block; padding: 10px 16px; color: inherit; text-decoration: none; }
+.announce span { margin-left: .3em; white-space: nowrap; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
+.announce a:hover span, .announce a:focus-visible span { color: #b8115f; }
+.announce a:focus-visible { outline: 3px solid var(--ink); outline-offset: -6px; }
+
+.book {
+  position: relative;
+  padding: 90px 0;
+  color: var(--ink);
+  background: linear-gradient(135deg, var(--pink) 0%, #ff7a59 48%, var(--sun) 100%);
+}
+.book-card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 48px;
+  align-items: center;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 40px 44px;
+  background: var(--cream);
+  border: 4px solid var(--ink);
+  border-radius: 28px;
+  box-shadow: 0 12px 0 var(--ink);
+  transform: rotate(-.6deg);
+}
+.book-icon { width: 180px; transform: rotate(-6deg); }
+.book h2 { color: var(--pink); -webkit-text-stroke: 2px var(--ink); paint-order: stroke fill; }
+.book .eyebrow { color: #6a1fc4; }
+.book p:not(.eyebrow) { color: #2d2342; font-size: 1.15rem; max-width: 52ch; }
+.book .btn-row { margin-top: 26px; }
+.btn-ghost { background: transparent; }
+
+@media (max-width: 860px) {
+  .book { padding: 64px 0; }
+  .book-card { grid-template-columns: minmax(0, 1fr); gap: 20px; padding: 28px 22px; transform: none; }
+  .book-icon { width: 110px; }
+  .announce { font-size: .88rem; }
+}

@@ -1,0 +1,45 @@
+#        _________________
+#       /________________/|        o
+#       |   ___     ___   ||     O     Zerble
+#       |  ( @ )   ( @ )  ||   o       ~ bring the bubbles, collect the smiles ~
+#       |  ~~~~\___/~~~~  ||  .
+#       |   |_|_|_|_|_|   ||           psst, you found the robots file. honk honk.
+#      [|_________________|]
+#        (O)           (O)
+#
+# zerble.net robots.txt
+# Zerble wants to be found, including by AI answer engines.
+# To block any crawler, change its "Allow: /" to "Disallow: /".
+
+User-agent: *
+Allow: /
+
+# --- AI / LLM crawlers, explicitly welcomed ---
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://zerble.net/sitemap.xml

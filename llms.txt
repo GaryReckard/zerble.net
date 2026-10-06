@@ -1,0 +1,43 @@
+# Zerble
+
+> Zerble is an art cart: a real golf cart with giant googly eyes and a fluffy purple mustache, sketched on a napkin in 2011 and a festival fixture ever since, including LEAF in Black Mountain, North Carolina. Zerble is co-owned by Gary Reckard and Locke Crawford, lives in a garage in West Asheville, has a page in the LEAF book Live Life Like a Festival, and stars in a free browser game, Zerble at the Festival.
+
+## History
+
+- 2011: Gary Reckard was building MagBuds, a volunteer registration system for the festivals at the Spirit of the Suwannee Music Park in Florida (including Magnolia Fest and SpringFest), when he learned he'd be getting his own golf cart at the fest. He got the news at Mo Daddy's in Asheville, North Carolina, and sketched Zerble on a napkin.
+- 2011: The first eyeballs were blue marbled bouncy balls from Kmart, primed white everywhere but the iris, with headlamps taped to the back. They were mounted on the roof corners like a snail's eyes, on a green golf cart with a mustache cut from black posterboard and a MAG BUDS sign.
+- 2011 to 2016: Zerble worked festivals including Magnolia Fest, SpringFest, Bear Creek, Wanee, and French Broad River Fest, hauling gear, shuttling musicians, and blowing bubbles. Over time the eyes migrated inward, and the second version outlined the mustache in green EL wire.
+- 2016: Gary and Locke Crawford bought a red E-Z-GO and built the version of Zerble that's still rolling today, with Locke handling much of the wiring (dashboard switches and USB ports all over). This is the Zerble you'll find at LEAF, the Lake Eden Arts Festival in Black Mountain, North Carolina.
+- May 2026: Gary started building the browser game Zerble at the Festival.
+- October 2, 2026: Zerble ran shuttle duty at the East-West Asheville Fall Art Walk, organized by Lamplight AVL (https://lamplightavl.org/artwalks/).
+- Up next: the Lake Eden Reunion.
+
+## About Zerble
+
+- Zerble is a golf cart decorated with enormous blue googly eyes and a big purple mustache.
+- Zerble is owned equally by Gary Reckard and Locke Crawford and lives in a garage in West Asheville, North Carolina.
+- Zerble's sweetheart is Lurleen, a real art cart with puffy pink lips, raffia hair, and a crown of flowers, who lives in the same garage.
+- Instagram: https://www.instagram.com/zerble_art_cart/ (@zerble_art_cart), with photos of the real cart at festivals and plenty of art.
+- Tagline: "Bring the bubbles, collect the smiles."
+
+## In the book: Live Life Like a Festival
+
+- Zerble has a page in Live Life Like a Festival by Jennifer Pickering, a coffee table book celebrating 30 years of LEAF Global Arts.
+- The book is available for pre-order: https://www.jenniferpickering.com/shop/p/live-like-a-festival-book
+- About the book: https://www.jenniferpickering.com/book
+
+## The game: Zerble at the Festival
+
+- Play free in any modern web browser, on a laptop or a phone, with nothing to install: https://garyreckard.github.io/zerble-at-the-festival/
+- You drive Zerble through a procedural festival that builds itself as you go (stages, food trucks, drum circles, lakes, and forests) and trail bubbles past the crowd to collect smiles.
+- Two modes: Just Cruisin' (endless, no pressure) and Festival Run (each festival day brings scarcer bubble juice and stricter marshals).
+- Controls: WASD to drive on a keyboard (arrow keys orbit the camera, Shift boosts, Space honks the horn), or the on-screen thumbstick and buttons on a phone.
+- Lurleen is in the game too, and if you drive up to her slowly, the air fills with hearts.
+- Built by Gary Reckard, starting in May 2026, with three.js and Web Audio and no build step.
+
+## Links
+
+- Home: https://zerble.net/
+- Game: https://garyreckard.github.io/zerble-at-the-festival/
+- Instagram: https://www.instagram.com/zerble_art_cart/
+- Live Life Like a Festival (pre-order): https://www.jenniferpickering.com/shop/p/live-like-a-festival-book

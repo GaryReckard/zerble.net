@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
+    <meta name="theme-color" content="#1a1430">
+    <title>Wrong turn · Zerble</title>
+    <link rel="icon" href="https://zerble.net/favicon.ico" sizes="any">
+    <!-- Self-contained on purpose: GitHub Pages serves this for ANY missing path,
+         so assets use absolute URLs on the production domain (zerble.net). -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&family=Titan+One&display=swap">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            min-height: 100svh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1.25rem;
+            padding: 2rem 1.25rem;
+            text-align: center;
+            background:
+                radial-gradient(120% 70% at 50% 110%, rgba(255, 120, 150, .5), transparent 60%),
+                linear-gradient(180deg, #1a1430 0%, #2a1b4d 60%, #5a2a6e 100%);
+            color: #fff6e6;
+            font-family: 'Nunito', system-ui, -apple-system, 'Segoe UI', sans-serif;
+            font-weight: 700;
+            -webkit-font-smoothing: antialiased;
+        }
+        img {
+            width: clamp(9rem, 32vw, 15rem);
+            height: auto;
+            transform: rotate(-6deg);
+            filter: drop-shadow(0 1rem 1.25rem rgba(0, 0, 0, .55));
+        }
+        h1 {
+            margin: 0;
+            font: 400 clamp(4rem, 18vw, 8rem)/.85 'Titan One', 'Arial Rounded MT Bold', system-ui, sans-serif;
+            color: #ffd23f;
+            -webkit-text-stroke: clamp(3px, .5vw, 5px) #120c24;
+            paint-order: stroke fill;
+            text-shadow: 5px 7px 0 #120c24;
+            transform: rotate(-3deg);
+        }
+        p {
+            margin: 0;
+            max-width: 26em;
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            line-height: 1.5;
+            color: #cfc3ea;
+        }
+        nav { display: flex; flex-wrap: wrap; justify-content: center; gap: .9rem 1.1rem; margin-top: .5rem; }
+        a {
+            display: inline-block;
+            font: 400 clamp(1.05rem, 2.4vw, 1.25rem)/1 'Titan One', 'Arial Rounded MT Bold', system-ui, sans-serif;
+            color: #120c24;
+            text-decoration: none;
+            background: #ffd23f;
+            padding: .85rem 1.6rem;
+            border: 3px solid #120c24;
+            border-radius: 999px;
+            box-shadow: 0 6px 0 #120c24;
+            transition: transform .12s ease, box-shadow .12s ease;
+        }
+        a + a { background: #ff4fa3; }
+        a:hover { transform: translateY(-2px); box-shadow: 0 8px 0 #120c24; }
+        a:focus-visible { outline: 3px solid #3fc6ff; outline-offset: 4px; }
+    </style>
+</head>
+<body>
+    <img src="https://zerble.net/assets/img/zerble-logo-512.webp" width="512" height="512"
+         alt="The retro Zerble logo: a golf cart with googly eyes and a purple mustache in front of a striped synthwave sunset.">
+    <h1>404</h1>
+    <p>Wrong turn! This path doesn&rsquo;t go anywhere, but the festival is still going strong.</p>
+    <nav aria-label="Ways back">
+        <a href="https://zerble.net/">Back to zerble.net</a>
+        <a href="https://garyreckard.github.io/zerble-at-the-festival/">Play the game</a>
+    </nav>
+</body>
+</html>

@@ -42,6 +42,7 @@ IMAGES = {
     "history-bear-creek-2014": ("history-bear-creek-bowtie-2014.webp", [360, 720], "jpg", 720, 80),
     "history-springfest-2016": ("history-springfest-2016.webp", [360, 720], "jpg", 720, 80),
     "history-french-broad-2016": ("history-french-broad-2016.webp", [360, 720], "jpg", 720, 80),
+    "history-before-2016": ("history-red-ezgo-before-2016.webp", [400, 800], "jpg", 800, 80),
     "history-night-life": ("history-night-life.webp", [400, 800], "jpg", 800, 80),
     "history-bubble-machine": ("bubble-machine.webp", [400, 800], "jpg", 800, 80),
     "history-wedding-2017": ("history-wedding-2017.webp", [360, 720], "jpg", 720, 80),

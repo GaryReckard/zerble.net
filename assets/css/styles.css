@@ -651,7 +651,9 @@ h2 {
 }
 /* Zerbubbles on the grass behind it all. The overlay darkens the text side, washes
    the top into the foam edge's blue, and fades the bottom into the story below. */
-.tank-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+/* clip, not hidden: overflow: hidden would make this box a scroll container, and the
+   parallax timeline would then track it (it never scrolls) instead of the page. */
+.tank-bg { position: absolute; inset: 0; z-index: 0; overflow: clip; }
 /* The photo runs 20% taller than the section so it has room to drift. */
 .tank-bg img { position: absolute; left: 0; top: -10%; width: 100%; height: 120%; object-fit: cover; }
 /* Parallax: the grass drifts slower than the page as the section scrolls past. Scroll-driven
@@ -659,7 +661,8 @@ h2 {
    reduced-motion visitors just get the still photo. */
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
-    .tank-bg img { animation: tank-drift linear both; animation-timeline: view(); }
+    .tank { view-timeline-name: --tank; }
+    .tank-bg img { animation: tank-drift linear both; animation-timeline: --tank; }
   }
 }
 @keyframes tank-drift { from { transform: translateY(-6%); } to { transform: translateY(6%); } }

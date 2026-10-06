@@ -178,8 +178,71 @@ h2 {
     linear-gradient(180deg, var(--night) 0%, var(--night-2) 55%, #5a2a6e 100%);
 }
 .hero .wrap { display: grid; grid-template-columns: 1.05fr .95fr; gap: 40px; align-items: center; }
-.hero-art { --tilt: 3deg; --nudge: 0px; width: min(520px, 100%); justify-self: center; translate: var(--nudge) 0; animation: bob 4s ease-in-out infinite; }
-@keyframes bob { 50% { translate: var(--nudge) -10px; } }
+/* The hero art is a parallax stack: three transparent layers cut from one sticker
+   (the bubble arch at the back, the corner splashes, then the cart up front), piled
+   into a single grid cell. site.js feeds the stack the mouse position (--mx and --my,
+   each -1 to 1) and how far the hero has scrolled (--sy, in px), and each layer turns
+   those into its own offset. --reach is how far a layer follows the mouse, so the
+   bubbles swing toward the cursor while the cart barely moves, as if you were circling
+   it. --lag is how much a layer trails the scroll, so the far bubbles fall behind as
+   the cart rolls up and away. --x and --y are where a layer rests before any of that, as
+   a share of the art's width and height, so the nudges scale down on phones. Each layer
+   also bobs on its own clock. */
+.hero-art {
+  --tilt: 3deg;
+  --nudge: 0px;
+  position: relative;
+  display: grid;
+  width: min(520px, 100%);
+  justify-self: center;
+  translate: var(--nudge) 0;
+  rotate: var(--tilt);
+  transition: rotate .5s var(--spring);
+}
+.hero-art:hover { rotate: 0deg; }
+.hero-layer {
+  grid-area: 1 / 1;
+  display: block;
+  transform: translate3d(calc(var(--x, 0%) + var(--mx, 0) * var(--reach)),
+                         calc(var(--y, 0%) + var(--my, 0) * var(--reach) * .6 + var(--sy, 0) * var(--lag) * 1px), 0);
+  will-change: transform;
+}
+.hero-layer img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 var(--drop) calc(var(--drop) * 1.5) rgba(0, 0, 0, var(--shade))) var(--tone, brightness(1));
+  animation: bob var(--bob) ease-in-out var(--bob-delay) infinite;
+}
+/* The far arch sits a touch dimmer, like it's further from the stage lights. */
+.hero-layer--arch    { --x: 3.8%;  --y: -12.8%; --reach: 26px; --lag: .24; --drop: 6px;  --shade: .3;  --rise: -6px;  --bob: 6.2s; --bob-delay: -2s; --tone: brightness(.9) saturate(.92); }
+.hero-layer--corners { --x: -9.6%; --y: 8%;     --reach: 14px; --lag: .11; --drop: 10px; --shade: .38; --rise: -8px;  --bob: 5.1s; --bob-delay: -3.4s; }
+.hero-layer--cart    {                          --reach: -6px; --lag: 0;   --drop: 15px; --shade: .5;  --rise: -10px; --bob: 4s;   --bob-delay: 0s; }
+@keyframes bob { 50% { translate: 0 var(--rise); } }
+/* iPhones only share tilt readings after a tap, so site.js shows this chip there and
+   hides it again as soon as readings come in. Android skips straight to the tilting.
+   It sits on the lower-right splashes, clear of Zerble's face. */
+.tilt-chip {
+  position: absolute;
+  right: 2%;
+  bottom: 6%;
+  rotate: -6deg;
+  display: inline-flex;
+  align-items: center;
+  gap: .45em;
+  padding: .55em 1em;
+  border: 3px solid var(--ink);
+  border-radius: 999px;
+  background: var(--sun);
+  color: var(--ink);
+  font: 400 .95rem/1 var(--display);
+  white-space: nowrap;
+  box-shadow: 0 4px 0 var(--ink);
+  cursor: pointer;
+}
+.tilt-chip[hidden] { display: none; }
+.tilt-chip svg { width: 1.2em; height: 1.2em; animation: rock 1.8s ease-in-out infinite; }
+@keyframes rock { 0%, 100% { rotate: -16deg; } 50% { rotate: 16deg; } }
 
 /* The wordmark: one span per letter, each with its own resting tilt and color.
    site.js lifts the letter nearest the cursor (and runs a one-time intro sweep)
@@ -444,10 +507,9 @@ h2 {
   .art { padding: 72px 0; }
   .hero { padding-top: 28px; text-align: center; }
   .hero .wrap { gap: 10px; }
-  /* The cart sits left of center in the sticker (the bubble trail fills the right side),
-     so nudge it right until the cart lines up under the centered ZERBLE. 78vw keeps the
-     nudged trail inside the screen. */
-  .hero-art { order: -1; width: min(420px, 78vw); --nudge: 14%; }
+  /* The cart sits just left of center in the stack, so a small nudge lines it up under
+     the centered ZERBLE. */
+  .hero-art { order: -1; width: min(420px, 78vw); --nudge: 3%; }
   .wordmark { justify-content: center; }
   .lead { margin-inline: auto; }
   .hero .btn-row { justify-content: center; }
@@ -462,7 +524,9 @@ h2 {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .bubbles, .wordmark .pop { display: none; }
-  .hero-art { animation: none; }
+  .hero-art { transition: none; }
+  .hero-layer { transform: none; }
+  .hero-layer img { animation: none; }
   .sticker, .snap, .btn, .wordmark .ltr { transition: none; }
 }
 

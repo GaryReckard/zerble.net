@@ -27,9 +27,9 @@
     </script>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Nunito:wght@400;700;800&family=Press+Start+2P&family=Titan+One&display=swap">
-    <link rel="stylesheet" href="assets/css/styles.css?v=2026-10-06o">
-    <link rel="preload" as="image" type="image/webp"
-          imagesrcset="assets/img/zerble-hero-520.webp 520w, assets/img/zerble-hero-1040.webp 1040w"
+    <link rel="stylesheet" href="assets/css/styles.css?v=2026-10-06u">
+    <link rel="preload" as="image" type="image/avif"
+          imagesrcset="assets/img/zerble-hero-cart-520.avif 520w, assets/img/zerble-hero-cart-1040.avif 1040w"
           imagesizes="(max-width: 860px) min(420px, 100vw - 32px), 520px">
 
     <title>Zerble · The Googly-Eyed Bubble-Butt Art Cart</title>
@@ -255,11 +255,28 @@
                 </ul>
             </nav>
         </div>
-        <picture>
-                <source type="image/webp" srcset="assets/img/zerble-hero-520.webp 520w, assets/img/zerble-hero-1040.webp 1040w" sizes="(max-width: 860px) min(420px, 100vw - 32px), 520px">
-                <img class="sticker hero-art" src="assets/img/zerble-hero-720.png" width="720" height="540" fetchpriority="high" decoding="async"
-                     alt="Sticker art of Zerble: a red golf cart with a yellow roof, giant blue googly eyes, a fluffy purple mustache, and tongue out, with a trail of rainbow bubbles drifting behind.">
+        <div class="hero-art">
+            <picture class="hero-layer hero-layer--arch">
+                <source type="image/avif" srcset="assets/img/zerble-hero-arch-520.avif 520w, assets/img/zerble-hero-arch-780.avif 780w" sizes="(max-width: 860px) min(420px, 100vw - 32px), 520px">
+                <source type="image/webp" srcset="assets/img/zerble-hero-arch-520.webp 520w, assets/img/zerble-hero-arch-780.webp 780w" sizes="(max-width: 860px) min(420px, 100vw - 32px), 520px">
+                <img src="assets/img/zerble-hero-arch-720.png" width="720" height="576" decoding="async" alt="">
             </picture>
+            <picture class="hero-layer hero-layer--corners">
+                <source type="image/avif" srcset="assets/img/zerble-hero-corners-520.avif 520w, assets/img/zerble-hero-corners-780.avif 780w" sizes="(max-width: 860px) min(420px, 100vw - 32px), 520px">
+                <source type="image/webp" srcset="assets/img/zerble-hero-corners-520.webp 520w, assets/img/zerble-hero-corners-780.webp 780w" sizes="(max-width: 860px) min(420px, 100vw - 32px), 520px">
+                <img src="assets/img/zerble-hero-corners-720.png" width="720" height="576" decoding="async" alt="">
+            </picture>
+            <picture class="hero-layer hero-layer--cart">
+                <source type="image/avif" srcset="assets/img/zerble-hero-cart-520.avif 520w, assets/img/zerble-hero-cart-1040.avif 1040w" sizes="(max-width: 860px) min(420px, 100vw - 32px), 520px">
+                <source type="image/webp" srcset="assets/img/zerble-hero-cart-520.webp 520w, assets/img/zerble-hero-cart-1040.webp 1040w" sizes="(max-width: 860px) min(420px, 100vw - 32px), 520px">
+                <img src="assets/img/zerble-hero-cart-720.png" width="720" height="576" fetchpriority="high" decoding="async"
+                     alt="Sticker art of Zerble: a red golf cart with a yellow roof, giant blue googly eyes, a fluffy purple mustache, and tongue out, framed by an arch of rainbow bubbles and sparkles.">
+            </picture>
+            <button class="tilt-chip" type="button" data-ga="hero_tilt" hidden>
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="12" cy="18" r="1.2" fill="currentColor"/></svg>
+                Tap to tilt
+            </button>
+        </div>
     </div>
     <a class="scroll-cue" href="#story">▼ the story so far</a>
 </header>
@@ -1097,7 +1114,7 @@
     </div>
 </footer>
 
-<script defer src="assets/js/site.js?v=2026-10-06c"></script>
+<script defer src="assets/js/site.js?v=2026-10-06e"></script>
 <script defer src="assets/js/analytics.js?v=2026-10-06"></script>
 </body>
 </html>

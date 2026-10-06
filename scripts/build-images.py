@@ -6,9 +6,10 @@ the phone). Point ZERBLE_ART somewhere else to build from another folder.
 
     python3 scripts/build-images.py
 
-Needs `cwebp` (brew install webp) and Pillow (pip3 install pillow).
-Each image gets a WebP at two widths for srcset, plus one PNG/JPG fallback for
-browsers without WebP. The og:image share card is sized separately.
+Needs `cwebp` (brew install webp) and Pillow 11.2+ (pip3 install pillow), which
+writes the AVIFs. Each image gets a WebP at two widths for srcset, plus one PNG/JPG
+fallback for browsers without WebP, and the ones listed in AVIF below also get an
+AVIF at each width. The og:image share card is sized separately.
 """
 import os
 import subprocess
@@ -25,6 +26,11 @@ OUT = ROOT / "assets" / "img"
 # name: (original in art/, [webp widths], fallback format, fallback width, webp quality)
 IMAGES = {
     "zerble-hero": ("sticker-hero-bubbles.webp", [520, 1040], "png", 720, 74),
+    # The hero again, split into three depth layers for the parallax stack (back to front).
+    # The back two top out at 780px, since a touch of softness only adds to the depth.
+    "zerble-hero-arch": ("sticker-hero-layer-arch.webp", [520, 780], "png", 720, 66),
+    "zerble-hero-corners": ("sticker-hero-layer-corners.webp", [520, 780], "png", 720, 66),
+    "zerble-hero-cart": ("sticker-hero-layer-cart.webp", [520, 1040], "png", 720, 74),
     "zerble-psychedelic": ("sticker-psychedelic.webp", [460, 920], "jpg", 640, 82),
     "zerble-lurleen": ("sticker-zerble-lurleen.webp", [560, 1120], "png", 720, 82),
     "zerble-pixel": ("sticker-pixel.webp", [300, 600], "png", 400, 82),
@@ -85,6 +91,13 @@ IMAGES = {
 }
 # The napkin photo is dim, so stretch its levels a little before encoding.
 AUTOCONTRAST = {"history-napkin"}
+# The hero layers came out of background removal with a faint haze around them (alpha
+# under 16, so 6% opacity or less). It can't be seen on the page but still costs bytes,
+# so it's cleared before encoding.
+ALPHA_FLOOR = {"zerble-hero-arch", "zerble-hero-corners", "zerble-hero-cart"}
+ALPHA_CUTOFF = 16
+# name: AVIF quality (0-100). Their <picture> lists the AVIF source ahead of the WebP.
+AVIF = {"zerble-hero-arch": 50, "zerble-hero-corners": 50, "zerble-hero-cart": 50}
 OG_SOURCE = "og-card.png"   # the finished social share card (Zerble under the marquee sign, with zerble.net)
 
 
@@ -93,6 +106,11 @@ def webp(src: Path, dest: Path, width: int, quality: int) -> None:
         ["cwebp", "-quiet", "-q", str(quality), "-alpha_q", "88", "-resize", str(width), "0", str(src), "-o", str(dest)],
         check=True,
     )
+
+
+def avif(src: Path, dest: Path, width: int, quality: int) -> None:
+    im = Image.open(src)
+    im.resize((width, round(im.height * width / im.width)), Image.LANCZOS).save(dest, quality=quality, speed=4)
 
 
 def fallback(src: Path, dest: Path, fmt: str, width: int) -> None:
@@ -127,10 +145,18 @@ def main() -> int:
             adjusted = tmp / f"{name}.png"
             ImageOps.autocontrast(Image.open(src).convert("RGB"), cutoff=1).save(adjusted)
             src = adjusted
+        if name in ALPHA_FLOOR:
+            r, g, b, a = Image.open(src).convert("RGBA").split()
+            cleared = tmp / f"{name}-alpha.png"
+            Image.merge("RGBA", (r, g, b, a.point(lambda v: 0 if v < ALPHA_CUTOFF else v))).save(cleared)
+            src = cleared
         for w in widths:
             webp(src, OUT / f"{name}-{w}.webp", w, quality)
+            if name in AVIF:
+                avif(src, OUT / f"{name}-{w}.avif", w, AVIF[name])
         fallback(src, OUT / f"{name}-{fb_width}.{fmt}", fmt, fb_width)
-        print(f"{name}: {', '.join(f'{w}w' for w in widths)} webp + {fb_width}px {fmt}")
+        formats = "webp + avif" if name in AVIF else "webp"
+        print(f"{name}: {', '.join(f'{w}w' for w in widths)} {formats} + {fb_width}px {fmt}")
     og_card()
     print("og-card.jpg: 1200x630")
     return 0

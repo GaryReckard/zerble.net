@@ -210,6 +210,119 @@
     }
 })();
 
+/* The hero parallax. The hero art is three stacked layers, and styles.css gives each
+   one its own depth. This only feeds the stack two inputs: which way you're looking
+   at it (--mx and --my, -1 to 1, eased so the layers drift instead of snapping) and
+   how far the hero has scrolled (--sy). A mouse steers the first by hovering over the
+   hero, and a phone steers it by tilting. Reduced motion gets none of it. */
+(function () {
+    'use strict';
+
+    var stack = document.querySelector('.hero-art');
+    var hero = stack && stack.closest('.hero');
+    if (!hero) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var EASE = 0.07;            // share of the remaining distance the layers cover each frame
+    var TILT_RANGE = 18;        // degrees of phone tilt for the full swing
+    var TILT_SETTLE = 2500;     // ms for a held tilt to become the new resting angle
+    var tx = 0, ty = 0, x = 0, y = 0;
+    var raf = 0;
+    var onScreen = true;
+    var chip = stack.querySelector('.tilt-chip');
+    var rest = null;            // the angle the phone is being held at, in screen axes
+    var tilting = false;
+
+    function clamp(v) { return Math.max(-1, Math.min(1, v)); }
+
+    function frame() {
+        raf = 0;
+        x += (tx - x) * EASE;
+        y += (ty - y) * EASE;
+        if (Math.abs(tx - x) < 0.002) x = tx;
+        if (Math.abs(ty - y) < 0.002) y = ty;
+        stack.style.setProperty('--mx', x.toFixed(3));
+        stack.style.setProperty('--my', y.toFixed(3));
+        stack.style.setProperty('--sy', Math.round(Math.max(0, -hero.getBoundingClientRect().top)));
+        if (x !== tx || y !== ty) kick();
+    }
+
+    function kick() {
+        if (!raf && onScreen) raf = requestAnimationFrame(frame);
+    }
+
+    // Measured from the middle of the art, against half the hero, so the mouse can
+    // steer it from anywhere in the hero and reaches the full swing near the edges.
+    hero.addEventListener('pointermove', function (e) {
+        if (e.pointerType === 'touch') return;
+        var art = stack.getBoundingClientRect();
+        var box = hero.getBoundingClientRect();
+        tx = clamp((e.clientX - (art.left + art.width / 2)) / (box.width / 2));
+        ty = clamp((e.clientY - (art.top + art.height / 2)) / (box.height / 2));
+        kick();
+    });
+    hero.addEventListener('pointerleave', function (e) {
+        if (e.pointerType === 'touch') return;   // fires on every lifted finger, and tilt owns the target there
+        tx = ty = 0;
+        kick();
+    });
+
+    function screenAngle() {
+        var a = screen.orientation && typeof screen.orientation.angle === 'number' ? screen.orientation.angle : window.orientation || 0;
+        return ((a % 360) + 360) % 360;
+    }
+
+    function onTilt(e) {
+        if (e.beta == null || e.gamma == null) return;   // desktops send one empty reading
+        // Turn the phone's own axes into screen axes, whichever way up it's being held.
+        var a = screenAngle();
+        var h = a === 90 ? e.beta : a === 270 ? -e.beta : a === 180 ? -e.gamma : e.gamma;
+        var v = a === 90 ? -e.gamma : a === 270 ? e.gamma : a === 180 ? -e.beta : e.beta;
+        if (!rest || rest.a !== a) rest = { h: h, v: v, a: a, t: e.timeStamp };
+        // Ease the resting angle toward however the phone is held, so a slouch or a lean
+        // only shows as motion while it's happening and then settles back to center.
+        var k = 1 - Math.exp(-Math.max(0, e.timeStamp - rest.t) / TILT_SETTLE);
+        rest.h += (h - rest.h) * k;
+        rest.v += (v - rest.v) * k;
+        rest.t = e.timeStamp;
+        // Tipping one edge of the phone away is like stepping toward the other side of
+        // the cart, so the far bubbles swing toward the edge that came closer.
+        tx = clamp(-(h - rest.h) / TILT_RANGE);
+        ty = clamp(-(v - rest.v) / TILT_RANGE);
+        if (!tilting) {
+            tilting = true;
+            if (chip) chip.hidden = true;
+        }
+        kick();
+    }
+
+    window.addEventListener('deviceorientation', onTilt);
+
+    // iOS sends no readings until someone taps and allows motion access. If nothing has
+    // arrived shortly after load (it can, when they already allowed it this visit), offer
+    // the chip, whose tap is the one that's allowed to ask.
+    var DOE = window.DeviceOrientationEvent;
+    if (chip && DOE && typeof DOE.requestPermission === 'function' && window.matchMedia('(pointer: coarse)').matches) {
+        setTimeout(function () { if (!tilting) chip.hidden = false; }, 700);
+        chip.addEventListener('click', function () {
+            chip.hidden = true;
+            DOE.requestPermission().then(function (state) {
+                if (state === 'granted') window.addEventListener('deviceorientation', onTilt);
+            }).catch(function () {});
+        });
+    }
+    window.addEventListener('scroll', kick, { passive: true });
+    window.addEventListener('resize', kick);
+
+    if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries) {
+            onScreen = entries[0].isIntersecting;
+            kick();
+        }).observe(hero);
+    }
+    kick();
+})();
+
 /* The bubble pump (the tip jar). Picking an amount ticks the screen over like a
    gas pump, fills the jugs, and points the tip links at that amount. The $10
    default is baked into the HTML, so the links still work if this never runs. */

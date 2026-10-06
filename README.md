@@ -14,7 +14,7 @@ The setup follows the RADish Fest site (`~/Sites/raddish-fest`): a per-letter he
 | `index.html` | The page, with meta, Open Graph, and Twitter tags plus JSON-LD (`WebSite`, `WebPage`, `ImageObject`, `VisualArtwork` for Zerble, `VideoGame` for the game, `Person`) |
 | `404.html` | Self-contained `noindex` page. GitHub Pages serves it for any missing path, so its assets use absolute `https://zerble.net/` URLs |
 | `assets/css/styles.css` | All styles. The palette tokens come off the sticker art |
-| `assets/js/site.js` | The wordmark pop, intro sweep, and idle wave (ported from RADish Fest), the bubble pump that runs the tip section, and bubble popping on the floating background bubbles |
+| `assets/js/site.js` | The wordmark pop, intro sweep, and idle wave (ported from RADish Fest), the hero parallax, the bubble pump that runs the tip section, and bubble popping on the floating background bubbles |
 | `assets/js/analytics.js` | GA4 events: outbound and CTA clicks (with `data-ga` names), scroll depth, and section views |
 | `assets/img/` | Generated images. Don't edit by hand, run the script below |
 | `art/` | The full-resolution originals the images are built from (stickers as lossless WebP, photos as they came off the phone) |
@@ -38,7 +38,17 @@ Then open <http://127.0.0.1:8770/>. Every asset path in `index.html` is relative
 python3 scripts/build-images.py
 ```
 
-The script rebuilds `assets/img/` from the originals in `art/`, writing a WebP at two widths for each `srcset` plus one PNG or JPG fallback, and it sizes the 1200×630 share card from `art/og-card.png`. Share previews cache images hard, so when the card changes, bump the `?v=` on the `og:image` and `twitter:image` URLs in `index.html`. To add a photo, drop the original in `art/`, add a line to the mapping at the top of the script, and run it. It needs `cwebp` (`brew install webp`) and Pillow.
+The script rebuilds `assets/img/` from the originals in `art/`, writing a WebP at two widths for each `srcset` plus one PNG or JPG fallback, and it sizes the 1200×630 share card from `art/og-card.png`. Share previews cache images hard, so when the card changes, bump the `?v=` on the `og:image` and `twitter:image` URLs in `index.html`. To add a photo, drop the original in `art/`, add a line to the mapping at the top of the script, and run it. It needs `cwebp` (`brew install webp`) and Pillow 11.2 or newer.
+
+The hero layers get two extra steps. The script clears the faint haze that background removal left around them (anything under 6% opacity, which can't be seen on the page but cost about 15% of each file), and it writes an AVIF at each width alongside the WebP. Their `<picture>` lists the AVIF first, and the hero preload points at the cart's AVIF, so if the cart's format or widths ever change, change the preload with it or the cart downloads twice. Together with capping the two back layers at 780px wide, that took the hero from about 560 KB to about 220 KB on a retina screen.
+
+## The hero parallax
+
+The hero art is three transparent layers cut from the same sticker and stacked in one grid cell: the bubble arch at the back, the corner splashes in the middle, and the cart up front (`art/sticker-hero-layer-*.webp`, built to `zerble-hero-arch`, `-corners`, and `-cart`). All three share one 1402×1122 canvas, so a replacement layer has to keep that size and registration or the stack won't line up.
+
+`site.js` hands the stack which way you're looking at it (the mouse position over the hero, or how a phone is tilted) and how far the hero has scrolled, and each `.hero-layer--*` rule in `styles.css` decides what to do with them. `--x` and `--y` are where a layer rests, as a share of the art's width and height, so they scale with the art (the arch sits a little higher and to the right of where it was drawn, and the corner splashes sit lower and to the left). `--reach` is how far a layer follows the mouse or tilt (positive follows the cursor, negative leans away), and `--lag` is how much of the scroll a layer trails behind, so higher numbers on both read as farther away. Each layer also bobs on its own clock (`--bob`, `--rise`) and gets a drop shadow that deepens toward the front. Reduced motion turns all of it off.
+
+Phone tilt is measured from however the phone is being held, and that resting angle catches up over a couple of seconds, so a lean shows as motion and then settles back to center. Android shares tilt readings without asking. iPhones and iPads only share them after a tap and a yes on Safari's motion prompt, so on those the "Tap to tilt" chip (`.tilt-chip`) shows up on the art, and it hides again once readings arrive. Tilt readings only exist on HTTPS (or localhost), so a phone pointed at the dev server over the LAN won't tilt; test it on the live site or through an HTTPS tunnel.
 
 ## The hero signpost
 

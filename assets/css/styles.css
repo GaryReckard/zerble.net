@@ -214,9 +214,10 @@ h2 {
   filter: drop-shadow(0 var(--drop) calc(var(--drop) * 1.5) rgba(0, 0, 0, var(--shade))) var(--tone, brightness(1));
   animation: bob var(--bob) ease-in-out var(--bob-delay) infinite;
 }
-/* The far arch sits a touch dimmer, like it's further from the stage lights. */
-.hero-layer--arch    { --x: 3.8%;  --y: -12.8%; --reach: 26px; --lag: .24; --drop: 6px;  --shade: .3;  --rise: -6px;  --bob: 6.2s; --bob-delay: -2s; --tone: brightness(.9) saturate(.92); }
-.hero-layer--corners { --x: -9.6%; --y: 8%;     --reach: 14px; --lag: .11; --drop: 10px; --shade: .38; --rise: -8px;  --bob: 5.1s; --bob-delay: -3.4s; }
+/* The back two layers get a little blur and shade, more the farther back they sit, as if
+   the camera were focused on the cart and the bubbles drifted out past the stage lights. */
+.hero-layer--arch    { --x: 3.8%;  --y: -12.8%; --reach: 26px; --lag: .24; --drop: 6px;  --shade: .3;  --rise: -6px;  --bob: 6.2s; --bob-delay: -2s; --tone: blur(1.2px) brightness(.78) saturate(.9); }
+.hero-layer--corners { --x: -9.6%; --y: 8%;     --reach: 14px; --lag: .11; --drop: 10px; --shade: .38; --rise: -8px;  --bob: 5.1s; --bob-delay: -3.4s; --tone: blur(.5px) brightness(.9); }
 .hero-layer--cart    {                          --reach: -6px; --lag: 0;   --drop: 15px; --shade: .5;  --rise: -10px; --bob: 4s;   --bob-delay: 0s; }
 @keyframes bob { 50% { translate: 0 var(--rise); } }
 /* iPhones only share tilt readings after a tap, so site.js shows this chip there and

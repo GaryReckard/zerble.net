@@ -40,6 +40,12 @@ python3 scripts/build-images.py
 
 The script rebuilds `assets/img/` from the originals in `art/`, writing a WebP at two widths for each `srcset` plus one PNG or JPG fallback, and it sizes the 1200×630 share card from `art/og-card.png`. Share previews cache images hard, so when the card changes, bump the `?v=` on the `og:image` and `twitter:image` URLs in `index.html`. To add a photo, drop the original in `art/`, add a line to the mapping at the top of the script, and run it. It needs `cwebp` (`brew install webp`) and Pillow.
 
+## The hero signpost
+
+The wooden signpost under the hero buttons is the page's table of contents. Each board is a link in `.signpost` that jumps to a section, and the boards cross the post in pairs, one pointing each way. List the boards in page order and alternate `to-r` and `to-l`. The grid pairs each left board with the right board above it, so the post stays three rows tall and fits above the fold on a 1280×800 laptop.
+
+Every board sets its own look inline: `--rot` tilts it, `--ry` turns it toward you (negative) or away from you (positive), `--wood` picks the plank color, and `--paint` picks the lettering color from the palette. Keep labels short, since a board on a phone has about 180px to work with.
+
 ## The bubble fund (tip section)
 
 The `#bubble-juice` section is a tip jar dressed as a gas pump. Picking an amount ticks the pump screen over, fills the four jugs (one box of juice), and rewrites the tip link to carry that amount. Venmo takes `?txn=pay&amount=10&note=...`, and the $10 default is baked into the HTML `href`, so the link works without JavaScript.
@@ -73,7 +79,7 @@ GA4 uses the game's property and tag (`G-CY1FNMY8H8`), so all Zerble traffic lan
 
 So a visit that starts here and clicks through to the game counts as one journey, turn on cross-domain measurement in GA4 for this tag with both `zerble.net` and `garyreckard.github.io` listed (it lives under the web data stream's tag settings, "Configure your domains"). The Google tag then adds a `_gl` parameter to links between the two sites on its own, with no code change on either side.
 
-`analytics.js` names the important clicks with `data-ga`: `book_preorder`, `book_about`, `book_announce`, `play_game_hero`, `play_game_section`, `play_game_timeline`, `instagram_hero`, `instagram_section`, `facebook_section`, `lamplight_artwalk`, `tip_venmo` (plus `tip_paypal` if that button comes back), and the merch tent's `shop_<design>_<product>`, `shop_<design>_all`, and `shop_collection` (for example `shop_neon_pillow`). Outbound ones arrive as `outbound_click` events with that name in `link_text`. The tip links also send the picked dollar amount as an `amount` param. GA4 only reports a custom param after you register it, so add `amount` as a custom metric (Admin, then Custom definitions) to see it in reports. These clicks measure intent, not money received, since the payment itself happens in Venmo.
+`analytics.js` names the important clicks with `data-ga`: `book_preorder`, `book_about`, `book_announce`, `play_game_hero`, `play_game_section`, `play_game_timeline`, `instagram_hero`, `instagram_section`, `facebook_section`, `lamplight_artwalk`, `tip_venmo` (plus `tip_paypal` if that button comes back), and the merch tent's `shop_<design>_<product>`, `shop_<design>_all`, and `shop_collection` (for example `shop_neon_pillow`), plus the hero signpost's boards (`signpost_bubble_fund`, `signpost_story`, `signpost_crew`, `signpost_lurleen`, `signpost_game`, and `signpost_merch`). Outbound ones arrive as `outbound_click` events with that name in `link_text`, and the signpost boards, which jump to a section on the same page, arrive as `anchor_click` events the same way. The tip links also send the picked dollar amount as an `amount` param. GA4 only reports a custom param after you register it, so add `amount` as a custom metric (Admin, then Custom definitions) to see it in reports. These clicks measure intent, not money received, since the payment itself happens in Venmo.
 
 Popping the floating background bubbles sends a `bubble_pop` event with a `popped` count, but only at 1, 10, 25, 50, and 100 pops, so a bubble-popping spree doesn't flood GA.
 

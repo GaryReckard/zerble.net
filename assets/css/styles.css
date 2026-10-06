@@ -971,3 +971,98 @@ h2 {
 @media (prefers-reduced-motion: reduce) {
   .merch-card, .merch-items a { transition: none; }
 }
+
+/* ---------- hero signpost ---------- */
+/* A wooden festival signpost: boards nailed to a post in crossing pairs, pointing every which way.
+   Each board sets its own --rot (tilt), --ry (turned toward or away from you), --wood, and --paint.
+   The HTML lists boards in page order; dense grid packing pairs each left board with the right board above it. */
+.signpost { position: relative; width: min(400px, 100%); margin: 36px 0 0; padding: 26px 0 30px; }
+.signpost::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 50%;
+  top: 0;
+  bottom: 12px;
+  width: 24px;
+  translate: -50% 0;
+  border: 3px solid var(--ink);
+  border-radius: 8px 8px 3px 3px;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 5px, rgba(60, 30, 10, .2) 5px 6px, transparent 6px 10px),
+    linear-gradient(90deg, #7d4a22, #b77a44 40%, #c98d55 55%, #8a5428);
+}
+.signpost::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 2px;
+  width: 130px;
+  height: 22px;
+  translate: -50% 0;
+  background: radial-gradient(closest-side, rgba(18, 12, 36, .6), transparent);
+}
+.signpost ul { position: relative; z-index: 1; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-flow: row dense; row-gap: 10px; align-items: start; }
+/* Stacked drop-shadows trace an ink outline around the clipped arrow shape, then cast a soft shadow. */
+.signpost li {
+  --edge: var(--ink);
+  display: flex;
+  filter:
+    drop-shadow(2px 0 0 var(--edge)) drop-shadow(-2px 0 0 var(--edge))
+    drop-shadow(0 2px 0 var(--edge)) drop-shadow(0 -2px 0 var(--edge))
+    drop-shadow(0 7px 5px rgba(0, 0, 0, .35));
+}
+/* Each board's base end overlaps the post by 10px, where the nail goes in. */
+.signpost .to-r { grid-column: 2; margin: 14px 0 0 -10px; }
+.signpost .to-l { grid-column: 1; justify-content: flex-end; margin-right: -10px; }
+.board {
+  --wood: #c48a52;
+  --paint: var(--cream);
+  --rot: 0deg;
+  --ry: 0deg;
+  --wob: 0deg;
+  --nail: 11px;
+  display: block;
+  /* The post end gets extra padding: the board crossing the other way covers its first 20px. */
+  padding: 11px 28px 10px 34px;
+  font: 400 1.08rem/1 var(--display);
+  letter-spacing: .02em;
+  white-space: nowrap;
+  color: var(--paint);
+  -webkit-text-stroke: 1.2px var(--ink);
+  paint-order: stroke fill;
+  text-shadow: 0 2px 0 rgba(18, 12, 36, .4);
+  text-decoration: none;
+  background:
+    radial-gradient(circle at var(--nail) 50%, #f4efe6 0 1.6px, #4d4034 2.6px, rgba(0, 0, 0, .25) 3.6px, transparent 4.6px),
+    radial-gradient(ellipse 10px 3px at 64% 66%, rgba(70, 35, 12, .5), transparent 75%),
+    repeating-linear-gradient(180deg, transparent 0 4px, rgba(70, 35, 12, .17) 4px 5px, transparent 5px 9px, rgba(255, 232, 196, .12) 9px 10px),
+    linear-gradient(180deg, color-mix(in srgb, var(--wood) 78%, #fff) 0%, var(--wood) 45%, color-mix(in srgb, var(--wood) 76%, #000) 100%);
+  clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 50%, calc(100% - 18px) 100%, 0 100%);
+  transform-origin: left center;
+  transform: perspective(520px) rotateY(var(--ry)) rotate(calc(var(--rot) + var(--wob)));
+  transition: transform .45s var(--spring);
+}
+.to-l .board {
+  --nail: calc(100% - 11px);
+  padding: 11px 34px 10px 28px;
+  clip-path: polygon(18px 0, 100% 0, 100% 100%, 18px 100%, 0 50%);
+  transform-origin: right center;
+}
+.to-r .board:hover { --wob: 4deg; }
+.to-l .board:hover { --wob: -4deg; }
+.board:focus-visible { outline: none; }
+.signpost li:has(.board:focus-visible) { --edge: var(--sky); }
+
+/* On wide screens the hero has room, so the boards get bigger. */
+@media (min-width: 861px) {
+  .signpost { width: 450px; }
+  .board { font-size: 1.22rem; padding: 12px 32px 11px 38px; }
+  .to-l .board { padding: 12px 38px 11px 32px; }
+}
+@media (max-width: 860px) {
+  .signpost { margin-inline: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .board { transition: none; }
+}

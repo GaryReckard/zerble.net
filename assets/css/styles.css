@@ -81,6 +81,10 @@ p { margin: 0 0 1em; }
   50% { transform: translate3d(var(--sway), -60vh, 0); }
   100% { transform: translate3d(0, -130vh, 0); }
 }
+/* Some bubbles drift further back, with the same depth cues as the hero's bubble layers:
+   the farther away one sits, the smaller, slower, softer, and dimmer it gets. */
+.bubbles .mid { scale: .8; opacity: .38; filter: blur(1.4px); animation-duration: calc(var(--d) * 1.3); }
+.bubbles .far { scale: .6; opacity: .26; filter: blur(2.6px); animation-duration: calc(var(--d) * 1.7); }
 
 /* A popped bubble (site.js): a ring that bursts outward, six droplets, and the running count. */
 .bubble-pop { position: absolute; width: var(--s); height: var(--s); margin: calc(var(--s) / -2) 0 0 calc(var(--s) / -2); }

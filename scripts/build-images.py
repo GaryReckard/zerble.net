@@ -66,6 +66,22 @@ IMAGES = {
     "art-poster": ("poster-psychedelic.webp", [400, 800], "jpg", 800, 80),
     "art-space-cruise": ("space-cruise.webp", [640, 1280], "jpg", 1280, 80),
     "art-mini-zerbles": ("mini-zerbles.webp", [480, 960], "jpg", 960, 80),
+    # The merch tent (Redbubble's own product mockups, saved at 1000px)
+    "shop-bubbles-sticker": ("shop-bubbles-sticker.jpg", [320, 640], "jpg", 640, 80),
+    "shop-bubbles-pin": ("shop-bubbles-pin.jpg", [180, 360], "jpg", 360, 80),
+    "shop-bubbles-magnet": ("shop-bubbles-magnet.jpg", [180, 360], "jpg", 360, 80),
+    "shop-neon-sticker": ("shop-neon-sticker.jpg", [320, 640], "jpg", 640, 80),
+    "shop-neon-tee": ("shop-neon-tee.jpg", [180, 360], "jpg", 360, 80),
+    "shop-neon-pillow": ("shop-neon-pillow.jpg", [180, 360], "jpg", 360, 80),
+    "shop-pixel-sticker": ("shop-pixel-sticker.jpg", [320, 640], "jpg", 640, 80),
+    "shop-pixel-tee": ("shop-pixel-tee.jpg", [180, 360], "jpg", 360, 80),
+    "shop-pixel-tote": ("shop-pixel-tote.jpg", [180, 360], "jpg", 360, 80),
+    "shop-retro-sticker": ("shop-retro-sticker.jpg", [320, 640], "jpg", 640, 80),
+    "shop-retro-onesie": ("shop-retro-onesie.jpg", [180, 360], "jpg", 360, 80),
+    "shop-retro-mousepad": ("shop-retro-mousepad.jpg", [180, 360], "jpg", 360, 80),
+    "shop-lurleen-sticker": ("shop-lurleen-sticker.jpg", [320, 640], "jpg", 640, 80),
+    "shop-lurleen-tee": ("shop-lurleen-tee.jpg", [180, 360], "jpg", 360, 80),
+    "shop-lurleen-pin": ("shop-lurleen-pin.jpg", [180, 360], "jpg", 360, 80),
 }
 # The napkin photo is dim, so stretch its levels a little before encoding.
 AUTOCONTRAST = {"history-napkin"}

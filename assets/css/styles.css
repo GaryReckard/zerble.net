@@ -806,3 +806,168 @@ h2 {
 @media (prefers-reduced-motion: reduce) {
   .grade, .jug > span::after { transition: none; }
 }
+
+/* ---------- the merch tent (Redbubble) ---------- */
+.merch {
+  position: relative;
+  padding: 0 0 100px;
+  background:
+    radial-gradient(70% 40% at 50% 0%, rgba(255, 210, 63, .14), transparent 70%),
+    radial-gradient(60% 50% at 90% 90%, rgba(63, 198, 255, .12), transparent 60%),
+    var(--night);
+}
+/* A striped tent awning with a scalloped edge: one scallop per stripe, outlined in ink by the drop-shadow. */
+.awning { position: relative; z-index: 3; height: 70px; margin-bottom: 60px; filter: drop-shadow(0 5px 0 var(--ink)); }
+.awning::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(90deg, var(--pink) 0 56px, var(--cream) 56px 112px);
+  -webkit-mask:
+    linear-gradient(#000 0 0) top / 100% 42px no-repeat,
+    radial-gradient(circle 28px at 28px 42px, #000 97%, transparent) 0 0 / 56px 100% repeat-x;
+          mask:
+    linear-gradient(#000 0 0) top / 100% 42px no-repeat,
+    radial-gradient(circle 28px at 28px 42px, #000 97%, transparent) 0 0 / 56px 100% repeat-x;
+}
+.merch-head { text-align: center; max-width: 660px; margin: 0 auto 56px; }
+.merch-head p:not(.eyebrow) { color: var(--muted); font-size: 1.2rem; margin-inline: auto; max-width: 46ch; }
+
+.merch-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 48px 34px;
+}
+.merch-card {
+  --accent: var(--sun);
+  display: flex;
+  flex-direction: column;
+  padding: 18px 18px 24px;
+  background: var(--cream);
+  color: var(--ink);
+  border: 3px solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 0 var(--ink);
+  transform: rotate(var(--tilt, 0deg));
+  transition: transform .35s var(--spring);
+}
+.merch-card:nth-child(4n + 1) { --tilt: -1.2deg; }
+.merch-card:nth-child(4n + 2) { --tilt: .8deg; }
+.merch-card:nth-child(4n + 3) { --tilt: -.6deg; }
+.merch-card:nth-child(4n + 4) { --tilt: 1.1deg; }
+.merch-card:hover { transform: rotate(0deg) translateY(-4px); }
+
+/* Redbubble's mockups sit on #f8f8f8, so the tiles match it and the photo edges disappear. */
+.merch-art, .merch-items a { display: block; color: inherit; text-decoration: none; }
+.merch-art { position: relative; margin-bottom: 16px; }
+.merch-art img, .merch-items img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  background: #f8f8f8;
+  border: 3px solid var(--ink);
+  border-radius: 16px;
+}
+.merch-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 7px 10px 6px;
+  font: 400 .58rem/1 var(--pixel);
+  text-transform: uppercase;
+  background: var(--accent);
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  rotate: -4deg;
+}
+.merch-card h3 {
+  margin: 0 0 6px;
+  font: 400 1.75rem/1.1 var(--display);
+  color: var(--accent);
+  -webkit-text-stroke: 1.5px var(--ink);
+  paint-order: stroke fill;
+  text-shadow: 0 3px 0 var(--ink);
+}
+.merch-card p { margin: 0 0 16px; color: #2d2342; font-size: 1rem; line-height: 1.45; }
+
+.merch-items { list-style: none; margin: 0 0 22px; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.merch-items a { transition: transform .2s var(--spring); }
+.merch-items a:hover { transform: translateY(-3px) rotate(-1.5deg); }
+.merch-items li:nth-child(even) a:hover { transform: translateY(-3px) rotate(1.5deg); }
+.merch-items a > span { display: block; margin-top: 6px; font-weight: 800; font-size: .92rem; text-align: center; }
+.merch-art:hover img, .merch-items a:hover img { box-shadow: 0 5px 0 var(--accent); }
+.merch-art:focus-visible, .merch-items a:focus-visible { outline: 3px solid var(--sky); outline-offset: 4px; border-radius: 18px; }
+
+/* margin-top: auto pins every button to the card's bottom edge, so buttons line up across a row. */
+.btn-merch { align-self: flex-start; margin-top: auto; font-size: 1.02rem; background: var(--accent); }
+
+/* The last card: a pile of every sticker, pointing at the whole collection. */
+.merch-card--all { background: var(--sun); justify-content: center; }
+.merch-card--all .btn-merch { margin-top: 4px; }
+.merch-card--all h3 { color: var(--cream); }
+.merch-pile { position: relative; aspect-ratio: 1; margin: 6px 4px 18px; }
+.merch-pile img {
+  position: absolute;
+  width: 50%;
+  background: #f8f8f8;
+  border: 3px solid var(--ink);
+  border-radius: 14px;
+  box-shadow: 0 6px 0 var(--ink);
+}
+.merch-pile img:nth-child(1) { left: 0; top: 2%; rotate: -9deg; }
+.merch-pile img:nth-child(2) { right: 0; top: 0; rotate: 7deg; }
+.merch-pile img:nth-child(3) { left: 1%; bottom: 0; rotate: 6deg; }
+.merch-pile img:nth-child(4) { right: 2%; bottom: 3%; rotate: -5deg; }
+.merch-pile img:nth-child(5) { left: 25%; top: 24%; rotate: -2deg; z-index: 2; }
+
+@media (max-width: 1000px) {
+  .merch-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+/* When the "whole shop" card lands alone on the last row (seven cards in three columns, or any odd count
+   in two), it stretches across the row as a banner, with the sticker pile beside the text. */
+@media (min-width: 1001px) {
+  .merch-card--all:nth-child(3n + 1) { --tilt: -.4deg; grid-column: 1 / -1; display: grid; grid-template-columns: 240px minmax(0, 1fr); column-gap: 40px; align-content: center; }
+  .merch-card--all:nth-child(3n + 1) .merch-pile { grid-row: 1 / span 3; margin: 0; }
+  .merch-card--all:nth-child(3n + 1) h3 { align-self: end; }
+  .merch-card--all:nth-child(3n + 1) .btn-merch { justify-self: start; align-self: start; }
+}
+@media (min-width: 701px) and (max-width: 1000px) {
+  .merch-card--all:nth-child(odd) { --tilt: -.4deg; grid-column: 1 / -1; display: grid; grid-template-columns: 200px minmax(0, 1fr); column-gap: 32px; align-content: center; }
+  .merch-card--all:nth-child(odd) .merch-pile { grid-row: 1 / span 3; margin: 0; }
+  .merch-card--all:nth-child(odd) h3 { align-self: end; }
+  .merch-card--all:nth-child(odd) .btn-merch { justify-self: start; align-self: start; }
+}
+/* On phones the cards become a shelf you swipe through, bleeding to the screen edges. */
+@media (max-width: 700px) {
+  .merch { padding-bottom: 64px; }
+  .awning { height: 54px; margin-bottom: 44px; }
+  .awning::before {
+    background: repeating-linear-gradient(90deg, var(--pink) 0 40px, var(--cream) 40px 80px);
+    -webkit-mask:
+      linear-gradient(#000 0 0) top / 100% 34px no-repeat,
+      radial-gradient(circle 20px at 20px 34px, #000 97%, transparent) 0 0 / 40px 100% repeat-x;
+            mask:
+      linear-gradient(#000 0 0) top / 100% 34px no-repeat,
+      radial-gradient(circle 20px at 20px 34px, #000 97%, transparent) 0 0 / 40px 100% repeat-x;
+  }
+  .merch-head { margin-bottom: 28px; }
+  .merch-grid {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: min(78vw, 320px);
+    gap: 22px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 16px;
+    margin-inline: -16px;
+    padding: 16px 16px 34px;
+  }
+  .merch-card { scroll-snap-align: start; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .merch-card, .merch-items a { transition: none; }
+}

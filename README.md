@@ -53,13 +53,27 @@ The `#bubble-juice` section is a tip jar dressed as a gas pump. Picking an amoun
 - **Price per gallon:** `data-price` on `.pump` (currently `22.50`, from a $90 box of four gallons), plus the matching `Price/gal` line in the screen markup.
 - **Amounts:** the four radio buttons in `.grades`. The labels describe the juice each amount buys, so update them if the price moves much.
 
+## The merch tent (Redbubble)
+
+The `#merch` section sits between the art wall and Instagram, and it links out to Zerble's Redbubble collection. Each design gets one card in `.merch-grid`: its sticker as the big image, two products underneath, and a button to every product with that design. The last card links to the whole collection. Redbubble runs sales most weeks, so the cards leave prices off on purpose.
+
+The product photos are Redbubble's own mockups, saved to `art/shop-<design>-<product>.jpg` and run through the image script like everything else, so the page never hotlinks Redbubble. To grab one, open the product page, copy its `og:image` URL, and swap `600x600` for `1000x1000` (and `x600` for `x1000`, or `507x507` for `845x845` on stickers) to get the 1000px version.
+
+To add a design:
+
+1. Save its sticker and two product mockups to `art/` as `shop-<design>-sticker.jpg` and so on.
+2. Add them to the merch-tent block in `scripts/build-images.py` (stickers at `[320, 640]`, products at `[180, 360]`) and run the script.
+3. Copy a card in `index.html`, then swap the links, images, alt text, `data-ga` names, and the `--accent` color (any palette token from the top of `styles.css`). Keep the "whole shop" card last.
+
+The cards are a three-column grid on desktop, two columns on tablets, and a row you swipe through on phones, so any number of designs works.
+
 ## Analytics
 
 GA4 uses the game's property and tag (`G-CY1FNMY8H8`), so all Zerble traffic lands in one place and you can split it by hostname. The tag only loads on `zerble.net`, so local previews never send hits. To give the site its own property instead, swap the ID in the `<head>` snippet.
 
 So a visit that starts here and clicks through to the game counts as one journey, turn on cross-domain measurement in GA4 for this tag with both `zerble.net` and `garyreckard.github.io` listed (it lives under the web data stream's tag settings, "Configure your domains"). The Google tag then adds a `_gl` parameter to links between the two sites on its own, with no code change on either side.
 
-`analytics.js` names the important clicks with `data-ga`: `book_preorder`, `book_about`, `book_announce`, `play_game_hero`, `play_game_section`, `play_game_timeline`, `instagram_hero`, `instagram_section`, `facebook_section`, `lamplight_artwalk`, and `tip_venmo` (plus `tip_paypal` if that button comes back). Outbound ones arrive as `outbound_click` events with that name in `link_text`. The tip links also send the picked dollar amount as an `amount` param. GA4 only reports a custom param after you register it, so add `amount` as a custom metric (Admin, then Custom definitions) to see it in reports. These clicks measure intent, not money received, since the payment itself happens in Venmo.
+`analytics.js` names the important clicks with `data-ga`: `book_preorder`, `book_about`, `book_announce`, `play_game_hero`, `play_game_section`, `play_game_timeline`, `instagram_hero`, `instagram_section`, `facebook_section`, `lamplight_artwalk`, `tip_venmo` (plus `tip_paypal` if that button comes back), and the merch tent's `shop_<design>_<product>`, `shop_<design>_all`, and `shop_collection` (for example `shop_neon_pillow`). Outbound ones arrive as `outbound_click` events with that name in `link_text`. The tip links also send the picked dollar amount as an `amount` param. GA4 only reports a custom param after you register it, so add `amount` as a custom metric (Admin, then Custom definitions) to see it in reports. These clicks measure intent, not money received, since the payment itself happens in Venmo.
 
 Popping the floating background bubbles sends a `bubble_pop` event with a `popped` count, but only at 1, 10, 25, 50, and 100 pops, so a bubble-popping spree doesn't flood GA.
 

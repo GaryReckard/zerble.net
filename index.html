@@ -29,8 +29,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Nunito:wght@400;700;800&family=Press+Start+2P&family=Titan+One&display=swap">
     <link rel="stylesheet" href="assets/css/styles.css?v=2026-10-05">
     <link rel="preload" as="image" type="image/webp"
-          imagesrcset="assets/img/zerble-neon-480.webp 480w, assets/img/zerble-neon-960.webp 960w"
-          imagesizes="(max-width: 860px) min(330px, 100vw - 32px), 520px">
+          imagesrcset="assets/img/zerble-hero-520.webp 520w, assets/img/zerble-hero-1040.webp 1040w"
+          imagesizes="(max-width: 860px) min(420px, 100vw - 32px), 520px">
 
     <title>Zerble · The Art Cart with a Purple Mustache</title>
     <link rel="canonical" href="https://zerble.net/">
@@ -122,13 +122,17 @@
           "image": [
             "https://zerble.net/assets/img/zerble-logo-512.png",
             "https://zerble.net/assets/img/history-napkin-960.jpg",
-            "https://zerble.net/assets/img/history-magbuds-cart-720.jpg",
-            "https://zerble.net/assets/img/zerble-neon-960.webp",
+            "https://zerble.net/assets/img/archive-magbuds-cart-720.jpg",
+            "https://zerble.net/assets/img/history-northern-lights-2024-720.jpg",
+            "https://zerble.net/assets/img/handlers-1120.jpg",
+            "https://zerble.net/assets/img/history-button-2018-800.jpg",
+            "https://zerble.net/assets/img/zerble-hero-1040.webp",
             "https://zerble.net/assets/img/zerble-lurleen-1120.webp",
             "https://zerble.net/assets/img/zerble-pixel-600.webp"
           ],
           "sameAs": [
             "https://www.instagram.com/zerble_art_cart/",
+            "https://www.facebook.com/Zerble",
             "https://www.facebook.com/people/Zerble-Reckard/100011338879765"
           ],
           "subjectOf": [
@@ -142,6 +146,7 @@
           "name": "Lurleen",
           "description": "Zerble's sweetheart: a black art cart with puffy pink lips, raffia hair, and a crown of flowers, who shares Zerble's garage in West Asheville.",
           "artform": "Art car",
+          "creator": { "@id": "https://zerble.net/#locke" },
           "image": "https://zerble.net/assets/img/zerble-lurleen-1120.webp"
         },
         {
@@ -151,7 +156,8 @@
           "author": { "@type": "Person", "name": "Jennifer Pickering" },
           "description": "A coffee table book celebrating 30 years of LEAF Global Arts, with a page about Zerble.",
           "about": { "@type": "Organization", "name": "LEAF Global Arts" },
-          "url": "https://www.jenniferpickering.com/book"
+          "url": "https://www.jenniferpickering.com/book",
+          "image": "https://zerble.net/assets/img/book-cover-600.jpg"
         },
         {
           "@type": "VideoGame",
@@ -185,13 +191,15 @@
           "@type": "Person",
           "@id": "https://zerble.net/#gary",
           "name": "Gary Reckard",
+          "description": "Co-owner and handler of Zerble. Zerble was his brainchild, born down on the Suwannee River, and he made the eyes, the mustache, and the bubble machine mount. He also built the browser game Zerble at the Festival.",
           "url": "https://github.com/garyreckard",
           "sameAs": ["https://github.com/garyreckard"]
         },
         {
           "@type": "Person",
           "@id": "https://zerble.net/#locke",
-          "name": "Locke Crawford"
+          "name": "Locke Crawford",
+          "description": "Co-owner and handler of Zerble, who did much of the wiring, brought Lurleen to life, and throws a lot of the party, from golf-cart karaoke and surprise dance parties to mobile brass band parades."
         }
       ]
     }
@@ -239,13 +247,10 @@
             <p class="tagline">Bring the bubbles, collect the smiles.</p>
         </div>
         <picture>
-            <source type="image/webp"
-                    srcset="assets/img/zerble-neon-480.webp 480w, assets/img/zerble-neon-960.webp 960w"
-                    sizes="(max-width: 860px) min(330px, 100vw - 32px), 520px">
-            <img class="sticker hero-art" src="assets/img/zerble-neon-640.png" width="640" height="640"
-                 fetchpriority="high" decoding="async"
-                 alt="Sticker art of Zerble: a red golf cart with a yellow roof, giant blue googly eyes, a fluffy purple mustache, and tongue out, surrounded by bubbles next to the word ZERBLE.">
-        </picture>
+                <source type="image/webp" srcset="assets/img/zerble-hero-520.webp 520w, assets/img/zerble-hero-1040.webp 1040w" sizes="(max-width: 860px) min(420px, 100vw - 32px), 520px">
+                <img class="sticker hero-art" src="assets/img/zerble-hero-720.png" width="720" height="540" fetchpriority="high" decoding="async"
+                     alt="Sticker art of Zerble: a red golf cart with a yellow roof, giant blue googly eyes, a fluffy purple mustache, and tongue out, with a trail of rainbow bubbles drifting behind.">
+            </picture>
     </div>
     <a class="scroll-cue" href="#story">▼ the story so far</a>
 </header>
@@ -295,13 +300,13 @@
                             </picture>
                             <figcaption>Eyeball #1, fresh coat of primer</figcaption>
                         </figure>
-                        <figure class="snap" style="--w:240px;--tilt:5deg;--tape:rgba(255,79,163,.55);--tape-rot:6deg">
+                        <figure class="snap" style="--w:330px;--tilt:5deg;--tape:rgba(255,79,163,.55);--tape-rot:6deg">
                             <picture>
-                                <source type="image/webp" srcset="assets/img/history-magbuds-cart-360.webp 360w, assets/img/history-magbuds-cart-720.webp 720w" sizes="(max-width: 860px) 42vw, 240px">
-                                <img src="assets/img/history-magbuds-cart-720.jpg" width="720" height="960" loading="lazy" decoding="async"
-                                     alt="The original Zerble in 2011: a green golf cart with giant blue eyeballs mounted on the roof corners, a black posterboard mustache, and a MAG BUDS sign on the hood.">
+                                <source type="image/webp" srcset="assets/img/history-glowing-eyes-400.webp 400w, assets/img/history-glowing-eyes-800.webp 800w" sizes="(max-width: 860px) 46vw, 330px">
+                                <img src="assets/img/history-glowing-eyes-800.jpg" width="800" height="600" loading="lazy" decoding="async"
+                                     alt="Two friends pose beside the original Zerble at dusk, each resting a hand on a giant eyeball glowing blue from the headlamp inside, above a black posterboard mustache and a MAG BUDS sign.">
                             </picture>
-                            <figcaption>The MagBuds cart</figcaption>
+                            <figcaption>Lit up at dusk, headlamps and all</figcaption>
                         </figure>
                     </div>
                 </li>
@@ -309,24 +314,32 @@
                 <li class="moment">
                     <div class="moment-text">
                         <p class="when"><time datetime="2011">2011</time>&ndash;<time datetime="2016">2016</time></p>
-                        <h3>The festival years</h3>
-                        <p>For the next few years Zerble worked the circuit, hauling gear and shuttling musicians while spreading joy (and bubbles) wherever the cart went. Somewhere along the way the eyes migrated inward from their snail-like perch, and the second version traced the mustache in green EL wire so it glowed after dark.</p>
-                        <ul class="bands" aria-label="Festivals Zerble has worked">
+                        <h3>The Suwannee years</h3>
+                        <p>For many festivals, Zerble scooted around the Spirit of the Suwannee Music Park, hauling gear and shuttling musicians while spreading joy (and bubbles) wherever they went. Each fest, Zerble was reborn anew, with a new set of eyes, stache, and various other accessories. The mustache began to glow.</p>
+                        <p>By Bear Creek in November 2014, Zerble&rsquo;s mustache had gone fuzzy and purple, and he sported a fancy bow tie!</p>
+                        <ul class="bands" aria-label="Suwannee festivals Zerble has worked">
                             <li>Magnolia Fest</li>
                             <li>SpringFest</li>
                             <li>Bear Creek</li>
                             <li>Wanee</li>
-                            <li>French Broad River Fest</li>
                         </ul>
                     </div>
-                    <div class="moment-media">
-                        <figure class="snap" style="--w:300px;--tilt:-3deg;--tape:rgba(63,198,255,.55)">
+                    <div class="moment-media snaps">
+                        <figure class="snap" style="--w:280px;--tilt:-3deg;--tape:rgba(63,198,255,.55)">
                             <picture>
-                                <source type="image/webp" srcset="assets/img/history-night-eyes-360.webp 360w, assets/img/history-night-eyes-720.webp 720w" sizes="(max-width: 860px) min(300px, 100vw - 110px), 300px">
-                                <img src="assets/img/history-night-eyes-720.jpg" width="720" height="960" loading="lazy" decoding="async"
-                                     alt="Zerble's big blue eyeballs glinting in the dark at a festival campsite.">
+                                <source type="image/webp" srcset="assets/img/history-el-wire-360.webp 360w, assets/img/history-el-wire-720.webp 720w" sizes="(max-width: 860px) min(320px, 100vw - 110px), 320px">
+                                <img src="assets/img/history-el-wire-720.jpg" width="720" height="720" loading="lazy" decoding="async"
+                                     alt="An early Zerble on a wooded festival trail: a golf cart with blue eyeballs on the roof corners, a black posterboard mustache outlined in glowing EL wire, and a pink pool-noodle smile.">
                             </picture>
-                            <figcaption>Still keeping an eye on things after dark</figcaption>
+                            <figcaption>Version two: EL wire and a pool-noodle smile</figcaption>
+                        </figure>
+                        <figure class="snap" style="--w:240px;--tilt:5deg;--tape:rgba(155,107,255,.55);--tape-rot:6deg">
+                            <picture>
+                                <source type="image/webp" srcset="assets/img/history-bear-creek-2014-360.webp 360w, assets/img/history-bear-creek-2014-720.webp 720w" sizes="(max-width: 860px) 46vw, 240px">
+                                <img src="assets/img/history-bear-creek-2014-720.jpg" width="720" height="960" loading="lazy" decoding="async"
+                                     alt="Zerble at Bear Creek in November 2014: a white golf cart with blue eyeballs on the roof corners, a fuzzy purple mustache traced in EL wire, and a big blue bow tie on the front.">
+                            </picture>
+                            <figcaption>Bear Creek, November 2014</figcaption>
                         </figure>
                     </div>
                 </li>
@@ -334,18 +347,179 @@
                 <li class="moment moment--flip">
                     <div class="moment-text">
                         <p class="when"><time datetime="2016">2016</time></p>
+                        <h3>Florida to North Carolina</h3>
+                        <p>Zerble&rsquo;s build kept evolving, with new, experimental eyeball mounts, the occasional schnoz, and maybe even a cow and/or a monkey.</p>
+                        <p>He started popping up beyond the Florida festivals, too, up in North Carolina at places like the French Broad River Festival in Hot Springs.</p>
+                    </div>
+                    <div class="moment-media snaps">
+                        <figure class="snap" style="--w:280px;--tilt:-4deg;--tape:rgba(95,211,90,.6)">
+                            <picture>
+                                <source type="image/webp" srcset="assets/img/history-springfest-2016-360.webp 360w, assets/img/history-springfest-2016-720.webp 720w" sizes="(max-width: 860px) 46vw, 280px">
+                                <img src="assets/img/history-springfest-2016-720.jpg" width="720" height="720" loading="lazy" decoding="async"
+                                     alt="Two friends sit in Zerble at Suwannee SpringFest 2016: a cream golf cart with eyeballs on pipe stalks, an orange nose on the windshield, a fuzzy purple mustache laced with EL wire, and a pink pool-noodle smile.">
+                            </picture>
+                            <figcaption>SpringFest, March 2016</figcaption>
+                        </figure>
+                        <figure class="snap" style="--w:240px;--tilt:4deg;--tape:rgba(255,210,63,.6);--tape-rot:5deg">
+                            <picture>
+                                <source type="image/webp" srcset="assets/img/history-french-broad-2016-360.webp 360w, assets/img/history-french-broad-2016-720.webp 720w" sizes="(max-width: 860px) 46vw, 240px">
+                                <img src="assets/img/history-french-broad-2016-720.jpg" width="720" height="960" loading="lazy" decoding="async"
+                                     alt="The rented Zerble built at the French Broad River Festival in May 2016: eyeballs on pipe stalks, a patterned roof cover, an orange nose, a fuzzy purple mustache laced with EL wire, and a plush cow head and sock monkey on the front.">
+                            </picture>
+                            <figcaption>French Broad River Fest, May 2016</figcaption>
+                        </figure>
+                    </div>
+                </li>
+
+                <li class="moment">
+                    <div class="moment-text">
+                        <p class="when"><time datetime="2016">2016</time></p>
                         <h3>Leveling up</h3>
-                        <p>In 2016, Gary and Locke Crawford, who own Zerble together, bought a red E-Z-GO and built the version that's still rolling today. Locke handled much of the wiring, with dashboard switches and USB ports all over.</p>
-                        <p>That's the bright-eyed legend you'll find at LEAF, the Lake Eden Arts Festival in Black Mountain, and it has a page in <a class="text-link" href="#book">the LEAF book</a>. Between festivals, home is a garage in West Asheville.</p>
+                        <p>Later that year, Gary and Locke Crawford bought a red E-Z-GO off Craigslist and built the version that&rsquo;s still rolling today. The eyes finally moved inward from their snail-like perch to a more central, solid dashboard mount, and the mustache got a nice upgrade as well. Locke was the mastermind behind much of the wiring, with dashboard switches and USB ports all over. The bubble machine has been through many iterations (it&rsquo;s hard to find a bubble machine that will last more than one festival!)</p>
+                        <p>That&rsquo;s when the bright-eyed legend started popping up at every LEAF, the Lake Eden Arts Festival in Black Mountain. He&rsquo;s even earned a page in <a class="text-link" href="#book">the upcoming LEAF book</a>. Between festivals, home is a garage in West Asheville.</p>
+                    </div>
+                    <div class="moment-media snaps">
+                        <figure class="snap" style="--w:330px;--tilt:-3deg;--tape:rgba(255,79,163,.55)">
+                            <picture>
+                                <source type="image/webp" srcset="assets/img/history-night-life-400.webp 400w, assets/img/history-night-life-800.webp 800w" sizes="(max-width: 860px) 46vw, 330px">
+                                <img src="assets/img/history-night-life-800.jpg" width="800" height="600" loading="lazy" decoding="async"
+                                     alt="Today's Zerble at night beside a festival beer tent, its giant eyes glowing blue and the purple mustache outlined in warm lights.">
+                            </picture>
+                            <figcaption>Night life, mustache lit</figcaption>
+                        </figure>
+                        <figure class="snap" style="--w:260px;--tilt:5deg;--tape:rgba(63,198,255,.55);--tape-rot:5deg">
+                            <picture>
+                                <source type="image/webp" srcset="assets/img/history-bubble-machine-400.webp 400w, assets/img/history-bubble-machine-800.webp 800w" sizes="(max-width: 860px) 46vw, 260px">
+                                <img src="assets/img/history-bubble-machine-800.jpg" width="800" height="600" loading="lazy" decoding="async"
+                                     alt="Close-up of one of Zerble's bubble machines mounted on the cart: a black housing with a googly eye and a purple spiky mohawk, blowing a big iridescent bubble.">
+                            </picture>
+                            <figcaption>One of many bubble machines</figcaption>
+                        </figure>
+                    </div>
+                </li>
+
+                <li class="moment moment--flip">
+                    <div class="moment-text">
+                        <p class="when"><time datetime="2017-07-01">July 2017</time></p>
+                        <h3>Just married</h3>
+                        <p>On July 1, 2017, Zerble carried Gary and Fox at their wedding in Old Fort, North Carolina, dressed up for the day in eucalyptus and ferns.</p>
                     </div>
                     <div class="moment-media">
-                        <figure class="snap" style="--w:300px;--tilt:4deg;--tape:rgba(155,107,255,.55);--tape-rot:3deg">
+                        <figure class="snap" style="--w:300px;--tilt:3deg;--tape:rgba(95,211,90,.6)">
                             <picture>
-                                <source type="image/webp" srcset="assets/img/zerble-logo-512.webp 512w" sizes="(max-width: 860px) min(300px, 100vw - 110px), 300px">
-                                <img src="assets/img/zerble-logo-512.png" width="512" height="512" loading="lazy" decoding="async"
-                                     alt="The retro Zerble logo: today's red cart with googly eyes and a purple mustache in front of a striped synthwave sunset.">
+                                <source type="image/webp" srcset="assets/img/history-wedding-2017-360.webp 360w, assets/img/history-wedding-2017-720.webp 720w" sizes="(max-width: 860px) min(300px, 100vw - 110px), 300px">
+                                <img src="assets/img/history-wedding-2017-720.jpg" width="720" height="1080" loading="lazy" decoding="async"
+                                     alt="Gary and Fox ride Zerble on their wedding day: the red cart trimmed with eucalyptus and ferns, with its big eyes, orange nose, and fuzzy purple mustache.">
                             </picture>
-                            <figcaption>Zerble, the modern era</figcaption>
+                            <figcaption>Gary and Fox, July 1, 2017</figcaption>
+                        </figure>
+                    </div>
+                </li>
+
+                <li class="moment">
+                    <div class="moment-text">
+                        <p class="when"><time datetime="2018-05">May 2018</time></p>
+                        <h3>I Rode Zerble</h3>
+                        <p>Did you get your hands on one of the rare, limited-edition &ldquo;I Rode Zerble&rdquo; buttons at Spring LEAF?!</p>
+                    </div>
+                    <div class="moment-media">
+                        <figure class="snap" style="--w:380px;--tilt:-3deg;--tape:rgba(255,79,163,.55);--tape-rot:4deg">
+                            <picture>
+                                <source type="image/webp" srcset="assets/img/history-button-2018-400.webp 400w, assets/img/history-button-2018-800.webp 800w" sizes="(max-width: 860px) calc(100vw - 110px), 380px">
+                                <img src="assets/img/history-button-2018-800.jpg" width="800" height="600" loading="lazy" decoding="async"
+                                     alt="A round pin-back button reading I RODE ZERBLE, held up in front of the real Zerble: a red golf cart with giant white eyeballs and a fuzzy purple mustache, parked at a festival campsite.">
+                            </picture>
+                            <figcaption>The button, with the real thing behind it</figcaption>
+                        </figure>
+                    </div>
+                </li>
+
+                <li class="moment moment--flip">
+                    <div class="moment-text">
+                        <p class="when"><time datetime="2019-09">Fall 2019</time></p>
+                        <h3>A token of our appreciation</h3>
+                        <p>For Fall LEAF in 2019, Gary and Locke designed special wooden Zerble Fan Club tokens and laser-engraved every one of them on a cheap engraver at a snail&rsquo;s pace. It is estimated that these are worth somewhere in the bazillions of doll-hairs by now, and they&rsquo;re only continuing to appreciate in value.</p>
+                    </div>
+                    <div class="moment-media coins">
+                        <picture>
+                                <source type="image/webp" srcset="assets/img/token-zerble-180.webp 180w, assets/img/token-zerble-360.webp 360w" sizes="(max-width: 860px) 42vw, 200px">
+                                <img class="coin" src="assets/img/token-zerble-360.png" width="360" height="360" loading="lazy" decoding="async"
+                                     alt="A round wooden token laser-engraved with Zerble, eyes, mustache, and a trail of bubbles, ringed by the word ZERBLE.">
+                            </picture>
+                        <picture>
+                                <source type="image/webp" srcset="assets/img/token-fan-club-180.webp 180w, assets/img/token-fan-club-360.webp 360w" sizes="(max-width: 860px) 42vw, 200px">
+                                <img class="coin" src="assets/img/token-fan-club-360.png" width="360" height="360" loading="lazy" decoding="async"
+                                     alt="The back of the wooden token, engraved FAN CLUB MEMBER inside a decorative border.">
+                            </picture>
+                    </div>
+                </li>
+
+                <li class="moment">
+                    <div class="moment-text">
+                        <p class="when"><time datetime="2019-11">Thanksgiving 2019</time></p>
+                        <h3>Zerble goes to Disney World</h3>
+                        <p>For Thanksgiving 2019, Zerble made the trip to Fort Wilderness Resort &amp; Campground at Walt Disney World, where the regular rental carts looked a little plain by comparison.</p>
+                    </div>
+                    <div class="moment-media snaps">
+                        <figure class="snap" style="--w:300px;--tilt:-4deg;--tape:rgba(255,210,63,.6)">
+                            <picture>
+                                <source type="image/webp" srcset="assets/img/history-disney-2019-320.webp 320w, assets/img/history-disney-2019-640.webp 640w" sizes="(max-width: 860px) 46vw, 300px">
+                                <img src="assets/img/history-disney-2019-640.jpg" width="640" height="432" loading="lazy" decoding="async"
+                                     alt="Zerble parked in front of the Fort Wilderness Resort and Campground sign at Walt Disney World.">
+                            </picture>
+                            <figcaption>Fort Wilderness, 2019</figcaption>
+                        </figure>
+                        <figure class="snap" style="--w:300px;--tilt:4deg;--tape:rgba(255,79,163,.55);--tape-rot:6deg">
+                            <picture>
+                                <source type="image/webp" srcset="assets/img/history-disney-lineup-2019-320.webp 320w, assets/img/history-disney-lineup-2019-640.webp 640w" sizes="(max-width: 860px) 46vw, 300px">
+                                <img src="assets/img/history-disney-lineup-2019-640.jpg" width="640" height="335" loading="lazy" decoding="async"
+                                     alt="Zerble parked in a row of plain green rental golf carts at Fort Wilderness, the only one with eyes and a mustache.">
+                            </picture>
+                            <figcaption>Spot the Zerble</figcaption>
+                        </figure>
+                    </div>
+                </li>
+
+                <li class="moment moment--flip">
+                    <div class="moment-text">
+                        <p class="when"><time datetime="2023-05">May 2023</time></p>
+                        <h3>A new rider</h3>
+                        <p>Gary&rsquo;s son Darwin joined the crew in a Zerble onesie that Locke made. Locke had also built an RC Zerble, presented at Darwin&rsquo;s baby shower.</p>
+                    </div>
+                    <div class="moment-media snaps">
+                        <figure class="snap" style="--w:320px;--tilt:-3deg;--tape:rgba(63,198,255,.55)">
+                            <picture>
+                                <source type="image/webp" srcset="assets/img/history-darwin-2023-400.webp 400w, assets/img/history-darwin-2023-800.webp 800w" sizes="(max-width: 860px) 46vw, 320px">
+                                <img src="assets/img/history-darwin-2023-800.jpg" width="800" height="603" loading="lazy" decoding="async"
+                                     alt="Baby Darwin in a hand-drawn Zerble onesie, sitting on a lap at a sunny campsite.">
+                            </picture>
+                            <figcaption>Darwin in his Zerble onesie, May 2023</figcaption>
+                        </figure>
+                        <figure class="snap" style="--w:240px;--tilt:4deg;--tape:rgba(95,211,90,.6);--tape-rot:-4deg">
+                            <picture>
+                                <source type="image/webp" srcset="assets/img/history-rc-zerble-360.webp 360w, assets/img/history-rc-zerble-720.webp 720w" sizes="(max-width: 860px) 46vw, 240px">
+                                <img src="assets/img/history-rc-zerble-720.jpg" width="720" height="900" loading="lazy" decoding="async"
+                                     alt="Darwin crawls toward the RC Zerble, a toy cart with googly eyes and a fuzzy purple mustache, with the real Zerble's giant eyes and purple mustache parked in the background.">
+                            </picture>
+                            <figcaption>RC Zerble by Locke, with the real one behind</figcaption>
+                        </figure>
+                    </div>
+                </li>
+
+                <li class="moment">
+                    <div class="moment-text">
+                        <p class="when"><time datetime="2024-05-11">May 2024</time></p>
+                        <h3>Under the northern lights</h3>
+                        <p>On May 11, 2024, the northern lights made a rare appearance over LEAF, and Zerble lit up right along with the sky.</p>
+                    </div>
+                    <div class="moment-media">
+                        <figure class="snap" style="--w:340px;--tilt:-2deg;--tape:rgba(155,107,255,.55)">
+                            <picture>
+                                <source type="image/webp" srcset="assets/img/history-northern-lights-2024-360.webp 360w, assets/img/history-northern-lights-2024-720.webp 720w" sizes="(max-width: 860px) min(340px, 100vw - 110px), 340px">
+                                <img src="assets/img/history-northern-lights-2024-720.jpg" width="720" height="720" loading="lazy" decoding="async"
+                                     alt="Zerble glowing at night at LEAF under a pink and purple northern-lights sky, eyes lit bright, mustache trimmed in blue lights, with a red barn in the background.">
+                            </picture>
+                            <figcaption>LEAF, May 11, 2024</figcaption>
                         </figure>
                     </div>
                 </li>
@@ -378,14 +552,157 @@
         </div>
     </section>
 
+    <section class="bubble-strip" aria-label="Zerbubbles everywhere">
+        <picture>
+            <source type="image/webp" srcset="assets/img/zerbubbles-800.webp 800w, assets/img/zerbubbles-1600.webp 1600w" sizes="100vw">
+            <img class="bubble-strip-img" src="assets/img/zerbubbles-1600.jpg" width="1600" height="1066" loading="lazy" decoding="async"
+                 alt="">
+        </picture>
+        <p class="bubble-strip-text">Zerbubbles everywhere.</p>
+    </section>
+
+    <section class="archives" id="archives" data-screen-label="archives" aria-labelledby="archives-title">
+        <div class="wrap">
+            <div class="archives-head">
+                <p class="eyebrow">From the archives</p>
+                <h2 id="archives-title">The early years</h2>
+                <p>Before the red E-Z-GO came along, Zerble went through a few looks. Here are some favorite old snapshots, oldest first.</p>
+            </div>
+            <div class="archives-grid">
+                <figure class="snap" style="--tilt:-3deg;--tape:rgba(255,210,63,.6)">
+                    <div class="photo">
+                        <picture>
+                            <source type="image/webp" srcset="assets/img/archive-magbuds-cart-360.webp 360w, assets/img/archive-magbuds-cart-720.webp 720w" sizes="(max-width: 600px) calc(100vw - 72px), (max-width: 1000px) 45vw, 300px">
+                            <img src="assets/img/archive-magbuds-cart-720.jpg" width="720" height="960" loading="lazy" decoding="async"
+                                 alt="The original Zerble at a wooded campsite in 2011: a green golf cart with giant blue eyeballs mounted on the roof corners, a black posterboard mustache, and a MAG BUDS sign on the hood.">
+                        </picture>
+                        <span class="stamp" aria-hidden="true">&rsquo;11</span>
+                    </div>
+                    <figcaption>The MagBuds cart, 2011</figcaption>
+                </figure>
+                <figure class="snap" style="--tilt:2deg;--tape:rgba(255,79,163,.55)">
+                    <div class="photo">
+                        <picture>
+                            <source type="image/webp" srcset="assets/img/archive-riders-2011-360.webp 360w, assets/img/archive-riders-2011-720.webp 720w" sizes="(max-width: 600px) calc(100vw - 72px), (max-width: 1000px) 45vw, 300px">
+                            <img src="assets/img/archive-riders-2011-720.jpg" width="720" height="960" loading="lazy" decoding="async"
+                                 alt="Two riders lounge in the original green Zerble at SpringFest 2011, feet up behind the windshield, under the giant blue eyeballs.">
+                        </picture>
+                        <span class="stamp" aria-hidden="true">&rsquo;11</span>
+                    </div>
+                    <figcaption>Lounging at SpringFest, 2011</figcaption>
+                </figure>
+                <figure class="snap" style="--tilt:-2deg;--tape:rgba(63,198,255,.55)">
+                    <picture>
+                        <source type="image/webp" srcset="assets/img/archive-night-eyes-360.webp 360w, assets/img/archive-night-eyes-720.webp 720w" sizes="(max-width: 600px) calc(100vw - 72px), (max-width: 1000px) 45vw, 300px">
+                        <img src="assets/img/archive-night-eyes-720.jpg" width="720" height="960" loading="lazy" decoding="async"
+                             alt="The early Zerble's big blue eyeballs glinting in the dark at a festival campsite.">
+                    </picture>
+                    <figcaption>Early days, after dark</figcaption>
+                </figure>
+                <figure class="snap" style="--tilt:3deg;--tape:rgba(95,211,90,.6)">
+                    <picture>
+                        <source type="image/webp" srcset="assets/img/archive-party-time-360.webp 360w, assets/img/archive-party-time-720.webp 720w" sizes="(max-width: 600px) calc(100vw - 72px), (max-width: 1000px) 45vw, 300px">
+                        <img src="assets/img/archive-party-time-720.jpg" width="720" height="720" loading="lazy" decoding="async"
+                             alt="An early Zerble at night at a Suwannee festival, glowing eyeballs on the roof corners, a black mustache outlined in EL wire, and a PARTY TIME balloon for a nose.">
+                    </picture>
+                    <figcaption>Party time at a Suwannee fest</figcaption>
+                </figure>
+                <figure class="snap" style="--tilt:-4deg;--tape:rgba(255,79,163,.55)">
+                    <div class="photo">
+                        <picture>
+                            <source type="image/webp" srcset="assets/img/archive-bear-creek-red-eyes-360.webp 360w, assets/img/archive-bear-creek-red-eyes-720.webp 720w" sizes="(max-width: 600px) calc(100vw - 72px), (max-width: 1000px) 45vw, 300px">
+                            <img src="assets/img/archive-bear-creek-red-eyes-720.jpg" width="720" height="721" loading="lazy" decoding="async"
+                                 alt="Two friends in Zerble at Bear Creek in November 2014, with the eyeballs repainted red, a fuzzy purple mustache traced in EL wire, and a blue bow tie.">
+                        </picture>
+                        <span class="stamp" aria-hidden="true">NOV &rsquo;14</span>
+                    </div>
+                    <figcaption>Red-eye Sunday at Bear Creek</figcaption>
+                </figure>
+                <figure class="snap" style="--tilt:2deg;--tape:rgba(255,210,63,.6)">
+                    <div class="photo">
+                        <picture>
+                            <source type="image/webp" srcset="assets/img/archive-bear-creek-night-360.webp 360w, assets/img/archive-bear-creek-night-640.webp 640w" sizes="(max-width: 600px) calc(100vw - 72px), (max-width: 1000px) 45vw, 300px">
+                            <img src="assets/img/archive-bear-creek-night-640.jpg" width="640" height="640" loading="lazy" decoding="async"
+                                 alt="Zerble lit up at night at Bear Creek in 2014: glowing eyeballs, a mustache strung with colored lights, and a bow tie outlined in blue EL wire.">
+                        </picture>
+                        <span class="stamp" aria-hidden="true">NOV &rsquo;14</span>
+                    </div>
+                    <figcaption>Bear Creek after dark</figcaption>
+                </figure>
+                <figure class="snap" style="--tilt:-3deg;--tape:rgba(155,107,255,.55)">
+                    <div class="photo">
+                        <picture>
+                            <source type="image/webp" srcset="assets/img/archive-springfest-night-360.webp 360w, assets/img/archive-springfest-night-720.webp 720w" sizes="(max-width: 600px) calc(100vw - 72px), (max-width: 1000px) 45vw, 300px">
+                            <img src="assets/img/archive-springfest-night-720.jpg" width="720" height="540" loading="lazy" decoding="async"
+                                 alt="Zerble at night at SpringFest 2016, the eyeballs on their stalks blazing white and the purple mustache traced in glowing green and orange EL wire.">
+                        </picture>
+                        <span class="stamp" aria-hidden="true">MAR &rsquo;16</span>
+                    </div>
+                    <figcaption>SpringFest 2016, lights on</figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <section class="handlers" id="handlers" data-screen-label="handlers" aria-labelledby="handlers-title">
+        <div class="wrap">
+            <div class="handlers-head">
+                <p class="eyebrow">Meet the handlers</p>
+                <h2 id="handlers-title">Locke &amp; Gary</h2>
+                <p>Zerble belongs to Gary Reckard and Locke Crawford in equal parts, and between them they keep the eyes glowing and the bubbles coming.</p>
+            </div>
+            <div class="handlers-grid">
+                <figure class="snap" style="--w:520px;--tilt:-2deg;--tape:rgba(255,79,163,.55)">
+                    <picture>
+                        <source type="image/webp" srcset="assets/img/handlers-560.webp 560w, assets/img/handlers-1120.webp 1120w" sizes="(max-width: 860px) calc(100vw - 56px), 520px">
+                        <img src="assets/img/handlers-1120.jpg" width="1120" height="1120" loading="lazy" decoding="async"
+                             alt="Gary and Locke drive Zerble through a festival crowd on a sunny day: a red golf cart with giant blue-and-white eyes, a purple fur mustache trimmed in lights, and bubbles floating all around.">
+                    </picture>
+                    <figcaption>Locke and Gary at the wheel</figcaption>
+                </figure>
+                <div class="passes">
+                    <article class="pass" style="--band:var(--pink);--r:-2deg">
+                        <p class="pass-top">All access</p>
+                        <h3>Gary Reckard</h3>
+                        <p class="pass-role">Handler &amp; co-owner</p>
+                        <ul>
+                            <li>Dreamed up Zerble, who was born down on the Suwannee River</li>
+                            <li>Made the eyes, the mustache, and the bubble machine mount</li>
+                        </ul>
+                    </article>
+                    <article class="pass" style="--band:var(--sky);--r:2.5deg">
+                        <p class="pass-top">All access</p>
+                        <h3>Locke Crawford</h3>
+                        <p class="pass-role">Handler &amp; co-owner</p>
+                        <ul>
+                            <li>Did much of the wiring</li>
+                            <li>Throws a lot of the party: golf-cart karaoke, surprise dance parties, and mobile brass band parades</li>
+                            <li>Brought Lurleen to life</li>
+                        </ul>
+                    </article>
+                    <figure class="snap" style="--w:320px;--tilt:3deg;--tape:rgba(255,210,63,.6)">
+                        <picture>
+                            <source type="image/webp" srcset="assets/img/handlers-hot-dog-360.webp 360w, assets/img/handlers-hot-dog-720.webp 720w" sizes="(max-width: 860px) min(320px, 100vw - 72px), 320px">
+                            <img src="assets/img/handlers-hot-dog-720.jpg" width="720" height="540" loading="lazy" decoding="async"
+                                 alt="Locke in a hot dog costume and a friend in a red inflatable-tube-man costume pose on either side of Zerble at French Broad River Fest.">
+                        </picture>
+                        <figcaption>Locke, in hot dog mode, at French Broad River Fest</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="book" id="book" data-screen-label="book" aria-labelledby="book-title">
         <div class="wrap">
             <div class="book-card">
-                <svg class="book-icon" viewBox="0 0 120 96" aria-hidden="true" focusable="false">
-                    <path d="M60 18C46 8 26 6 6 10v74c20-4 40-2 54 8 14-10 34-12 54-8V10C94 6 74 8 60 18Z" fill="#fff6e6" stroke="#120c24" stroke-width="5" stroke-linejoin="round"/>
-                    <path d="M60 18v74" stroke="#120c24" stroke-width="5"/>
-                    <path d="M18 30c12-2 24-1 32 3M18 44c12-2 24-1 32 3M18 58c12-2 24-1 32 3M70 33c8-4 20-5 32-3M70 47c8-4 20-5 32-3M70 61c8-4 20-5 32-3" stroke="#ff4fa3" stroke-width="4" stroke-linecap="round" fill="none"/>
-                </svg>
+                <a class="book-cover-link" href="https://www.jenniferpickering.com/shop/p/live-like-a-festival-book" data-ga="book_cover">
+                    <picture>
+                        <source type="image/webp" srcset="assets/img/book-cover-300.webp 300w, assets/img/book-cover-600.webp 600w" sizes="(max-width: 860px) 170px, 240px">
+                        <img class="book-cover" src="assets/img/book-cover-600.jpg" width="600" height="643" loading="lazy" decoding="async"
+                             alt="The cover of Live Life Like a Festival by Jennifer Pickering: the title in cream and gold on deep teal, above an open book with a sun emblem, mountains, and a lake, celebrating 30 years of LEAF Global Arts.">
+                    </picture>
+                </a>
                 <div>
                     <p class="eyebrow">Now on pre-order</p>
                     <h2 id="book-title">Zerble&rsquo;s in the book!</h2>
@@ -416,7 +733,7 @@
             <div>
                 <p class="eyebrow">Better together</p>
                 <h2 id="lurleen-title">Zerble &amp; Lurleen</h2>
-                <p>Every festival needs a love story, and Zerble found one in Lurleen. She&rsquo;s a real cart, too, and the two of them share a garage in West Asheville between festivals.</p>
+                <p>Every festival needs a love story, and Zerble found one in Lurleen. She&rsquo;s a real cart, too, brought to life by Locke, and the two of them share a garage in West Asheville between festivals.</p>
                 <p>She shows up in the game, too. Somewhere out past the main stage there's a shy cart with a basket of flowers, and if you drive up slowly enough, the air fills with hearts.</p>
             </div>
         </div>
@@ -466,7 +783,7 @@
             <div class="art-head">
                 <p class="eyebrow">The art wall</p>
                 <h2 id="art-title">Zerble, every which way</h2>
-                <p>Zerble has turned up in all kinds of art over the years, right down to a pair of pocket-size Zerbles that Locke handmade as a gift.</p>
+                <p>Zerble has turned up in all kinds of art over the years, right down to the pocket-size Zerbles Locke made by hand.</p>
             </div>
             <div class="art-grid">
                 <figure class="snap" style="--w:380px;--tilt:-3deg">
@@ -484,6 +801,14 @@
                                      alt="A painting of Zerble flying through outer space, glowing googly eyes and purple mustache, with bubbles trailing past a spiral galaxy and a ringed planet.">
                             </picture>
                     <figcaption>Out for a cosmic cruise</figcaption>
+                </figure>
+                <figure class="snap" style="--w:360px;--tilt:3deg;--tape:rgba(95,211,90,.6);--tape-rot:-4deg">
+                    <picture>
+                        <source type="image/webp" srcset="assets/img/zerble-logo-512.webp 512w" sizes="(max-width: 860px) min(360px, 100vw - 56px), 360px">
+                        <img src="assets/img/zerble-logo-512.png" width="512" height="512" loading="lazy" decoding="async"
+                             alt="The retro Zerble logo: today's red cart with googly eyes and a purple mustache in front of a striped synthwave sunset.">
+                    </picture>
+                    <figcaption>The retro logo</figcaption>
                 </figure>
                 <figure class="snap" style="--w:460px;--tilt:-2deg;--tape:rgba(63,198,255,.55);--tape-rot:-7deg">
                     <picture>
@@ -511,11 +836,17 @@
                 <p class="eyebrow">Follow along</p>
                 <h2 id="gram-title">Zerble on Instagram</h2>
                 <span class="handle">@zerble_art_cart</span>
-                <p>Zerble posts photos of the real cart out at festivals, along with plenty of art.</p>
-                <a class="btn btn-gram" href="https://www.instagram.com/zerble_art_cart/" data-ga="instagram_section">
-                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg>
-                    Follow @zerble_art_cart
-                </a>
+                <p>Zerble posts photos of the real cart out at festivals, along with plenty of art. There&rsquo;s a Facebook page too, though it gets updated less often.</p>
+                <div class="btn-row">
+                    <a class="btn btn-gram" href="https://www.instagram.com/zerble_art_cart/" data-ga="instagram_section">
+                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg>
+                        Follow @zerble_art_cart
+                    </a>
+                    <a class="btn btn-fb" href="https://www.facebook.com/Zerble" data-ga="facebook_section">
+                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H8v3h2.5V21h3Z"/></svg>
+                        Zerble on Facebook
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -527,6 +858,8 @@
         <nav aria-label="Zerble elsewhere">
             <a href="https://garyreckard.github.io/zerble-at-the-festival/">Play the game</a>
             <a href="https://www.instagram.com/zerble_art_cart/">Instagram</a>
+            <a href="https://www.facebook.com/Zerble">Facebook</a>
+            <a href="https://www.jenniferpickering.com/shop/p/live-like-a-festival-book">The LEAF book</a>
         </nav>
         <small>&copy; 2026 zerble.net</small>
     </div>

@@ -6,8 +6,16 @@
 
 - 2011: Gary Reckard was building MagBuds, a volunteer registration system for the festivals at the Spirit of the Suwannee Music Park in Florida (including Magnolia Fest and SpringFest), when he learned he'd be getting his own golf cart at the fest. He got the news at Mo Daddy's in Asheville, North Carolina, and sketched Zerble on a napkin.
 - 2011: The first eyeballs were blue marbled bouncy balls from Kmart, primed white everywhere but the iris, with headlamps taped to the back. They were mounted on the roof corners like a snail's eyes, on a green golf cart with a mustache cut from black posterboard and a MAG BUDS sign.
-- 2011 to 2016: Zerble worked festivals including Magnolia Fest, SpringFest, Bear Creek, Wanee, and French Broad River Fest, hauling gear, shuttling musicians, and blowing bubbles. Over time the eyes migrated inward, and the second version outlined the mustache in green EL wire.
-- 2016: Gary and Locke Crawford bought a red E-Z-GO and built the version of Zerble that's still rolling today, with Locke handling much of the wiring (dashboard switches and USB ports all over). This is the Zerble you'll find at LEAF, the Lake Eden Arts Festival in Black Mountain, North Carolina.
+- 2011 to 2016, the Suwannee years: Zerble scooted around the Spirit of the Suwannee Music Park festivals (Magnolia Fest, SpringFest, Bear Creek, and Wanee), hauling gear, shuttling musicians, and blowing bubbles. Zerble was rebuilt for each fest with a new set of eyes, a new mustache, and other accessories, and the mustache began to glow. By Bear Creek in November 2014, the mustache had gone fuzzy and purple, with a fancy bow tie.
+- 2016, Florida to North Carolina: Zerble's build kept evolving (experimental eyeball mounts, the occasional schnoz, even a cow and a monkey), and Zerble started showing up at North Carolina festivals too, like the French Broad River Festival in Hot Springs.
+- May 2016: Before buying a cart of their own, Gary and Locke Crawford rented one and built a Zerble at the French Broad River Festival.
+- Later in 2016: Gary and Locke bought a red E-Z-GO off Craigslist and built the version of Zerble that's still rolling today. The eyes moved inward from their snail-like perch to a central dashboard mount, the mustache got an upgrade, and Locke was the mastermind behind much of the wiring (dashboard switches and USB ports all over). The bubble machine has been through many iterations, since few bubble machines last more than one festival. From then on, Zerble has been a fixture at every LEAF.
+- July 1, 2017: Zerble carried Gary and Fox at their wedding in Old Fort, North Carolina.
+- May 2018: Gary made a rare, limited-edition batch of "I Rode Zerble" buttons to give out at Spring LEAF.
+- Fall 2019: For Fall LEAF, Gary and Locke designed special wooden Zerble Fan Club tokens, laser-engraved every one of them on a cheap engraver, and handed them out to special people at the fest.
+- Thanksgiving 2019: Zerble visited Fort Wilderness Resort & Campground at Walt Disney World.
+- May 2023: Gary's son Darwin joined the crew in a Zerble onesie Locke made. Locke also built an RC Zerble, presented at Darwin's baby shower.
+- May 11, 2024: Zerble lit up under a rare appearance of the northern lights over LEAF.
 - May 2026: Gary started building the browser game Zerble at the Festival.
 - October 2, 2026: Zerble ran shuttle duty at the East-West Asheville Fall Art Walk, organized by Lamplight AVL (https://lamplightavl.org/artwalks/).
 - Up next: the Lake Eden Reunion.
@@ -16,9 +24,15 @@
 
 - Zerble is a golf cart decorated with enormous blue googly eyes and a big purple mustache.
 - Zerble is owned equally by Gary Reckard and Locke Crawford and lives in a garage in West Asheville, North Carolina.
-- Zerble's sweetheart is Lurleen, a real art cart with puffy pink lips, raffia hair, and a crown of flowers, who lives in the same garage.
+- Zerble's sweetheart is Lurleen, a real art cart brought to life by Locke Crawford, with puffy pink lips, raffia hair, and a crown of flowers. She lives in the same garage as Zerble.
 - Instagram: https://www.instagram.com/zerble_art_cart/ (@zerble_art_cart), with photos of the real cart at festivals and plenty of art.
+- Facebook: https://www.facebook.com/Zerble (updated less often than Instagram).
 - Tagline: "Bring the bubbles, collect the smiles."
+
+## The handlers
+
+- Gary Reckard: co-owner and handler. Zerble was his brainchild, born down on the Suwannee River, and he made the eyes, the mustache, and the bubble machine mount. He also built the browser game.
+- Locke Crawford: co-owner and handler. Locke did much of the wiring, brought Lurleen to life, and throws a lot of the party, including golf-cart karaoke, surprise dance parties, and mobile brass band parades.
 
 ## In the book: Live Life Like a Festival
 
@@ -40,4 +54,5 @@
 - Home: https://zerble.net/
 - Game: https://garyreckard.github.io/zerble-at-the-festival/
 - Instagram: https://www.instagram.com/zerble_art_cart/
+- Facebook: https://www.facebook.com/Zerble
 - Live Life Like a Festival (pre-order): https://www.jenniferpickering.com/shop/p/live-like-a-festival-book

@@ -40,15 +40,13 @@ python3 scripts/build-images.py
 
 The script rebuilds `assets/img/` from the originals in `art/`, writing a WebP at two widths for each `srcset` plus one PNG or JPG fallback, and it composites the 1200×630 share card. To add a photo, drop the original in `art/`, add a line to the mapping at the top of the script, and run it. It needs `cwebp` (`brew install webp`) and Pillow.
 
-Two early photos (the MagBuds cart with friends posing beside it, and two riders in the cart) are kept out of the repo until everyone in them is okay with being on a public site.
-
 ## Analytics
 
 GA4 uses the game's property and tag (`G-CY1FNMY8H8`), so all Zerble traffic lands in one place and you can split it by hostname. The tag only loads on `zerble.net`, so local previews never send hits. To give the site its own property instead, swap the ID in the `<head>` snippet.
 
 So a visit that starts here and clicks through to the game counts as one journey, turn on cross-domain measurement in GA4 for this tag with both `zerble.net` and `garyreckard.github.io` listed (it lives under the web data stream's tag settings, "Configure your domains"). The Google tag then adds a `_gl` parameter to links between the two sites on its own, with no code change on either side.
 
-`analytics.js` names the important clicks with `data-ga`: `book_preorder`, `book_about`, `book_announce`, `play_game_hero`, `play_game_section`, `play_game_timeline`, `instagram_hero`, `instagram_section`, and `lamplight_artwalk`. Outbound ones arrive as `outbound_click` events with that name in `link_text`.
+`analytics.js` names the important clicks with `data-ga`: `book_preorder`, `book_about`, `book_announce`, `play_game_hero`, `play_game_section`, `play_game_timeline`, `instagram_hero`, `instagram_section`, `facebook_section`, and `lamplight_artwalk`. Outbound ones arrive as `outbound_click` events with that name in `link_text`.
 
 ## Hosting
 

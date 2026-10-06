@@ -328,9 +328,9 @@ h2 {
 }
 .art-head { text-align: center; max-width: 640px; margin: 0 auto 64px; }
 .art-head p:not(.eyebrow) { color: var(--muted); font-size: 1.2rem; margin-inline: auto; max-width: 44ch; }
-.art-grid { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 56px 48px; align-items: center; }
-.art-grid .snap:first-child { grid-row: span 2; justify-self: end; }
-.art-grid .snap { justify-self: start; }
+/* Masonry via columns: the four pieces have different shapes, so let them pack. */
+.art-grid { columns: 2; column-gap: 56px; }
+.art-grid .snap { display: block; break-inside: avoid; margin: 0 auto 72px; }
 
 /* ---------- Zerble & Lurleen (the daytime band) ---------- */
 .sweetheart {
@@ -383,7 +383,8 @@ h2 {
 
 /* ---------- small screens ---------- */
 @media (max-width: 860px) {
-  .hero .wrap, .sweetheart .wrap, .game-grid, .gram .wrap, .art-grid { grid-template-columns: minmax(0, 1fr); }
+  .hero .wrap, .sweetheart .wrap, .game-grid, .gram .wrap, .handlers-grid { grid-template-columns: minmax(0, 1fr); }
+  .art-grid { columns: 1; }
   .timeline { gap: 64px; }
   .timeline::before { left: 14px; }
   .moment, .moment--solo { grid-template-columns: minmax(0, 1fr); gap: 34px; padding-left: 46px; }
@@ -394,12 +395,10 @@ h2 {
   .moment-text .bands, .moment--flip .moment-text .bands { justify-content: flex-start; }
   .snaps .snap { width: min(var(--w), 48%); }
   .snaps .snap + .snap { margin-left: 4%; margin-top: 26px; }
-  .art-grid .snap:first-child { grid-row: auto; }
-  .art-grid .snap, .art-grid .snap:first-child { justify-self: center; }
   .art { padding: 72px 0; }
   .hero { padding-top: 28px; text-align: center; }
   .hero .wrap { gap: 10px; }
-  .hero-art { order: -1; width: min(330px, 100%); }
+  .hero-art { order: -1; width: min(420px, 100%); }
   .wordmark { justify-content: center; }
   .lead { margin-inline: auto; }
   .hero .btn-row { justify-content: center; }
@@ -454,7 +453,10 @@ h2 {
   box-shadow: 0 12px 0 var(--ink);
   transform: rotate(-.6deg);
 }
-.book-icon { width: 180px; transform: rotate(-6deg); }
+.book-cover-link { display: block; transform: rotate(-4deg); transition: transform .35s var(--spring); }
+.book-cover-link:hover { transform: rotate(0deg) scale(1.04); }
+.book-cover-link:focus-visible { outline: 3px solid var(--ink); outline-offset: 6px; }
+.book-cover { width: 240px; border-radius: 3px; box-shadow: 0 22px 34px -12px rgba(0, 0, 0, .6), 0 0 0 3px var(--ink); }
 .book h2 { color: var(--pink); -webkit-text-stroke: 2px var(--ink); paint-order: stroke fill; }
 .book .eyebrow { color: #6a1fc4; }
 .book p:not(.eyebrow) { color: #2d2342; font-size: 1.15rem; max-width: 52ch; }
@@ -463,7 +465,148 @@ h2 {
 
 @media (max-width: 860px) {
   .book { padding: 64px 0; }
-  .book-card { grid-template-columns: minmax(0, 1fr); gap: 20px; padding: 28px 22px; transform: none; }
-  .book-icon { width: 110px; }
+  .book-card { grid-template-columns: minmax(0, 1fr); gap: 36px; padding: 30px 22px; transform: none; }
+  .book-cover-link { justify-self: start; margin-left: 6px; }
+  .book-cover { width: 170px; }
   .announce { font-size: .88rem; }
 }
+
+/* Fan Club tokens: two loose coins on the scrapbook page, no polaroid. */
+.coins { display: flex; align-items: flex-start; }
+.coin {
+  width: 200px;
+  filter: drop-shadow(0 10px 12px rgba(0, 0, 0, .6));
+  transform: rotate(-10deg);
+  transition: transform .35s var(--spring);
+}
+.coins picture + picture .coin { margin: 70px 0 0 -26px; transform: rotate(14deg); }
+.coin:hover, .coins picture + picture .coin:hover { transform: rotate(0deg) scale(1.08); }
+@media (max-width: 860px) {
+  .coin { width: min(170px, 44vw); }
+  .coins picture + picture .coin { margin: 48px 0 0 -18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .coin { transition: none; }
+}
+.btn-fb { background: var(--sky); }
+.gram .btn-row { margin-top: 4px; }
+
+/* ---------- from the archives (a kraft-paper scrapbook page of old photos) ---------- */
+.archives {
+  position: relative;
+  padding: 96px 0;
+  color: var(--ink);
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .24 0 0 0 0 .12 0 0 0 .22 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    linear-gradient(180deg, #d9b98a 0%, #cfa978 100%);
+}
+.archives-head { text-align: center; max-width: 640px; margin: 0 auto 64px; }
+.archives h2 { color: var(--cream); -webkit-text-stroke: 2px var(--ink); paint-order: stroke fill; }
+.archives .eyebrow { color: #6a1fc4; }
+.archives-head p:not(.eyebrow) { color: #3d2a12; font-size: 1.2rem; }
+.archives-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 64px 40px; align-items: start; justify-items: center; }
+.archives-grid .snap { width: min(300px, 100%); }
+.archives-grid .snap:nth-child(even) { margin-top: 36px; }
+
+/* ---------- the handlers (laminated festival passes) ---------- */
+.handlers { position: relative; padding: 100px 0; background: var(--night); }
+.handlers-head { text-align: center; max-width: 680px; margin: 0 auto 64px; }
+.handlers-head p:not(.eyebrow) { color: var(--muted); font-size: 1.2rem; }
+.handlers-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 56px; align-items: center; }
+.handlers-grid .snap { justify-self: end; }
+.passes { display: grid; gap: 40px; justify-items: start; }
+.pass {
+  position: relative;
+  width: min(340px, 100%);
+  padding: 0 0 22px;
+  color: var(--ink);
+  background: linear-gradient(135deg, rgba(255, 255, 255, .55) 0%, rgba(255, 255, 255, 0) 38%), var(--cream);
+  border: 3px solid var(--ink);
+  border-radius: 16px;
+  box-shadow: 0 8px 0 var(--ink), 0 18px 30px -10px rgba(0, 0, 0, .6);
+  transform: rotate(var(--r, 0deg));
+  overflow: hidden;
+}
+.pass::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  width: 54px;
+  height: 10px;
+  translate: -50% 0;
+  border-radius: 6px;
+  background: var(--night);
+  box-shadow: inset 0 2px 3px rgba(0, 0, 0, .5);
+}
+.pass-top {
+  margin: 0 0 16px;
+  padding: 30px 18px 12px;
+  background: var(--band, var(--sun));
+  border-bottom: 3px solid var(--ink);
+  font: 400 .78rem/1 var(--pixel);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  text-align: center;
+}
+.pass h3 { margin: 0 20px 4px; font: 400 1.7rem/1.1 var(--display); }
+.pass-role { margin: 0 20px 12px; font: 400 .62rem/1.6 var(--pixel); color: #6a1fc4; text-transform: uppercase; }
+.pass ul { margin: 0 20px; padding-left: 1.1em; font-size: 1rem; line-height: 1.45; color: #2d2342; }
+.pass li + li { margin-top: 6px; }
+
+@media (max-width: 860px) {
+  .archives, .handlers { padding: 72px 0; }
+  .archives-grid { gap: 48px 24px; }
+  .archives-grid .snap:nth-child(even) { margin-top: 0; }
+  .handlers-grid { grid-template-columns: minmax(0, 1fr); gap: 48px; }
+  .handlers-grid .snap { justify-self: center; }
+  .passes { justify-items: center; }
+}
+
+/* Old photos read as old: a faint vintage cast, plus the orange date stamp
+   point-and-shoot film cameras burned into the corner. */
+.archives .snap img { filter: sepia(.2) saturate(.88) contrast(1.03); }
+.photo { position: relative; }
+.stamp {
+  position: absolute;
+  right: 10px;
+  bottom: 8px;
+  font: 700 .95rem/1 'Courier New', ui-monospace, monospace;
+  letter-spacing: .06em;
+  color: #ff9a2e;
+  text-shadow: 0 0 4px rgba(255, 110, 0, .85), 0 0 1px #ff6a00;
+  pointer-events: none;
+}
+
+/* ---------- zerbubbles: a full-bleed photo band between sections ---------- */
+.bubble-strip {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: clamp(240px, 34vw, 420px);
+  overflow: hidden;
+  background: #2a3a1a;
+}
+.bubble-strip-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.bubble-strip::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 90% at 50% 50%, rgba(18, 12, 36, .15) 0%, rgba(18, 12, 36, .55) 100%);
+}
+.bubble-strip-text {
+  position: relative;
+  z-index: 3;
+  width: fit-content;
+  max-width: calc(100% - 40px);
+  margin: 0;
+  text-align: center;
+  font: 400 clamp(2.4rem, 7vw, 5.2rem)/1 var(--display);
+  color: var(--cream);
+  -webkit-text-stroke: clamp(2px, .35vw, 4px) var(--ink);
+  paint-order: stroke fill;
+  text-shadow: 0 6px 0 var(--ink);
+  transform: rotate(-2deg);
+}
+
+.passes .snap { margin-top: 8px; }

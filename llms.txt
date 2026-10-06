@@ -27,7 +27,6 @@
 - Zerble's sweetheart is Lurleen, a real art cart brought to life by Locke Crawford, with puffy pink lips, raffia hair, and a crown of flowers. She lives in the same garage as Zerble.
 - Instagram: https://www.instagram.com/zerble_art_cart/ (@zerble_art_cart), with photos of the real cart at festivals and plenty of art.
 - Facebook: https://www.facebook.com/Zerble (updated less often than Instagram).
-- Tagline: "Bring the bubbles, collect the smiles."
 
 ## The bubble fund
 
@@ -56,6 +55,7 @@
 
 - Play free in any modern web browser, on a laptop or a phone, with nothing to install: https://garyreckard.github.io/zerble-at-the-festival/
 - You drive Zerble through a procedural festival that builds itself as you go (stages, food trucks, drum circles, lakes, and forests) and trail bubbles past the crowd to collect smiles.
+- The game's tagline: "Bring the bubbles, collect the smiles."
 - Two modes: Just Cruisin' (endless, no pressure) and Festival Run (each festival day brings scarcer bubble juice and stricter marshals).
 - Controls: WASD to drive on a keyboard (arrow keys orbit the camera, Shift boosts, Space honks the horn), or the on-screen thumbstick and buttons on a phone.
 - Lurleen is in the game too, and if you drive up to her slowly, the air fills with hearts.

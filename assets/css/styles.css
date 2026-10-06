@@ -407,6 +407,7 @@ h2 {
 }
 .screen figcaption { font: 400 .6rem/1.6 var(--pixel); color: var(--muted); background: var(--ink); padding: 10px 14px; }
 .game-copy p { color: var(--muted); }
+.game .tagline { margin: -12px 0 30px; }
 .modes { display: grid; gap: 12px; margin: 22px 0 28px; padding: 0; list-style: none; }
 .modes li { background: var(--card); border: 3px solid var(--ink); border-radius: 14px; padding: 12px 16px; font-size: 1rem; color: var(--muted); }
 .modes strong { display: block; font: 400 .72rem/1.6 var(--pixel); color: var(--cream); margin-bottom: 4px; }
@@ -422,7 +423,6 @@ h2 {
 
 /* ---------- footer ---------- */
 .site-footer { background: var(--ink); padding: 44px 0 52px; text-align: center; color: var(--muted); font-size: .95rem; }
-.site-footer .tagline { margin: 0 0 14px; color: var(--sun); font-size: .7rem; }
 .site-footer nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 22px; margin-bottom: 12px; }
 .site-footer nav a { color: var(--cream); text-decoration-color: var(--pink); text-underline-offset: 4px; }
 .site-footer small { font-size: .85rem; }

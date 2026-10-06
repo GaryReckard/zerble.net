@@ -27,7 +27,7 @@
     </script>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Nunito:wght@400;700;800&family=Press+Start+2P&family=Titan+One&display=swap">
-    <link rel="stylesheet" href="assets/css/styles.css?v=2026-10-05">
+    <link rel="stylesheet" href="assets/css/styles.css?v=2026-10-06">
     <link rel="preload" as="image" type="image/webp"
           imagesrcset="assets/img/zerble-hero-520.webp 520w, assets/img/zerble-hero-1040.webp 1040w"
           imagesizes="(max-width: 860px) min(420px, 100vw - 32px), 520px">
@@ -256,6 +256,46 @@
 </header>
 
 <main id="main">
+    <section class="tank" id="bubble-juice" data-screen-label="bubble-juice" aria-labelledby="tank-title">
+        <div class="wrap tank-grid">
+            <div class="tank-text">
+                <p class="eyebrow">The bubble fund</p>
+                <h2 id="tank-title">Help fill the bubble tank</h2>
+                <p>Zerble runs on pro-grade bubble juice, and it goes fast. A box of four one-gallon jugs costs about $90, and a single festival can drain one or two of those jugs.</p>
+                <p>If Zerble ever blew a bubble your way, chip in and keep them coming for the next crowd.</p>
+                <p class="tank-fine">Zerble isn't a charity, so tips aren't tax-deductible. They do buy a whole lot of bubbles.</p>
+            </div>
+
+            <div class="pump" data-price="22.50">
+                <p class="pump-sign" aria-hidden="true">Bubble juice</p>
+                <div class="pump-screen" aria-hidden="true">
+                    <p class="pump-row"><span>Sale</span><b data-pump="sale">$10.00</b></p>
+                    <p class="pump-row"><span>Gallons</span><b data-pump="gallons">0.444</b></p>
+                    <p class="pump-row pump-row--price"><span>Price/gal</span><b>$22.50</b></p>
+                </div>
+                <div class="jugs" aria-hidden="true">
+                    <span class="jug"><span style="--fill:.444"></span></span>
+                    <span class="jug"><span style="--fill:0"></span></span>
+                    <span class="jug"><span style="--fill:0"></span></span>
+                    <span class="jug"><span style="--fill:0"></span></span>
+                    <small>One box = four jugs</small>
+                </div>
+                <fieldset class="grades">
+                    <legend>Pick an amount</legend>
+                    <label class="grade"><input type="radio" name="tip" value="5"><b>$5</b><span>A splash</span></label>
+                    <label class="grade"><input type="radio" name="tip" value="10" checked><b>$10</b><span>Half a jug</span></label>
+                    <label class="grade"><input type="radio" name="tip" value="25"><b>$25</b><span>A whole jug</span></label>
+                    <label class="grade"><input type="radio" name="tip" value="90"><b>$90</b><span>The whole box</span></label>
+                </fieldset>
+                <p class="sr-only" aria-live="polite" data-pump="summary">$10 buys about 0.4 gallons of bubble juice.</p>
+                <div class="pump-pay">
+                    <a class="btn btn-venmo" href="https://venmo.com/zerble?txn=pay&amp;amount=10&amp;note=Bubble%20juice%20for%20Zerble" data-pay="venmo" data-ga="tip_venmo" data-ga-amount="10"><span>Tip <span class="amt">$10</span> on Venmo</span></a>
+                </div>
+                <p class="pump-note">You can change the amount before you send it.</p>
+            </div>
+        </div>
+    </section>
+
     <section class="story" id="story" data-screen-label="story" aria-labelledby="story-title">
         <div class="wrap">
             <div class="story-head">
@@ -873,7 +913,7 @@
     </div>
 </footer>
 
-<script defer src="assets/js/site.js?v=2026-10-05"></script>
-<script defer src="assets/js/analytics.js?v=2026-10-05"></script>
+<script defer src="assets/js/site.js?v=2026-10-06"></script>
+<script defer src="assets/js/analytics.js?v=2026-10-06"></script>
 </body>
 </html>

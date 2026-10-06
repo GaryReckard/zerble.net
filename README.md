@@ -14,7 +14,7 @@ The setup follows the RADish Fest site (`~/Sites/raddish-fest`): a per-letter he
 | `index.html` | The page, with meta, Open Graph, and Twitter tags plus JSON-LD (`WebSite`, `WebPage`, `ImageObject`, `VisualArtwork` for Zerble, `VideoGame` for the game, `Person`) |
 | `404.html` | Self-contained `noindex` page. GitHub Pages serves it for any missing path, so its assets use absolute `https://zerble.net/` URLs |
 | `assets/css/styles.css` | All styles. The palette tokens come off the sticker art |
-| `assets/js/site.js` | The wordmark pop and intro sweep (ported from RADish Fest), plus a bubble puff on every pop |
+| `assets/js/site.js` | The wordmark pop and intro sweep (ported from RADish Fest), plus a bubble puff on every pop, and the bubble pump that runs the tip section |
 | `assets/js/analytics.js` | GA4 events: outbound and CTA clicks (with `data-ga` names), scroll depth, and section views |
 | `assets/img/` | Generated images. Don't edit by hand, run the script below |
 | `art/` | The full-resolution originals the images are built from (stickers as lossless WebP, photos as they came off the phone) |
@@ -40,13 +40,26 @@ python3 scripts/build-images.py
 
 The script rebuilds `assets/img/` from the originals in `art/`, writing a WebP at two widths for each `srcset` plus one PNG or JPG fallback, and it composites the 1200×630 share card. To add a photo, drop the original in `art/`, add a line to the mapping at the top of the script, and run it. It needs `cwebp` (`brew install webp`) and Pillow.
 
+## The bubble fund (tip section)
+
+The `#bubble-juice` section is a tip jar dressed as a gas pump. Picking an amount ticks the pump screen over, fills the four jugs (one box of juice), and rewrites the tip link to carry that amount. Venmo takes `?txn=pay&amount=10&note=...`, and the $10 default is baked into the HTML `href`, so the link works without JavaScript.
+
+- **Account:** tips go to Zerble's Venmo business profile, [@zerble](https://venmo.com/zerble). The handle lives in the `href` on `.btn-venmo` in `index.html`, and `site.js` reads it from there, so that's the only place to change it. Keep tips on a business profile, because Venmo's rules say personal profiles shouldn't receive donation-style payments from people you don't know.
+- **PayPal (hidden for now):** `site.js` already knows PayPal.me's format (the amount goes on the end of the path, as in `/10USD`). To bring the button back, add this under the Venmo link in `.pump-pay`, using a PayPal business account's PayPal.me name:
+
+  ```html
+  <a class="btn btn-paypal" href="https://paypal.me/NAME/10USD" data-pay="paypal" data-ga="tip_paypal" data-ga-amount="10"><span>Tip <span class="amt">$10</span> with PayPal</span></a>
+  ```
+- **Price per gallon:** `data-price` on `.pump` (currently `22.50`, from a $90 box of four gallons), plus the matching `Price/gal` line in the screen markup.
+- **Amounts:** the four radio buttons in `.grades`. The labels describe the juice each amount buys, so update them if the price moves much.
+
 ## Analytics
 
 GA4 uses the game's property and tag (`G-CY1FNMY8H8`), so all Zerble traffic lands in one place and you can split it by hostname. The tag only loads on `zerble.net`, so local previews never send hits. To give the site its own property instead, swap the ID in the `<head>` snippet.
 
 So a visit that starts here and clicks through to the game counts as one journey, turn on cross-domain measurement in GA4 for this tag with both `zerble.net` and `garyreckard.github.io` listed (it lives under the web data stream's tag settings, "Configure your domains"). The Google tag then adds a `_gl` parameter to links between the two sites on its own, with no code change on either side.
 
-`analytics.js` names the important clicks with `data-ga`: `book_preorder`, `book_about`, `book_announce`, `play_game_hero`, `play_game_section`, `play_game_timeline`, `instagram_hero`, `instagram_section`, `facebook_section`, and `lamplight_artwalk`. Outbound ones arrive as `outbound_click` events with that name in `link_text`.
+`analytics.js` names the important clicks with `data-ga`: `book_preorder`, `book_about`, `book_announce`, `play_game_hero`, `play_game_section`, `play_game_timeline`, `instagram_hero`, `instagram_section`, `facebook_section`, `lamplight_artwalk`, and `tip_venmo` (plus `tip_paypal` if that button comes back). Outbound ones arrive as `outbound_click` events with that name in `link_text`. The tip links also send the picked dollar amount as an `amount` param. GA4 only reports a custom param after you register it, so add `amount` as a custom metric (Admin, then Custom definitions) to see it in reports. These clicks measure intent, not money received, since the payment itself happens in Venmo.
 
 ## Hosting
 

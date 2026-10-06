@@ -4,7 +4,8 @@
      2. scroll_depth  — 25 / 50 / 75 / 90 / 100% milestones (once each)
      3. section_view  — fires when a <section data-screen-label> scrolls into view
 
-   The two money CTAs (play, instagram) carry data-ga="..." for clean naming.
+   The money CTAs carry data-ga="..." for clean naming, and the tip links also
+   carry data-ga-amount, which rides along as an `amount` param.
    On local dev the gtag snippet never loads, so everything here quietly no-ops. */
 (function () {
     'use strict';
@@ -39,7 +40,8 @@
         ev(name, {
             link_text: label,
             link_url: href || undefined,
-            link_id: el.id || undefined
+            link_id: el.id || undefined,
+            amount: el.hasAttribute('data-ga-amount') ? Number(el.getAttribute('data-ga-amount')) : undefined
         });
     }, true); // capture phase: fires even if a handler calls stopPropagation
 

@@ -29,6 +29,12 @@
 - Facebook: https://www.facebook.com/Zerble (updated less often than Instagram).
 - Tagline: "Bring the bubbles, collect the smiles."
 
+## The bubble fund
+
+- Zerble's bubble machine runs on pro-grade bubble juice. A box of four one-gallon jugs costs about $90, and a single festival can use one or two of those jugs.
+- Fans can tip toward bubble juice on Venmo (@zerble, https://venmo.com/zerble) from https://zerble.net/#bubble-juice, with suggested amounts of $5, $10, $25 (about a gallon), and $90 (a whole box).
+- Zerble isn't a charity, so tips aren't tax-deductible.
+
 ## The handlers
 
 - Gary Reckard: co-owner and handler. Zerble was his brainchild, born down on the Suwannee River, and he made the eyes, the mustache, and the bubble machine mount. He also built the browser game.
@@ -52,6 +58,8 @@
 ## Links
 
 - Home: https://zerble.net/
+- Tip toward bubble juice: https://zerble.net/#bubble-juice
+- Venmo: https://venmo.com/zerble
 - Game: https://garyreckard.github.io/zerble-at-the-festival/
 - Instagram: https://www.instagram.com/zerble_art_cart/
 - Facebook: https://www.facebook.com/Zerble

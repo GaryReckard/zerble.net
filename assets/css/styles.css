@@ -193,7 +193,7 @@ h2 {
 .scroll-cue {
   position: absolute;
   left: 50%;
-  bottom: 18px;
+  bottom: 30px;
   translate: -50% 0;
   font: 400 .6rem/1 var(--pixel);
   color: var(--muted);
@@ -610,3 +610,149 @@ h2 {
 }
 
 .passes .snap { margin-top: 8px; }
+
+/* ---------- the bubble fund: a tip jar dressed as a gas pump ---------- */
+/* Red body and yellow sign, like Zerble's own cart. site.js ticks the screen up
+   like a real pump and fills the jugs (one box of juice = four gallon jugs). */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+.tank {
+  position: relative;
+  padding: 90px 0;
+  background:
+    radial-gradient(70% 60% at 85% 20%, rgba(63, 198, 255, .3), transparent 65%),
+    linear-gradient(180deg, #2b3f97 0%, #23377f 55%, var(--night) 100%);
+}
+/* A foamy top edge (two rows of overlapping bubbles) where the band meets the hero. */
+.tank::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -16px;
+  height: 17px;
+  background:
+    radial-gradient(circle at 22px 22px, #2b3f97 18px, transparent 18.5px) 0 0 / 44px 17px repeat-x,
+    radial-gradient(circle at 15px 19px, #2b3f97 12px, transparent 12.5px) 7px 0 / 30px 17px repeat-x;
+}
+.tank-grid { display: grid; grid-template-columns: minmax(0, 1fr) 400px; gap: 56px; align-items: center; }
+.tank-text p:not(.eyebrow) { font-size: 1.15rem; max-width: 46ch; }
+.tank-text .tank-fine { font-size: .95rem; color: var(--muted); margin-top: 26px; }
+
+.pump {
+  position: relative;
+  padding: 18px 18px 20px;
+  color: var(--ink);
+  background: var(--cherry);
+  border: 4px solid var(--ink);
+  border-radius: 28px 28px 18px 18px;
+  box-shadow: 0 10px 0 var(--ink);
+  transform: rotate(1.2deg);
+}
+.pump-sign {
+  margin: 0 0 16px;
+  padding: 12px 10px;
+  background: var(--sun);
+  border: 3px solid var(--ink);
+  border-radius: 16px;
+  font: 400 1.5rem/1 var(--display);
+  letter-spacing: .04em;
+  text-align: center;
+  text-transform: uppercase;
+}
+.pump-screen {
+  padding: 16px 16px 6px;
+  background: #0b0718;
+  border: 3px solid var(--ink);
+  border-radius: 12px;
+  box-shadow: inset 0 0 0 2px #3a2d5c;
+  font-family: var(--pixel);
+}
+.pump-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin: 0 0 12px; }
+.pump-row span { font-size: .55rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.pump-row b { font-weight: 400; font-size: 1.35rem; color: var(--sun); text-shadow: 0 0 10px rgba(255, 210, 63, .55); }
+.pump-row--price b { font-size: .75rem; color: var(--leaf); text-shadow: 0 0 8px rgba(95, 211, 90, .5); }
+
+.jugs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 18px 6px 18px; }
+.jug::before {
+  content: "";
+  display: block;
+  width: 38%;
+  height: 9px;
+  margin: 0 auto -3px;
+  background: var(--sun);
+  border: 3px solid var(--ink);
+  border-radius: 4px 4px 0 0;
+}
+.jug > span {
+  position: relative;
+  display: block;
+  height: 58px;
+  overflow: hidden;
+  background: rgba(255, 246, 230, .85);
+  border: 3px solid var(--ink);
+  border-radius: 10px 10px 8px 8px;
+}
+.jug > span::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: calc(var(--fill, 0) * 100%);
+  background: linear-gradient(180deg, var(--sky), var(--grape));
+  box-shadow: inset 0 3px 0 rgba(255, 255, 255, .55);
+  transition: height .7s ease-out;
+}
+.jugs small {
+  grid-column: 1 / -1;
+  font: 400 .5rem/1.6 var(--pixel);
+  letter-spacing: .06em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.grades { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 0 0 20px; padding: 0; border: 0; }
+.grades legend { margin: 0 0 10px; padding: 0; font: 400 .55rem/1.6 var(--pixel); letter-spacing: .06em; text-transform: uppercase; }
+.grade {
+  position: relative;
+  display: grid;
+  gap: 4px;
+  padding: 10px 8px;
+  text-align: center;
+  background: var(--cream);
+  border: 3px solid var(--ink);
+  border-radius: 14px;
+  box-shadow: 0 5px 0 var(--ink);
+  cursor: pointer;
+  transition: transform .12s ease, box-shadow .12s ease, background-color .15s ease;
+}
+/* The real radio stays on top, invisible, so clicks, keyboard arrows, and screen readers all work as usual. */
+.grade input { position: absolute; inset: 0; margin: 0; opacity: 0; cursor: pointer; }
+.grade b { font: 400 1.5rem/1 var(--display); }
+.grade span { font: 800 .85rem/1.2 var(--body); color: #4a3d63; }
+.grade:hover { transform: translateY(-2px); box-shadow: 0 7px 0 var(--ink); }
+.grade:has(input:checked) { background: var(--sun); transform: translateY(3px); box-shadow: 0 2px 0 var(--ink); }
+.grade:has(input:focus-visible) { outline: 3px solid var(--sky); outline-offset: 3px; }
+
+.pump-pay { display: grid; gap: 16px; }
+.pump-pay .btn { justify-content: center; }
+.btn-venmo { background: #3d95ce; }
+.btn-paypal { background: #ffc439; }
+.pump-note { margin: 16px 0 0; font-size: .9rem; font-weight: 800; text-align: center; }
+
+@media (max-width: 860px) {
+  .tank { padding: 64px 0 72px; }
+  .tank-grid { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .pump { width: min(420px, 100%); justify-self: center; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .grade, .jug > span::after { transition: none; }
+}

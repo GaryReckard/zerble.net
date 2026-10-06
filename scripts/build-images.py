@@ -36,6 +36,8 @@ IMAGES = {
     "zerble-pixel": ("sticker-pixel.webp", [300, 600], "png", 400, 82),
     "game-dusk": ("game-dusk-screenshot.jpg", [640, 1280], "jpg", 1280, 80),
     "zerble-logo": ("logo-synthwave.webp", [512], "png", 512, 82),
+    # The 404 page's headline: "404" in purple fur, with a googly eye for the zero
+    "error-404": ("sticker-404-eyeball.webp", [560, 1120], "png", 720, 74),
     "handlers": ("handlers-locke-gary.webp", [560, 1120], "jpg", 1120, 80),
     "handlers-hot-dog": ("handlers-locke-hot-dog.webp", [360, 720], "jpg", 720, 80),
     "book-cover": ("book-cover-front.webp", [300, 600], "jpg", 600, 84),
@@ -91,13 +93,13 @@ IMAGES = {
 }
 # The napkin photo is dim, so stretch its levels a little before encoding.
 AUTOCONTRAST = {"history-napkin"}
-# The hero layers came out of background removal with a faint haze around them (alpha
-# under 16, so 6% opacity or less). It can't be seen on the page but still costs bytes,
-# so it's cleared before encoding.
-ALPHA_FLOOR = {"zerble-hero-arch", "zerble-hero-corners", "zerble-hero-cart"}
+# The hero layers and the 404 art came out of background removal with a faint haze
+# around them (alpha under 16, so 6% opacity or less). It can't be seen on the page but
+# still costs bytes, so it's cleared before encoding.
+ALPHA_FLOOR = {"zerble-hero-arch", "zerble-hero-corners", "zerble-hero-cart", "error-404"}
 ALPHA_CUTOFF = 16
 # name: AVIF quality (0-100). Their <picture> lists the AVIF source ahead of the WebP.
-AVIF = {"zerble-hero-arch": 50, "zerble-hero-corners": 50, "zerble-hero-cart": 50}
+AVIF = {"zerble-hero-arch": 50, "zerble-hero-corners": 50, "zerble-hero-cart": 50, "error-404": 50}
 OG_SOURCE = "og-card.png"   # the finished social share card (Zerble under the marquee sign, with zerble.net)
 
 

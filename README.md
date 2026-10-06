@@ -12,7 +12,7 @@ The setup follows the RADish Fest site (`~/Sites/raddish-fest`): a per-letter he
 | Path | What it does |
 |---|---|
 | `index.html` | The page, with meta, Open Graph, and Twitter tags plus JSON-LD (`WebSite`, `WebPage`, `ImageObject`, `VisualArtwork` for Zerble, `VideoGame` for the game, `Person`) |
-| `404.html` | Self-contained `noindex` page. GitHub Pages serves it for any missing path, so its assets use absolute `https://zerble.net/` URLs |
+| `404.html` | Self-contained `noindex` page. GitHub Pages serves it for any missing path, so its assets use absolute `https://zerble.net/` URLs, which means a new image for it only shows up after it's pushed. Its headline is the furry-eyeball 404 sticker (`error-404` in the image script) |
 | `assets/css/styles.css` | All styles. The palette tokens come off the sticker art |
 | `assets/js/site.js` | The wordmark pop, intro sweep, and idle wave (ported from RADish Fest), the hero parallax, the bubble pump that runs the tip section, and bubble popping on the floating background bubbles |
 | `assets/js/analytics.js` | GA4 events: outbound and CTA clicks (with `data-ga` names), scroll depth, and section views |

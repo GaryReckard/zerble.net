@@ -82,6 +82,45 @@ p { margin: 0 0 1em; }
   100% { transform: translate3d(0, -130vh, 0); }
 }
 
+/* A popped bubble (site.js): a ring that bursts outward, six droplets, and the running count. */
+.bubble-pop { position: absolute; width: var(--s); height: var(--s); margin: calc(var(--s) / -2) 0 0 calc(var(--s) / -2); }
+.bubble-pop::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 2px solid rgba(255, 255, 255, .85);
+  border-radius: 50%;
+  animation: pop-ring .35s ease-out forwards;
+}
+.bubble-pop i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  margin: -2.5px;
+  border-radius: 50%;
+  background: var(--c, #fff);
+  animation: pop-drop .45s ease-out forwards;
+}
+.bubble-pop b {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  translate: -50% 0;
+  font: 400 .7rem/1 var(--pixel);
+  color: var(--sun);
+  text-shadow: 2px 2px 0 var(--ink);
+  white-space: nowrap;
+  animation: pop-count .9s ease-out forwards;
+}
+@keyframes pop-ring { from { transform: scale(1); opacity: .9; } to { transform: scale(1.5); opacity: 0; } }
+@keyframes pop-drop {
+  from { transform: rotate(var(--a)) translateX(calc(var(--s) * .3)); opacity: 1; }
+  to { transform: rotate(var(--a)) translateX(calc(var(--s) * .8)); opacity: 0; }
+}
+@keyframes pop-count { from { transform: translateY(0); opacity: 1; } to { transform: translateY(-40px); opacity: 0; } }
+
 /* ---------- buttons, labels, headings ---------- */
 .btn {
   display: inline-flex;

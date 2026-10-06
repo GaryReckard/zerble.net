@@ -322,3 +322,71 @@
     }, { threshold: 0.5 });
     io.observe(pump);
 })();
+
+/* Bubble popping, a tiny mini-game. The floating bubbles stay pointer-events: none,
+   so they never get between anyone and a link, a button, or the page. Instead, a
+   click or tap on plain background or text checks whether a bubble sits under it,
+   and pops that one. A popped bubble comes back on its next trip up from the bottom. */
+(function () {
+    'use strict';
+
+    var layer = document.querySelector('.bubbles');
+    if (!layer || getComputedStyle(layer).display === 'none') return;   // reduced motion hides them
+    var bubbles = [].slice.call(layer.querySelectorAll('span'));
+
+    // Anything interactive, or solid enough that a bubble behind it can't be seen.
+    var SKIP = 'a, button, input, select, textarea, label, summary, img, video, .wordmark, .announce, .pump, .book-card, .pass, .snap, .coin';
+    var COLORS = ['var(--sky)', 'var(--pink)', 'var(--sun)', 'var(--leaf)', 'var(--grape)'];
+    var MILESTONES = [1, 10, 25, 50, 100];   // pop counts worth a GA event
+    var popped = 0;
+
+    bubbles.forEach(function (b) {
+        b.addEventListener('animationiteration', function () { b.style.visibility = ''; });
+    });
+
+    function pop(b, r) {
+        var size = r.width;
+        var fx = document.createElement('div');
+        fx.className = 'bubble-pop';
+        fx.style.left = (r.left + size / 2) + 'px';
+        fx.style.top = (r.top + size / 2) + 'px';
+        fx.style.setProperty('--s', size + 'px');
+        for (var i = 0; i < 6; i++) {
+            var drop = document.createElement('i');
+            drop.style.setProperty('--a', (i * 60 + Math.round(Math.random() * 30)) + 'deg');
+            drop.style.setProperty('--c', COLORS[(i + popped) % COLORS.length]);
+            fx.appendChild(drop);
+        }
+        var count = document.createElement('b');
+        count.textContent = ++popped;
+        fx.appendChild(count);
+        layer.appendChild(fx);
+        setTimeout(function () { fx.remove(); }, 1000);
+        b.style.visibility = 'hidden';
+
+        if (MILESTONES.indexOf(popped) !== -1 && typeof window.gtag === 'function') {
+            window.gtag('event', 'bubble_pop', { popped: popped, page: location.pathname });
+        }
+    }
+
+    // click (not pointerdown) so a finger that starts a scroll never pops anything.
+    document.addEventListener('click', function (e) {
+        if (e.target.closest && e.target.closest(SKIP)) return;
+        var sel = window.getSelection && window.getSelection();
+        if (sel && !sel.isCollapsed) return;   // they were selecting text, not popping
+
+        for (var i = 0; i < bubbles.length; i++) {
+            var b = bubbles[i];
+            if (b.style.visibility === 'hidden') continue;
+            var r = b.getBoundingClientRect();
+            var rad = r.width / 2;
+            var reach = Math.max(rad + 6, 22);   // small bubbles get a fingertip-sized target
+            var dx = e.clientX - (r.left + rad);
+            var dy = e.clientY - (r.top + rad);
+            if (dx * dx + dy * dy <= reach * reach) {
+                pop(b, r);
+                return;
+            }
+        }
+    });
+})();

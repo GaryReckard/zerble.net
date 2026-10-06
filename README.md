@@ -14,7 +14,7 @@ The setup follows the RADish Fest site (`~/Sites/raddish-fest`): a per-letter he
 | `index.html` | The page, with meta, Open Graph, and Twitter tags plus JSON-LD (`WebSite`, `WebPage`, `ImageObject`, `VisualArtwork` for Zerble, `VideoGame` for the game, `Person`) |
 | `404.html` | Self-contained `noindex` page. GitHub Pages serves it for any missing path, so its assets use absolute `https://zerble.net/` URLs |
 | `assets/css/styles.css` | All styles. The palette tokens come off the sticker art |
-| `assets/js/site.js` | The wordmark pop and intro sweep (ported from RADish Fest), plus a bubble puff on every pop, and the bubble pump that runs the tip section |
+| `assets/js/site.js` | The wordmark pop, intro sweep, and idle wave (ported from RADish Fest), the bubble pump that runs the tip section, and bubble popping on the floating background bubbles |
 | `assets/js/analytics.js` | GA4 events: outbound and CTA clicks (with `data-ga` names), scroll depth, and section views |
 | `assets/img/` | Generated images. Don't edit by hand, run the script below |
 | `art/` | The full-resolution originals the images are built from (stickers as lossless WebP, photos as they came off the phone) |
@@ -60,6 +60,8 @@ GA4 uses the game's property and tag (`G-CY1FNMY8H8`), so all Zerble traffic lan
 So a visit that starts here and clicks through to the game counts as one journey, turn on cross-domain measurement in GA4 for this tag with both `zerble.net` and `garyreckard.github.io` listed (it lives under the web data stream's tag settings, "Configure your domains"). The Google tag then adds a `_gl` parameter to links between the two sites on its own, with no code change on either side.
 
 `analytics.js` names the important clicks with `data-ga`: `book_preorder`, `book_about`, `book_announce`, `play_game_hero`, `play_game_section`, `play_game_timeline`, `instagram_hero`, `instagram_section`, `facebook_section`, `lamplight_artwalk`, and `tip_venmo` (plus `tip_paypal` if that button comes back). Outbound ones arrive as `outbound_click` events with that name in `link_text`. The tip links also send the picked dollar amount as an `amount` param. GA4 only reports a custom param after you register it, so add `amount` as a custom metric (Admin, then Custom definitions) to see it in reports. These clicks measure intent, not money received, since the payment itself happens in Venmo.
+
+Popping the floating background bubbles sends a `bubble_pop` event with a `popped` count, but only at 1, 10, 25, 50, and 100 pops, so a bubble-popping spree doesn't flood GA.
 
 ## Hosting
 

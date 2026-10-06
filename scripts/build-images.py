@@ -8,7 +8,7 @@ the phone). Point ZERBLE_ART somewhere else to build from another folder.
 
 Needs `cwebp` (brew install webp) and Pillow (pip3 install pillow).
 Each image gets a WebP at two widths for srcset, plus one PNG/JPG fallback for
-browsers without WebP. The og:image share card is composited separately.
+browsers without WebP. The og:image share card is sized separately.
 """
 import os
 import subprocess
@@ -69,8 +69,7 @@ IMAGES = {
 }
 # The napkin photo is dim, so stretch its levels a little before encoding.
 AUTOCONTRAST = {"history-napkin"}
-OG_SOURCE = "sticker-neon-zerble-with-url.webp"   # the one with zerble.net on it, for social shares
-OG_BACKGROUND = (26, 20, 48, 255)                         # --night
+OG_SOURCE = "og-card.png"   # the finished social share card (Zerble under the marquee sign, with zerble.net)
 
 
 def webp(src: Path, dest: Path, width: int, quality: int) -> None:
@@ -91,11 +90,9 @@ def fallback(src: Path, dest: Path, fmt: str, width: int) -> None:
 
 
 def og_card() -> None:
-    sticker = Image.open(ART / OG_SOURCE).convert("RGBA")
-    sticker.thumbnail((590, 590), Image.LANCZOS)
-    card = Image.new("RGBA", (1200, 630), OG_BACKGROUND)
-    card.alpha_composite(sticker, ((1200 - sticker.width) // 2, 20))
-    card.convert("RGB").save(OUT / "og-card.jpg", quality=86, optimize=True)
+    # Fit to the 1.91:1 size Facebook, Instagram, and X expect, cropping from the center if needed.
+    card = ImageOps.fit(Image.open(ART / OG_SOURCE).convert("RGB"), (1200, 630), Image.LANCZOS)
+    card.save(OUT / "og-card.jpg", quality=86, optimize=True, progressive=True)
 
 
 def main() -> int:

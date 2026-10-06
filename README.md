@@ -38,7 +38,7 @@ Then open <http://127.0.0.1:8770/>. Every asset path in `index.html` is relative
 python3 scripts/build-images.py
 ```
 
-The script rebuilds `assets/img/` from the originals in `art/`, writing a WebP at two widths for each `srcset` plus one PNG or JPG fallback, and it composites the 1200×630 share card. To add a photo, drop the original in `art/`, add a line to the mapping at the top of the script, and run it. It needs `cwebp` (`brew install webp`) and Pillow.
+The script rebuilds `assets/img/` from the originals in `art/`, writing a WebP at two widths for each `srcset` plus one PNG or JPG fallback, and it sizes the 1200×630 share card from `art/og-card.png`. Share previews cache images hard, so when the card changes, bump the `?v=` on the `og:image` and `twitter:image` URLs in `index.html`. To add a photo, drop the original in `art/`, add a line to the mapping at the top of the script, and run it. It needs `cwebp` (`brew install webp`) and Pillow.
 
 ## The bubble fund (tip section)
 

@@ -94,6 +94,10 @@ To add a design:
 
 The cards are a three-column grid on desktop, two columns on tablets, and a row you swipe through on phones, so any number of designs works.
 
+## Spotted Zerble? (fan photos)
+
+The Instagram section at the bottom of the page ends with a `.spotted` card that asks people who've photographed Zerble to post it with `#zerble` and tag `@zerble_art_cart`. The two tags are drawn as the same festival wristbands the timeline uses (`.bands`). The hashtag also appears in `llms.txt`, so if it ever changes, change it in both places, along with anything printed for the cart.
+
 ## Analytics
 
 GA4 uses the game's property and tag (`G-CY1FNMY8H8`), so all Zerble traffic lands in one place and you can split it by hostname. The tag only loads on `zerble.net`, so local previews never send hits. To give the site its own property instead, swap the ID in the `<head>` snippet.

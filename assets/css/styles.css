@@ -503,6 +503,19 @@ h2 {
 .gram h2 { color: var(--sun); }
 .gram p { color: var(--muted); font-size: 1.2rem; max-width: 40ch; }
 .handle { display: inline-block; margin-bottom: 26px; font: 400 .8rem/1 var(--pixel); color: var(--pink); }
+/* "Spotted Zerble?": the ask for fan photos, with the tags as festival wristbands */
+.spotted {
+  margin-top: 40px;
+  padding: 22px 26px 26px;
+  max-width: 34rem;
+  background: var(--card);
+  border: 2px dashed rgba(255, 79, 163, .55);
+  border-radius: var(--radius);
+}
+.spotted h3 { margin: 0 0 10px; font: 400 1.7rem/1.1 var(--display); color: var(--pink); text-shadow: 0 3px 0 var(--ink); }
+.gram .spotted p { margin: 0; font-size: 1.1rem; max-width: none; }
+.spotted .bands { margin-top: 20px; gap: 12px 10px; }
+.spotted .bands li { padding: 9px 16px; font-size: 1.05rem; }
 
 /* ---------- footer ---------- */
 .site-footer { background: var(--ink); padding: 44px 0 52px; text-align: center; color: var(--muted); font-size: .95rem; }

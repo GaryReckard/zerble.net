@@ -63,7 +63,8 @@ IMAGES = {
     "history-rc-zerble": ("rc-zerble.webp", [360, 720], "jpg", 720, 80),
     "history-parade-2022": ("history-toybox-parade-2022.webp", [360, 720], "jpg", 720, 80),
     "history-zelda-2023": ("history-zelda-onesie-2023.webp", [400, 800], "jpg", 800, 80),
-    "history-northern-lights-2024": ("history-northern-lights-2024.webp", [360, 720], "jpg", 720, 80),
+    "history-northern-lights-zerble-2024": ("history-northern-lights-zerble-2024.jpg", [360, 720], "jpg", 720, 80),
+    "history-northern-lights-sky-2024": ("history-northern-lights-sky-2024.jpg", [400, 800], "jpg", 800, 80),
     "history-tattoo-2025": ("history-jami-tattoo-2025.jpg", [360, 720], "jpg", 720, 80),
     "history-first-kiss-2025": ("history-first-kiss-2025.jpg", [400, 800], "jpg", 800, 80),
     # From the archives (the early years, oldest first)

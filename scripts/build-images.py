@@ -59,8 +59,9 @@ IMAGES = {
     "token-fan-club": ("token-fan-club-side.webp", [180, 360], "png", 360, 82),
     "history-disney-2019": ("history-disney-2019.webp", [320, 640], "jpg", 640, 80),
     "history-disney-lineup-2019": ("history-disney-lineup-2019.webp", [320, 640], "jpg", 640, 80),
-    "history-darwin-2023": ("history-darwin-onesie-2023.webp", [400, 800], "jpg", 800, 80),
+    "history-darwin-2020": ("history-darwin-onesie-2020.webp", [400, 800], "jpg", 800, 80),
     "history-rc-zerble": ("rc-zerble.webp", [360, 720], "jpg", 720, 80),
+    "history-zelda-2023": ("history-zelda-onesie-2023.webp", [400, 800], "jpg", 800, 80),
     "history-northern-lights-2024": ("history-northern-lights-2024.webp", [360, 720], "jpg", 720, 80),
     # From the archives (the early years, oldest first)
     "archive-magbuds-cart": ("history-magbuds-cart-2011.webp", [360, 720], "jpg", 720, 80),

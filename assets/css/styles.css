@@ -532,7 +532,7 @@ h2 {
 
 /* ---------- small screens ---------- */
 @media (max-width: 860px) {
-  .hero .wrap, .sweetheart .wrap, .game-grid, .gram .wrap, .handlers-grid { grid-template-columns: minmax(0, 1fr); }
+  .hero .wrap, .sweetheart .wrap, .game-grid, .gram .wrap { grid-template-columns: minmax(0, 1fr); }
   .art-grid { columns: 1; }
   .timeline { gap: 64px; }
   .timeline::before { left: 14px; }
@@ -667,12 +667,33 @@ h2 {
 .handlers { position: relative; padding: 100px 0; background: var(--night); }
 .handlers-head { text-align: center; max-width: 680px; margin: 0 auto 64px; }
 .handlers-head p:not(.eyebrow) { color: var(--muted); font-size: 1.2rem; }
-.handlers-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 56px; align-items: center; }
-.handlers-grid .snap { justify-self: end; }
+.handlers-grid { display: grid; grid-template-columns: minmax(0, 1fr); justify-items: center; gap: 48px; }
 /* The heading and the photos sit in front of the lanyards. */
 .handlers-head { position: relative; z-index: 1; }
 .handlers .snap { z-index: 1; }
-.passes { display: grid; gap: 40px; justify-items: start; }
+/* The photo of the two of them sits centered under the heading, and the passes hang just
+   below it, their lanyards running up behind it. On phones everything stacks in page order.
+   From 861px the passes share a row with the two side photos in a row beneath them, and
+   from 1140px all four line up, each person's photo beside their pass and dropped a little. */
+.passes { display: grid; gap: 40px; justify-items: center; }
+.passes .snap { margin-top: 8px; }
+@media (min-width: 861px) {
+  .handlers-grid { gap: 64px; }
+  .passes { grid-template-columns: repeat(2, 300px); justify-content: center; align-items: start; gap: 60px 56px; }
+  .passes > :nth-child(1) { grid-area: 1 / 1; }
+  .passes > :nth-child(2) { grid-area: 2 / 1; }
+  .passes > :nth-child(3) { grid-area: 1 / 2; }
+  .passes > :nth-child(4) { grid-area: 2 / 2; }
+  .passes .snap { width: 300px; margin-top: 0; }
+}
+@media (min-width: 1140px) {
+  .passes { grid-template-columns: repeat(4, auto); gap: 0 22px; }
+  .passes > :nth-child(1) { grid-area: 1 / 2; }
+  .passes > :nth-child(2) { grid-area: 1 / 1; margin-top: 120px; }
+  .passes > :nth-child(3) { grid-area: 1 / 3; }
+  .passes > :nth-child(4) { grid-area: 1 / 4; margin-top: 170px; }
+  .passes .snap { width: 270px; }
+}
 /* A 4x6 credential (2:3), hanging from its clip: it tilts around the slot, not its middle.
    The aspect ratio is a floor, so a pass with more to say just grows taller. */
 .pass {
@@ -766,9 +787,6 @@ h2 {
   .archives, .handlers { padding: 72px 0; }
   .archives-grid { gap: 48px 24px; }
   .archives-grid .snap:nth-child(even) { margin-top: 0; }
-  .handlers-grid { grid-template-columns: minmax(0, 1fr); gap: 48px; }
-  .handlers-grid .snap { justify-self: center; }
-  .passes { justify-items: center; }
 }
 
 /* Old photos read as old: a faint vintage cast, plus the orange date stamp
@@ -785,8 +803,6 @@ h2 {
   text-shadow: 0 0 4px rgba(255, 110, 0, .85), 0 0 1px #ff6a00;
   pointer-events: none;
 }
-
-.passes .snap { margin-top: 8px; }
 
 /* ---------- the bubble fund: a tip jar dressed as a gas pump ---------- */
 /* Red body and yellow sign, like Zerble's own cart. site.js ticks the screen up

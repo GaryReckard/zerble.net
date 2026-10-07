@@ -69,6 +69,8 @@ The script adds an extra `<li class="road-cart">` laid over the timeline (hidden
 
 ## The handlers' passes
 
+The section is one centered column: the photo of the two of them under the heading, and the passes hanging just below it, with their lanyards running up behind it. On phones everything stacks in page order. From 861px the two passes share a row and their photos sit in a row beneath, and from 1140px all four line up, with each person's photo beside their pass and dropped a little (the `grid-area` rules on `.passes > :nth-child(n)`, so they follow the order of the four items in `index.html`).
+
 Gary's and Locke's All Access passes in `#handlers` are shaped like a 4×6 festival credential (`aspect-ratio: 2 / 3` on `.pass`, as a floor, so a pass with a longer list just grows taller), and each one hangs from a lanyard. The pass tilts around its clip rather than its middle, its `--band` color sets the top band and tints the strap, and the clip and the barcode are the `.pass-top` band's `::before` and `::after`. The strap is the pass's own `::after`, a V cut with `clip-path` that fades out on its way up. It sits behind everything around it because `.handlers-head` and every `.snap` in the section are lifted to `z-index: 1`, so a new photo or block added to the section needs the same treatment or the strap will draw over it.
 
 ## The bubble fund (tip section)

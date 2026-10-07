@@ -669,18 +669,70 @@ h2 {
 .handlers-head p:not(.eyebrow) { color: var(--muted); font-size: 1.2rem; }
 .handlers-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 56px; align-items: center; }
 .handlers-grid .snap { justify-self: end; }
+/* The heading and the photos sit in front of the lanyards. */
+.handlers-head { position: relative; z-index: 1; }
+.handlers .snap { z-index: 1; }
 .passes { display: grid; gap: 40px; justify-items: start; }
+/* A 4x6 credential (2:3), hanging from its clip: it tilts around the slot, not its middle.
+   The aspect ratio is a floor, so a pass with more to say just grows taller. */
 .pass {
   position: relative;
-  width: min(340px, 100%);
-  padding: 0 0 22px;
+  width: min(264px, 100%);
+  aspect-ratio: 2 / 3;
+  padding: 0 0 70px;
   color: var(--ink);
   background: linear-gradient(135deg, rgba(255, 255, 255, .55) 0%, rgba(255, 255, 255, 0) 38%), var(--cream);
   border: 3px solid var(--ink);
   border-radius: 16px;
   box-shadow: 0 8px 0 var(--ink), 0 18px 30px -10px rgba(0, 0, 0, .6);
   transform: rotate(var(--r, 0deg));
-  overflow: hidden;
+  transform-origin: 50% 15px;
+}
+/* The lanyard: two straps that rise from the clip in a V and fade out on the way up,
+   tinted toward the pass's own band color. It hangs straight (it undoes the pass's
+   tilt) and sits behind everything around it. */
+.pass::after {
+  content: "";
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  z-index: -1;
+  width: 116px;
+  height: 190px;
+  translate: -50% 0;
+  rotate: calc(var(--r, 0deg) * -1);
+  transform-origin: 50% 100%;
+  background: linear-gradient(90deg, rgba(0, 0, 0, .25), transparent 30%, transparent 70%, rgba(0, 0, 0, .25)),
+              color-mix(in srgb, var(--band, var(--sun)) 32%, var(--night));
+  clip-path: polygon(calc(50% - 8px) 100%, 0 0, 15px 0, 50% calc(100% - 30px), calc(100% - 15px) 0, 100% 0, calc(50% + 8px) 100%);
+  -webkit-mask-image: linear-gradient(to top, #000 22%, transparent 88%);
+  mask-image: linear-gradient(to top, #000 22%, transparent 88%);
+}
+/* The clip that hooks the lanyard through the slot */
+.pass-top::before {
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  width: 16px;
+  height: 36px;
+  translate: -50% 0;
+  border: 2px solid var(--ink);
+  border-radius: 5px 5px 8px 8px;
+  background: linear-gradient(90deg, #8f8ba6, #f1effa 45%, #a8a4bd 70%, #7d7994);
+}
+/* A barcode along the bottom, like every real credential has */
+.pass-top::after {
+  content: "";
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  bottom: 20px;
+  height: 30px;
+  opacity: .8;
+  background:
+    repeating-linear-gradient(90deg, var(--ink) 0 2px, transparent 2px 5px, var(--ink) 5px 6px, transparent 6px 9px),
+    repeating-linear-gradient(90deg, transparent 0 11px, var(--ink) 11px 14px, transparent 14px 17px, var(--ink) 17px 18px, transparent 18px 23px);
 }
 .pass::before {
   content: "";
@@ -696,9 +748,10 @@ h2 {
 }
 .pass-top {
   margin: 0 0 16px;
-  padding: 30px 18px 12px;
+  padding: 34px 18px 14px;
   background: var(--band, var(--sun));
   border-bottom: 3px solid var(--ink);
+  border-radius: 13px 13px 0 0;
   font: 400 .78rem/1 var(--pixel);
   letter-spacing: .08em;
   text-transform: uppercase;

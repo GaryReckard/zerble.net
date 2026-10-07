@@ -67,6 +67,10 @@ The script adds an extra `<li class="road-cart">` laid over the timeline (hidden
 
 `sandbox/timeline-cart.html` is a local design page that draws the same cart big, at real size, and from behind, with controls for motion, heading, camera height, and size. It's listed in `.git/info/exclude` rather than `.gitignore`, so it never deploys and only exists on the machine it was made on.
 
+## The handlers' passes
+
+Gary's and Locke's All Access passes in `#handlers` are shaped like a 4×6 festival credential (`aspect-ratio: 2 / 3` on `.pass`, as a floor, so a pass with a longer list just grows taller), and each one hangs from a lanyard. The pass tilts around its clip rather than its middle, its `--band` color sets the top band and tints the strap, and the clip and the barcode are the `.pass-top` band's `::before` and `::after`. The strap is the pass's own `::after`, a V cut with `clip-path` that fades out on its way up. It sits behind everything around it because `.handlers-head` and every `.snap` in the section are lifted to `z-index: 1`, so a new photo or block added to the section needs the same treatment or the strap will draw over it.
+
 ## The bubble fund (tip section)
 
 The `#bubble-juice` section is a tip jar dressed as a gas pump. Picking an amount ticks the pump screen over, fills the four jugs (one box of juice), and rewrites the tip link to carry that amount. Venmo takes `?txn=pay&amount=10&note=...`, and the $10 default is baked into the HTML `href`, so the link works without JavaScript.

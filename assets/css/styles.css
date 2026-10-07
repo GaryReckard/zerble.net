@@ -425,6 +425,13 @@ h2 {
 .snap figcaption { margin-top: 8px; font: 600 1.3rem/1.15 'Caveat', cursive; color: #3a2f55; text-align: center; text-wrap: balance; }
 .snaps { display: flex; align-items: flex-start; }
 .snaps .snap + .snap { margin-left: -36px; margin-top: 64px; }
+/* Three snapshots: the first one big across the top, and two tucked in underneath it,
+   the second overlapping the third a little. */
+.snaps--trio { display: grid; grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr); align-items: start; width: min(470px, 100%); }
+.snaps.snaps--trio .snap { width: 100%; margin: 0; }
+.snaps.snaps--trio .snap:first-child { grid-column: 1 / -1; justify-self: center; width: min(var(--w), 100%); }
+.snaps.snaps--trio .snap:nth-child(2) { margin-top: 30px; }
+.snaps.snaps--trio .snap:nth-child(3) { margin: 54px 0 0 -22px; width: calc(100% + 22px); }
 
 /* Festival wristbands */
 .bands { list-style: none; margin: 18px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px 8px; justify-content: inherit; }

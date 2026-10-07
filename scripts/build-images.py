@@ -61,8 +61,11 @@ IMAGES = {
     "history-disney-lineup-2019": ("history-disney-lineup-2019.webp", [320, 640], "jpg", 640, 80),
     "history-darwin-2020": ("history-darwin-onesie-2020.webp", [400, 800], "jpg", 800, 80),
     "history-rc-zerble": ("rc-zerble.webp", [360, 720], "jpg", 720, 80),
+    "history-parade-2022": ("history-toybox-parade-2022.webp", [360, 720], "jpg", 720, 80),
     "history-zelda-2023": ("history-zelda-onesie-2023.webp", [400, 800], "jpg", 800, 80),
     "history-northern-lights-2024": ("history-northern-lights-2024.webp", [360, 720], "jpg", 720, 80),
+    "history-tattoo-2025": ("history-jami-tattoo-2025.jpg", [360, 720], "jpg", 720, 80),
+    "history-first-kiss-2025": ("history-first-kiss-2025.jpg", [400, 800], "jpg", 800, 80),
     # From the archives (the early years, oldest first)
     "archive-magbuds-cart": ("history-magbuds-cart-2011.webp", [360, 720], "jpg", 720, 80),
     "archive-riders-2011": ("history-riders-springfest-2011.webp", [360, 720], "jpg", 720, 80),

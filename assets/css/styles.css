@@ -380,6 +380,21 @@ h2 {
 .moment:nth-child(3n) h3 { color: var(--sun); }
 .moment-text p:not(.when) { color: var(--muted); margin: 0; }
 .moment-text p + p:not(.when) { margin-top: .8em; }
+
+/* The timeline cart (timeline-cart.js): a little Zerble that drives the road. The script
+   adds an extra <li> laid over the timeline, down to where the last moment starts, and
+   the car inside it is sticky, so it waits at the start of the road, rides along in the
+   middle of the screen while the story scrolls past, and parks just above the last card.
+   The centered cards sit on the road, so they stack above the car and it drives under
+   them like a bridge. --ow is the ink outline's width in the drawing's own units, which
+   the script sets to suit the car's size. */
+.road-cart { position: absolute; top: 0; bottom: 0; left: 50%; width: 0; z-index: 3; pointer-events: none; }
+.road-cart-car { position: sticky; top: calc(50vh - 36px); width: 72px; height: 72px; margin-left: -36px; }
+.moment--solo .moment-text { position: relative; z-index: 4; }
+.zcart { display: block; width: 100%; height: 100%; overflow: visible; }
+.zcart .o { stroke: var(--ink); stroke-width: var(--ow); stroke-linejoin: round; stroke-linecap: round; }
+.zcart .o2 { stroke: var(--ink); stroke-width: calc(var(--ow) * .6); stroke-linejoin: round; }
+.zcart.lod-low .detail { display: none; }
 .text-link { color: var(--sun); font-weight: 800; text-underline-offset: 4px; }
 
 /* Taped-up snapshots (the RADish Fest tape trick, on a polaroid). */
@@ -503,6 +518,8 @@ h2 {
   .timeline::before { left: 14px; }
   .moment, .moment--solo { grid-template-columns: minmax(0, 1fr); gap: 34px; padding-left: 46px; }
   .moment::before { left: 14px; top: 4px; translate: -50% 0; }
+  .road-cart { left: 14px; }
+  .road-cart-car { top: calc(50vh - 22px); width: 44px; height: 44px; margin-left: -22px; }
   .moment .moment-text, .moment--flip .moment-text { order: 0; justify-self: start; text-align: left; }
   .moment .moment-media, .moment--flip .moment-media { order: 1; justify-self: start; }
   .moment--solo .moment-text { justify-self: stretch; padding: 22px 20px; }

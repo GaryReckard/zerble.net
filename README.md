@@ -15,6 +15,7 @@ The setup follows the RADish Fest site (`~/Sites/raddish-fest`): a per-letter he
 | `404.html` | Self-contained `noindex` page. GitHub Pages serves it for any missing path, so its assets use absolute `https://zerble.net/` URLs, which means a new image for it only shows up after it's pushed. Its headline is the furry-eyeball 404 sticker (`error-404` in the image script) |
 | `assets/css/styles.css` | All styles. The palette tokens come off the sticker art |
 | `assets/js/site.js` | The wordmark pop, intro sweep, and idle wave (ported from RADish Fest), the hero parallax, the bubble pump that runs the tip section, and bubble popping on the floating background bubbles |
+| `assets/js/timeline-cart.js` | The little Zerble that drives down the story's road (see [the timeline cart](#the-timeline-cart)) |
 | `assets/js/analytics.js` | GA4 events: outbound and CTA clicks (with `data-ga` names), scroll depth, and section views |
 | `assets/img/` | Generated images. Don't edit by hand, run the script below |
 | `art/` | The full-resolution originals the images are built from (stickers as lossless WebP, photos as they came off the phone) |
@@ -55,6 +56,16 @@ Phone tilt is measured from however the phone is being held, and that resting an
 The wooden signpost under the hero buttons is the page's table of contents. Each board is a link in `.signpost` that jumps to a section, and the boards cross the post in pairs, one pointing each way. List the boards in page order and alternate `to-r` and `to-l`. The grid pairs each left board with the right board above it, so the post stays three rows tall and fits above the fold on a 1280×800 laptop.
 
 Every board sets its own look inline: `--rot` tilts it, `--ry` turns it toward you (negative) or away from you (positive), `--wood` picks the plank color, and `--paint` picks the lettering color from the palette. Keep labels short, since a board on a phone has about 180px to work with.
+
+## The timeline cart
+
+A little Zerble drives down the dashed road in the story section. While you scroll down he drives toward you, when you scroll back up he flips around to show the bubble butt, machine and all, and when you stop he idles with a gentle bob while his eyes glance around. Visitors who've asked for reduced motion get him parked, so he still rides along with the page, but nothing bobs, wobbles, or blows bubbles.
+
+`timeline-cart.js` draws him in SVG from code instead of from an image, so every part can move on its own. The body bobs on a sine wave with a little squash and stretch, the eyes ride a spring a beat behind it, the irises rattle around inside them like real googly eyes, the mustache wobbles, and bubbles rise from behind the roof (or, from behind, blow straight toward you). He's drawn on a 240×240 canvas, and `layout()` places every part. `CAMERA` sets how high the camera sits, from 0 (straight on) to 1 (way up high), which decides how much of the roof you see and how much he narrows toward the wheels; the page uses 0.8. The handlebar mustache is two mirrored halves built around the centerline in `BAR`, where each point is an x, a y, and a half-thickness, and `MODES` and `K` hold all of the motion numbers.
+
+The script adds an extra `<li class="road-cart">` laid over the timeline (hidden from screen readers), and `styles.css` makes the car inside it sticky. He waits at the start of the road, rides in the middle of the screen while the story scrolls past, and parks on the road just above the last moment, since his track ends where that card starts. The centered cards sit right on the road, so they stack above him and he drives under them like a bridge. He drives (a faster bob, a side-to-side roll, and the odd road bump) only while he's actually moving along the road, so once he's parked at either end he idles even while the page keeps scrolling, and he only turns around after about 24px of travel the other way, so a jiggle or an overscroll bounce doesn't spin him. He's 72px wide on desktop and 44px on phones, where the road moves over to the left edge, and his ink outline gets thicker as he gets smaller so it stays about 1.7px on screen.
+
+`sandbox/timeline-cart.html` is a local design page that draws the same cart big, at real size, and from behind, with controls for motion, heading, camera height, and size. It's listed in `.git/info/exclude` rather than `.gitignore`, so it never deploys and only exists on the machine it was made on.
 
 ## The bubble fund (tip section)
 

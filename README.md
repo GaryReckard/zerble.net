@@ -19,6 +19,7 @@ The setup follows the RADish Fest site (`~/Sites/raddish-fest`): a per-letter he
 | `assets/js/analytics.js` | GA4 events: outbound and CTA clicks (with `data-ga` names), scroll depth, and section views |
 | `assets/img/` | Generated images. Don't edit by hand, run the script below |
 | `art/` | The full-resolution originals the images are built from (stickers as lossless WebP, photos as they came off the phone) |
+| `print/` | Zerble's face QR code for stickers and the cart sign, built by `scripts/build-qr.py` (see [the QR code](#the-qr-code-print)) |
 | `robots.txt`, `sitemap.xml`, `llms.txt` | Crawler files. AI crawlers are welcomed explicitly, and `llms.txt` is a plain-language summary for answer engines |
 | `site.webmanifest`, icons | App manifest and favicons, shared with the game |
 | `CNAME`, `.nojekyll` | GitHub Pages custom domain, and skip Jekyll processing |
@@ -103,6 +104,20 @@ The cards are a three-column grid on desktop, two columns on tablets, and a row 
 ## Spotted Zerble? (fan photos)
 
 The Instagram section at the bottom of the page ends with a `.spotted` card that asks people who've photographed Zerble to post it with `#zerble` and tag `@zerble_art_cart`. The two tags are drawn as the same festival wristbands the timeline uses (`.bands`). The hashtag also appears in `llms.txt`, so if it ever changes, change it in both places, along with anything printed for the cart.
+
+## The QR code (print/)
+
+```bash
+python3 scripts/build-qr.py
+```
+
+The script draws Zerble's face as a QR code that opens the site, for stickers and the cart sign. The top two corner squares that scanners look for are googly eyes, the bottom-left one is a bubble, the rest of the code is little ink bubbles, and the middle holds the fuzzy purple mustache, ported from the timeline cart's drawing code. It writes `print/zerble-qr.svg` (the bare code with its blank margin) and `print/zerble-qr-card.svg` (the code on a cream card under "Spotted Zerble?!?!", with a `#zerble` wristband), plus a 2640px-wide PNG of each. The card's lettering is Titan One (`scripts/fonts/`, under the SIL Open Font License), turned into outlines so a print shop doesn't need the font installed.
+
+The code holds `HTTPS://ZERBLE.NET` in capitals. QR codes pack capital letters more tightly, which fits the address into a 25×25 grid even at error correction H (the highest, where 30% of the code can be lost and it still reads), and web addresses ignore case, so it opens the same page. Fewer, bigger squares leave more room for the face and scan better from a distance. Scans show up in Google Analytics as direct visits, since the address carries no tag.
+
+The modules under the mustache are left out, and error correction fills them back in. `STACHE_W` sets how wide the mustache is in modules. In testing, a rotated scan started failing at 16 and nothing decoded at 17.5, so the 13 it's set to leaves room for mud, scratches, and glare. The googly eyes can look around a little (`GAZE`), but the pupils are the dark middle of each corner pattern, so keep them near the center, and keep any shine on them small and off-center: an arc of light across the bubble corner's middle once broke the code entirely.
+
+It needs `segno` and `fonttools` (`pip3 install segno fonttools`). Google Chrome renders the PNGs (set `CHROME` to its path if it's somewhere unusual), and when `zxing-cpp` is installed (`pip3 install zxing-cpp`), the script decodes each PNG at a few sizes and stops if one doesn't scan. That decoder is the one behind many Android scanner apps, but it isn't a phone camera, so scan the files with a couple of real phones (an iPhone and an Android, in dim light, from a few feet away) before anything gets printed. OpenCV's older QR detector can't find round corner patterns at all, so don't use it to judge this design.
 
 ## Analytics
 

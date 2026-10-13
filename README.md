@@ -44,6 +44,21 @@ The script rebuilds `assets/img/` from the originals in `art/`, writing a WebP a
 
 The hero layers get two extra steps. The script clears the faint haze that background removal left around them (anything under 6% opacity, which can't be seen on the page but cost about 15% of each file), and it writes an AVIF at each width alongside the WebP. Their `<picture>` lists the AVIF first, and the hero preload points at the cart's AVIF, so if the cart's format or widths ever change, change the preload with it or the cart downloads twice. Together with capping the two back layers at 780px wide, that took the hero from about 560 KB to about 220 KB on a retina screen.
 
+## Prepping sticker art
+
+Two scripts in `scripts/` clean up the AI-generated stickers before they go to Redbubble or into `art/`. Both run through `uv` (`brew install uv`), which fetches numpy, Pillow, and SciPy the first time, and both write their result to the path you give them and leave the original alone.
+
+```bash
+uv run scripts/cutout-white-bg.py "Sticker-4x.png" "Sticker-4x-nobg.png"
+uv run scripts/clean-alpha.py "Sticker-4x.png" "Sticker-4x-clean.png" --soft
+```
+
+`cutout-white-bg.py` takes the white background off art that came with one. Upscale in Gigapixel first with the white still on, then cut the upscaled file, so Gigapixel never sees any transparency and the cut works on the final pixels. The script flood-fills the white in from the edges of the image. AI cutout tools guess at a subject (Apple's built-in one kept the two carts from the Zerble & Lurleen art and threw out the lettering, bubbles, and flowers), while this keeps white petals, eyes, and the glassy rims on bubbles where they belong.
+
+`clean-alpha.py` fixes art that was upscaled while it was already transparent. Gigapixel spreads the faint pixels around the art into a haze over about 4 to 15% of the canvas (Redbubble can print that haze as glitchy particles) and brings the art itself back 94 to 99% opaque instead of solid. The script clears the haze and loose specks and makes the art solid. Leave off `--soft` for hard-edged art like the pixel sticker, and add it for illustrations with soft sparkles or glows, which it keeps whole.
+
+Check either result over a dark background before uploading, since a fringe or a leftover speck shows up there first. To use a cleaned sticker on the site, scale it down to 1254px, save it to `art/` as lossless WebP, and run the image script.
+
 ## The hero parallax
 
 The hero art is three transparent layers cut from the same sticker and stacked in one grid cell: the bubble arch at the back, the corner splashes in the middle, and the cart up front (`art/sticker-hero-layer-*.webp`, built to `zerble-hero-arch`, `-corners`, and `-cart`). All three share one 1402×1122 canvas, so a replacement layer has to keep that size and registration or the stack won't line up.

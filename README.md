@@ -52,8 +52,13 @@ The current section leads with a short invitation and Play now, followed by four
 scannable themes: finding a route, giving rides, collecting memories, and staying
 for the music. Mode selection is explained on the game's title screen, so the
 site omits those cards to keep the introduction balanced beside the screenshot.
-The pixel art accompanies the secondary archive invitation. NPC activities describe what visitors can watch, rather
-than implying the player can leave the cart to play those activities.
+The pixel art accompanies the secondary archive invitation. The archive card
+uses warm paper, serif and typewriter lettering, a double ink border, and a
+perforated ticket stub to distinguish playable history from the current game.
+The texture and stamp are CSS decoration, the pixel art remains the existing
+image, and the link keeps its analytics label and a visible keyboard focus
+outline. NPC activities describe what visitors can watch, rather than implying
+the player can leave the cart to play those activities.
 
 The screenshot original is `art/game-current-2026-11-17.png`, a real 1600×900
 canvas capture supplied by the game project from source commit `7d4c85c`.
@@ -81,6 +86,11 @@ Validation for the November 17, 2026 update:
   physical-phone acceptance. At 390px the page had no horizontal overflow.
 - Verified all responsive screenshot files retain 16:9, and the game's JSON-LD
   image and screenshot references use the same new JPEG as the picture fallback.
+- Checked the antique archive card at 390px: one column, compact horizontal
+  ticket stub, and no card content outside the viewport. Verified keyboard Tab
+  reaches its archive link with a visible outline. All card text colors clear
+  4.5:1 contrast even against a conservative composite of the darkest paper
+  layers; the lowest measured ratio was 4.94:1.
 - Followed the section's play and archive links to their correct public titles;
   both destinations also returned HTTPS 200 responses.
 

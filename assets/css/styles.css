@@ -505,11 +505,34 @@ h2 {
 .game-features li { border-left: 3px solid var(--grape); padding-left: 20px; }
 .game-features h3 { font: 400 1.25rem/1.4 var(--display); color: var(--sun); margin: 0 0 8px; }
 .game-features p { margin: 0; color: var(--muted); font-size: 1rem; }
-.time-machine { grid-area: archive; display: grid; grid-template-columns: minmax(0, 1fr) 180px; align-items: center; gap: 28px; padding: clamp(20px, 3vw, 32px); border: 3px solid var(--grape); border-radius: 18px; background: var(--card); }
-.time-machine .eyebrow { margin-bottom: 12px; }
-.time-machine h3 { font: 400 clamp(1rem, 2vw, 1.3rem)/1.6 var(--pixel); color: var(--sun); margin-bottom: 16px; }
-.time-machine p:not(.eyebrow) { color: var(--muted); }
-.time-machine .text-link { display: inline-block; padding: 8px 0; }
+.time-machine {
+  grid-area: archive;
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 190px;
+  align-items: center;
+  gap: 30px;
+  padding: clamp(26px, 3vw, 38px);
+  color: #493629;
+  border: 4px double #936c43;
+  border-radius: 6px 14px 8px 12px;
+  background:
+    radial-gradient(ellipse at 0 0, #b8844140, transparent 48%),
+    radial-gradient(ellipse at 100% 100%, #b8844130, transparent 48%),
+    repeating-linear-gradient(0deg, #76573505 0 1px, transparent 1px 4px),
+    #f2dfb9;
+  box-shadow: 6px 7px 0 #0b0715, inset 0 0 28px #a7753826;
+}
+.time-machine::before { content: ""; position: absolute; inset: 9px; border: 1px solid #936c4366; border-radius: 2px 8px 3px 6px; pointer-events: none; }
+.time-machine .eyebrow { color: #5a3823; font: 700 .75rem/1.7 ui-monospace, 'Courier New', monospace; letter-spacing: .12em; margin-bottom: 10px; }
+.time-machine h3 { font: 700 clamp(2rem, 4vw, 3rem)/1.1 Georgia, 'Times New Roman', serif; color: #492c28; margin: 0 0 18px; }
+.time-machine p:not(.eyebrow) { color: #493629; }
+.time-machine .text-link { display: inline-block; padding: 8px 0; color: #682e42; text-decoration-color: currentColor; }
+.time-machine .text-link:hover { color: #391725; }
+.time-machine .text-link:focus-visible { outline: 3px solid #682e42; outline-offset: 5px; border-radius: 2px; }
+.time-machine-stub { align-self: stretch; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; border-left: 2px dashed #9b744b; padding: 12px 0 12px 26px; }
+.time-machine-stamp { color: #5a3823; border: 2px solid currentColor; padding: 7px 10px; font: 700 .75rem/1.5 ui-monospace, 'Courier New', monospace; letter-spacing: .12em; text-align: center; text-transform: uppercase; transform: rotate(-5deg); }
+.time-machine .pixel-sticker { filter: sepia(.4) saturate(.75); }
 .game .tagline { margin: -12px 0 30px; }
 .pixel-sticker { --tilt: 6deg; width: min(180px, 100%); margin: 0 auto; }
 
@@ -545,6 +568,8 @@ h2 {
   .hero .wrap, .sweetheart .wrap, .game-grid, .gram .wrap { grid-template-columns: minmax(0, 1fr); }
   .game-grid { grid-template-areas: "screen" "copy" "features" "archive"; }
   .game-features, .time-machine { grid-template-columns: minmax(0, 1fr); }
+  .time-machine-stub { flex-direction: row; border-left: 0; border-top: 2px dashed #9b744b; padding: 24px 0 0; }
+  .time-machine-stub .pixel-sticker { width: 100px; margin: 0; }
   .art-grid { columns: 1; }
   .timeline { gap: 64px; }
   .timeline::before { left: 14px; }

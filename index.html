@@ -27,7 +27,7 @@
     </script>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Nunito:wght@400;700;800&family=Press+Start+2P&family=Titan+One&display=swap">
-    <link rel="stylesheet" href="assets/css/styles.css?v=2026-11-17b">
+    <link rel="stylesheet" href="assets/css/styles.css?v=2026-11-17c">
     <link rel="preload" as="image" type="image/avif"
           imagesrcset="assets/img/zerble-hero-cart-520.avif 520w, assets/img/zerble-hero-cart-1040.avif 1040w"
           imagesizes="(max-width: 860px) min(420px, 100vw - 32px), 520px">
@@ -976,14 +976,17 @@
                         <p>Pick a date and press Play to try the game as it was then. Each visit starts fresh, and your progress lasts only until you leave or reload.</p>
                         <a class="text-link" href="https://game-archive.zerble.net/" data-ga="time_machine_section">Explore the Time Machine &#9656;</a>
                     </div>
-                    <picture>
-                        <source type="image/webp"
-                                srcset="assets/img/zerble-pixel-300.webp 300w, assets/img/zerble-pixel-600.webp 600w"
-                                sizes="180px">
-                        <img class="sticker pixel-sticker" src="assets/img/zerble-pixel-400.png" width="400" height="400"
-                             loading="lazy" decoding="async"
-                             alt="Pixel-art sticker of Zerble with a pink roof, big blue eyes, and a curly purple mustache, puffing bubbles.">
-                    </picture>
+                    <div class="time-machine-stub">
+                        <span class="time-machine-stamp" aria-hidden="true">Playable<br>history</span>
+                        <picture>
+                            <source type="image/webp"
+                                    srcset="assets/img/zerble-pixel-300.webp 300w, assets/img/zerble-pixel-600.webp 600w"
+                                    sizes="(max-width: 860px) 100px, 180px">
+                            <img class="sticker pixel-sticker" src="assets/img/zerble-pixel-400.png" width="400" height="400"
+                                 loading="lazy" decoding="async"
+                                 alt="Pixel-art sticker of Zerble with a pink roof, big blue eyes, and a curly purple mustache, puffing bubbles.">
+                        </picture>
+                    </div>
                 </aside>
             </div>
         </div>

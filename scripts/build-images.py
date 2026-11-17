@@ -34,7 +34,7 @@ IMAGES = {
     "zerble-psychedelic": ("sticker-psychedelic.webp", [460, 920], "jpg", 640, 82),
     "zerble-lurleen": ("sticker-zerble-lurleen.webp", [560, 1120], "png", 720, 82),
     "zerble-pixel": ("sticker-pixel.webp", [300, 600], "png", 400, 82),
-    "game-dusk": ("game-dusk-screenshot.jpg", [640, 1280], "jpg", 1280, 80),
+    "game-current-2026-11-17": ("game-current-2026-11-17.png", [640, 1280], "jpg", 1280, 80),
     "zerble-logo": ("logo-synthwave.webp", [512], "png", 512, 82),
     # The 404 page's headline: "404" in purple fur, with a googly eye for the zero
     "error-404": ("sticker-404-eyeball.webp", [560, 1120], "png", 720, 74),

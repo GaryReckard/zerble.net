@@ -66,7 +66,7 @@
 - Controls: WASD to drive on a keyboard (arrow keys orbit the camera, Shift boosts, Space honks the horn), or the on-screen thumbstick and buttons on a phone.
 - Lurleen is in the game too, and if you drive up to her slowly, the air fills with hearts.
 - Explore rolling hills and woodland camps, give passengers lifts to festival destinations, discover bubble upgrades, and collect Festival Passport memories. Bands perform as day turns to night.
-- The Time Machine offers twelve curated playable chapters from May through November 2026: https://game-archive.zerble.net/
+- The Time Machine offers a timeline of earlier playable versions of the game: https://game-archive.zerble.net/
 - Pick a dated chapter and press Play. Archive progress lasts only for that visit; leaving, reloading, or returning starts fresh.
 - Built by Gary Reckard, starting in May 2026, with three.js, Web Audio, and Vite.
 

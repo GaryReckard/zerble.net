@@ -486,7 +486,7 @@ h2 {
 /* ---------- the game ---------- */
 .game { position: relative; padding: 100px 0 90px; background: linear-gradient(180deg, #0e0a1d 0%, var(--night) 100%); }
 .game h2 { font: 400 clamp(1.4rem, 4vw, 2.3rem)/1.3 var(--pixel); color: var(--sun); text-shadow: 3px 3px 0 var(--pink); margin-bottom: 26px; }
-.game-grid { display: grid; grid-template-columns: 1.25fr .75fr; grid-template-areas: "screen copy" "archive copy"; grid-template-rows: auto 1fr; gap: 36px 44px; align-items: start; }
+.game-grid { display: grid; grid-template-columns: 1.25fr .75fr; grid-template-areas: "screen copy" "features features" "archive archive"; grid-template-rows: auto; gap: 36px 44px; align-items: start; }
 .screen {
   margin: 0;
   border: 4px solid var(--ink);
@@ -499,16 +499,19 @@ h2 {
 .game-copy p { color: var(--muted); }
 .game .screen { grid-area: screen; }
 .game-copy { grid-area: copy; min-width: 0; }
-.time-machine { grid-area: archive; padding: clamp(20px, 3vw, 32px); border: 3px solid var(--grape); border-radius: 18px; background: var(--card); }
+.game-copy .btn-play { margin: 4px 0 18px; }
+.game-controls { font-size: 1rem; }
+.game-features { grid-area: features; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 36px; list-style: none; margin: 0; padding: 0; }
+.game-features li { border-left: 3px solid var(--grape); padding-left: 20px; }
+.game-features h3 { font: 400 1.25rem/1.4 var(--display); color: var(--sun); margin: 0 0 8px; }
+.game-features p { margin: 0; color: var(--muted); font-size: 1rem; }
+.time-machine { grid-area: archive; display: grid; grid-template-columns: minmax(0, 1fr) 180px; align-items: center; gap: 28px; padding: clamp(20px, 3vw, 32px); border: 3px solid var(--grape); border-radius: 18px; background: var(--card); }
 .time-machine .eyebrow { margin-bottom: 12px; }
 .time-machine h3 { font: 400 clamp(1rem, 2vw, 1.3rem)/1.6 var(--pixel); color: var(--sun); margin-bottom: 16px; }
 .time-machine p:not(.eyebrow) { color: var(--muted); }
 .time-machine .text-link { display: inline-block; padding: 8px 0; }
 .game .tagline { margin: -12px 0 30px; }
-.modes { display: grid; gap: 12px; margin: 22px 0 28px; padding: 0; list-style: none; }
-.modes li { background: var(--card); border: 3px solid var(--ink); border-radius: 14px; padding: 12px 16px; font-size: 1rem; color: var(--muted); }
-.modes strong { display: block; font: 400 .72rem/1.6 var(--pixel); color: var(--cream); margin-bottom: 4px; }
-.pixel-sticker { --tilt: 6deg; width: min(300px, 100%); margin: 34px auto 0; }
+.pixel-sticker { --tilt: 6deg; width: min(180px, 100%); margin: 0 auto; }
 
 /* ---------- Instagram (the black band) ---------- */
 .gram { background: #000; padding: 96px 0; }
@@ -540,7 +543,8 @@ h2 {
 /* ---------- small screens ---------- */
 @media (max-width: 860px) {
   .hero .wrap, .sweetheart .wrap, .game-grid, .gram .wrap { grid-template-columns: minmax(0, 1fr); }
-  .game-grid { grid-template-areas: "screen" "copy" "archive"; grid-template-rows: auto; }
+  .game-grid { grid-template-areas: "screen" "copy" "features" "archive"; }
+  .game-features, .time-machine { grid-template-columns: minmax(0, 1fr); }
   .art-grid { columns: 1; }
   .timeline { gap: 64px; }
   .timeline::before { left: 14px; }

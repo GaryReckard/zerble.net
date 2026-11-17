@@ -40,12 +40,29 @@ Then open <http://127.0.0.1:8770/>. Every asset path in `index.html` is relative
 The main play buttons lead to the current game, while the Time Machine card,
 story link, footer, and 404 navigation lead to the separate archive. Keep the
 current play button ahead of the archive invitation on phones. The archive
-currently has twelve curated chapters from May through November 2026, and each
-historical visit starts fresh after leaving or reloading.
+offers earlier playable versions along its timeline, and each historical visit
+starts fresh after leaving or reloading. Keep promotional copy evergreen rather
+than hard-coding its growing chapter count or date range.
 
 Copy follows the game's public README and `docs/time-machine.md` in the sibling
 `zerble-at-the-festival` checkout. Keep hidden mechanics and developer controls
 out of visitor copy, and do not imply physical iOS audio acceptance.
+
+The current section leads with a short invitation and Play now, followed by four
+scannable themes: finding a route, giving rides, collecting memories, and staying
+for the music. Mode selection is explained on the game's title screen, so the
+site omits those cards to keep the introduction balanced beside the screenshot.
+The pixel art accompanies the secondary archive invitation. NPC activities describe what visitors can watch, rather
+than implying the player can leave the cart to play those activities.
+
+The screenshot original is `art/game-current-2026-11-17.png`, a real 1600×900
+canvas capture supplied by the game project from source commit `7d4c85c`.
+It was staged with the normal simulation running and exported without the HUD;
+no artwork generation, retouching, or compositing was used. Provenance is in the
+sibling game's `verification/site-promo/2026-11-17/README.md` and JSON sidecar.
+The image script produces 640px and 1280px WebP versions and a 1280px JPEG.
+Keep the picture, caption, alt text, and JSON-LD image/screenshot references in
+sync when replacing it; dated filenames prevent stale browser caches.
 
 Validation for the November 17, 2026 update:
 
@@ -53,11 +70,17 @@ Validation for the November 17, 2026 update:
 - Audited the whole site for the obsolete GitHub Pages game URL; none remain.
 - Exercised the analytics click handler with all seven named game/archive links;
   each sends `outbound_click` with its distinct `link_text` and destination.
-- Inspected the desktop section visually and measured a 390px browser viewport:
-  one column, no horizontal page overflow, loaded game images, and separated
-  screenshot, current game copy, and archive card. Chrome's viewport override
-  returned blank screenshots, so mobile verification used rendered DOM bounds
-  and computed styles, rather than a visual screenshot or physical phone.
+- Inspected the final desktop section visually with the new screenshot, four
+  highlights, mode cards removed, and the secondary archive card. Both images
+  loaded normally at the desktop viewport.
+- Measured the revised section at 320px and 390px browser widths: the screenshot,
+  introduction and play button, highlights, and archive stack in one column with
+  no content extending outside the game section. Chrome's viewport override
+  returns blank captures and stalls lazy-image loading until reset, so mobile
+  verification used DOM bounds and computed styles, rather than visual or
+  physical-phone acceptance. At 390px the page had no horizontal overflow.
+- Verified all responsive screenshot files retain 16:9, and the game's JSON-LD
+  image and screenshot references use the same new JPEG as the picture fallback.
 - Followed the section's play and archive links to their correct public titles;
   both destinations also returned HTTPS 200 responses.
 

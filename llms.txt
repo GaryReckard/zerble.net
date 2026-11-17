@@ -59,20 +59,24 @@
 
 ## The game: Zerble at the Festival
 
-- Play free in any modern web browser, on a laptop or a phone, with nothing to install: https://garyreckard.github.io/zerble-at-the-festival/
+- Play free in a modern web browser, with keyboard controls or landscape touch controls, with nothing to install: https://game.zerble.net/
 - You drive Zerble through a procedural festival that builds itself as you go (stages, food trucks, drum circles, lakes, and forests) and trail bubbles past the crowd to collect smiles.
 - The game's tagline: "Bring the bubbles, collect the smiles."
-- Two modes: Just Cruisin' (endless, no pressure) and Festival Run (each festival day brings scarcer bubble juice and stricter marshals).
+- Two modes: Just Cruisin' (plentiful bubble juice and no marshal pressure, while damage and deep water can still end the trip) and Festival Run (each festival day brings scarcer bubble juice and stricter marshals).
 - Controls: WASD to drive on a keyboard (arrow keys orbit the camera, Shift boosts, Space honks the horn), or the on-screen thumbstick and buttons on a phone.
 - Lurleen is in the game too, and if you drive up to her slowly, the air fills with hearts.
-- Built by Gary Reckard, starting in May 2026, with three.js and Web Audio and no build step.
+- Explore rolling hills and woodland camps, give passengers lifts to festival destinations, discover bubble upgrades, and collect Festival Passport memories. Bands perform as day turns to night.
+- The Time Machine offers twelve curated playable chapters from May through November 2026: https://game-archive.zerble.net/
+- Pick a dated chapter and press Play. Archive progress lasts only for that visit; leaving, reloading, or returning starts fresh.
+- Built by Gary Reckard, starting in May 2026, with three.js, Web Audio, and Vite.
 
 ## Links
 
 - Home: https://zerble.net/
 - Tip toward bubble juice: https://zerble.net/#bubble-juice
 - Venmo: https://venmo.com/zerble
-- Game: https://garyreckard.github.io/zerble-at-the-festival/
+- Game: https://game.zerble.net/
+- Time Machine: https://game-archive.zerble.net/
 - Instagram: https://www.instagram.com/zerble_art_cart/
 - Facebook: https://www.facebook.com/Zerble
 - Merch on Redbubble: https://www.redbubble.com/people/garbonzo00/shop?collections=4591699

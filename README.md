@@ -2,7 +2,8 @@
 
 The home page for Zerble, the golf cart with googly eyes and a giant purple mustache. It's a single static page with no build step, and it links out to the game and to Instagram:
 
-- Game: <https://garyreckard.github.io/zerble-at-the-festival/>
+- Game: <https://game.zerble.net/>
+- Time Machine: <https://game-archive.zerble.net/>
 - Instagram: <https://www.instagram.com/zerble_art_cart/>
 
 The setup follows the RADish Fest site (`~/Sites/raddish-fest`): a per-letter hero wordmark that pops on hover and runs a one-time intro sweep, a JSON-LD `@graph` with cross-linked `@id`s, and the full set of crawler files.
@@ -33,6 +34,37 @@ python3 -m http.server 8770 --bind 127.0.0.1
 ```
 
 Then open <http://127.0.0.1:8770/>. Every asset path in `index.html` is relative, so it also works under any host.
+
+## Game and Time Machine links
+
+The main play buttons lead to the current game, while the Time Machine card,
+story link, footer, and 404 navigation lead to the separate archive. Keep the
+current play button ahead of the archive invitation on phones. The archive
+currently has twelve curated chapters from May through November 2026, and each
+historical visit starts fresh after leaving or reloading.
+
+Copy follows the game's public README and `docs/time-machine.md` in the sibling
+`zerble-at-the-festival` checkout. Keep hidden mechanics and developer controls
+out of visitor copy, and do not imply physical iOS audio acceptance.
+
+Validation for the November 17, 2026 update:
+
+- Parsed JSON-LD, unique IDs, fragment destinations, and local asset references.
+- Audited the whole site for the obsolete GitHub Pages game URL; none remain.
+- Exercised the analytics click handler with all seven named game/archive links;
+  each sends `outbound_click` with its distinct `link_text` and destination.
+- Inspected the desktop section visually and measured a 390px browser viewport:
+  one column, no horizontal page overflow, loaded game images, and separated
+  screenshot, current game copy, and archive card. Chrome's viewport override
+  returned blank screenshots, so mobile verification used rendered DOM bounds
+  and computed styles, rather than a visual screenshot or physical phone.
+- Followed the section's play and archive links to their correct public titles;
+  both destinations also returned HTTPS 200 responses.
+
+There is no build step or repository test runner. Before publishing, run
+`git diff --check`, inspect the staged paths, and commit only the intended files;
+pushing `main` triggers the existing GitHub Pages deployment. Check its result
+and the live section before reporting publication complete.
 
 ## Images
 
@@ -138,9 +170,9 @@ It needs `segno` and `fonttools` (`pip3 install segno fonttools`). Google Chrome
 
 GA4 uses the game's property and tag (`G-CY1FNMY8H8`), so all Zerble traffic lands in one place and you can split it by hostname. The tag only loads on `zerble.net`, so local previews never send hits. To give the site its own property instead, swap the ID in the `<head>` snippet.
 
-So a visit that starts here and clicks through to the game counts as one journey, turn on cross-domain measurement in GA4 for this tag with both `zerble.net` and `garyreckard.github.io` listed (it lives under the web data stream's tag settings, "Configure your domains"). The Google tag then adds a `_gl` parameter to links between the two sites on its own, with no code change on either side.
+The current game and Time Machine use `game.zerble.net` and `game-archive.zerble.net`. Their shared GA4 property and game version/channel dimensions are configured; this content update requires no account or DNS changes.
 
-`analytics.js` names the important clicks with `data-ga`: `book_preorder`, `book_about`, `book_announce`, `play_game_hero`, `play_game_section`, `play_game_timeline`, `instagram_hero`, `instagram_section`, `facebook_section`, `lamplight_artwalk`, `tip_venmo` (plus `tip_paypal` if that button comes back), and the merch tent's `shop_<design>_<product>`, `shop_<design>_all`, and `shop_collection` (for example `shop_neon_pillow`), plus the hero signpost's boards (`signpost_bubble_fund`, `signpost_story`, `signpost_crew`, `signpost_lurleen`, `signpost_game`, and `signpost_merch`). Outbound ones arrive as `outbound_click` events with that name in `link_text`, and the signpost boards, which jump to a section on the same page, arrive as `anchor_click` events the same way. The tip links also send the picked dollar amount as an `amount` param. GA4 only reports a custom param after you register it, so add `amount` as a custom metric (Admin, then Custom definitions) to see it in reports. These clicks measure intent, not money received, since the payment itself happens in Venmo.
+`analytics.js` names the important clicks with `data-ga`: `book_preorder`, `book_about`, `book_announce`, `play_game_hero`, `play_game_section`, `play_game_timeline`, `play_game_footer`, `time_machine_section`, `time_machine_timeline`, `time_machine_footer`, `instagram_hero`, `instagram_section`, `facebook_section`, `lamplight_artwalk`, `tip_venmo` (plus `tip_paypal` if that button comes back), and the merch tent's `shop_<design>_<product>`, `shop_<design>_all`, and `shop_collection` (for example `shop_neon_pillow`), plus the hero signpost's boards (`signpost_bubble_fund`, `signpost_story`, `signpost_crew`, `signpost_lurleen`, `signpost_game`, and `signpost_merch`). Outbound ones arrive as `outbound_click` events with that name in `link_text`, and the signpost boards, which jump to a section on the same page, arrive as `anchor_click` events the same way. The tip links also send the picked dollar amount as an `amount` param. GA4 only reports a custom param after you register it, so add `amount` as a custom metric (Admin, then Custom definitions) to see it in reports. These clicks measure intent, not money received, since the payment itself happens in Venmo.
 
 Popping the floating background bubbles sends a `bubble_pop` event with a `popped` count, but only at 1, 10, 25, 50, and 100 pops, so a bubble-popping spree doesn't flood GA.
 
@@ -157,7 +189,7 @@ GitHub Pages serves this repo from the `main` branch root, and the `CNAME` file 
 
 The IPs come from GitHub's [custom domain docs](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site). Don't add a wildcard (`*.zerble.net`) record, because GitHub warns that it opens the domain to takeover.
 
-The custom domain lives on this project repo on purpose. Setting it on the `garyreckard.github.io` user site instead would move every project site under it. The game would then jump to `zerble.net/zerble-at-the-festival/`, and players would lose their saved name, best score, and mode, because the game keeps those in `localStorage`, which is tied to the origin.
+The custom domain belongs to this repository. The current game and archive have their own subdomains and deployment repositories, so publish site changes here without changing their packages or hosting.
 
 ## Fonts
 

@@ -52,6 +52,8 @@ The current section leads with a short invitation and Play now, followed by four
 scannable themes: finding a route, giving rides, collecting memories, and staying
 for the music. Mode selection is explained on the game's title screen, so the
 site omits those cards to keep the introduction balanced beside the screenshot.
+Keep keyboard/touch instructions and archive progress notices in the games
+themselves, rather than repeating them in this site's promotional copy.
 The pixel art accompanies the secondary archive invitation. The archive card
 uses warm paper, serif and typewriter lettering, a double ink border, and a
 perforated ticket stub to distinguish playable history from the current game.
